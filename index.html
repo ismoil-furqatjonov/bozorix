@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bozorix — Zamonaviy Elektronika va Texnika Do'koni</title>
+  <meta name="description" content="Bozorix — O'zbekistondagi yangi avlod elektronika, smartfonlar va maishiy texnika onlayn platformasi. Rasmiy kafolat va 3 soatda tezkor yetkazib berish.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Maxsus Stillar -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       1. Yuqori Ma'lumot Paneli (Top Bar)
+       ========================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span class="top-bar-link"><i class="fa-solid fa-location-dot"></i> Toshkent sh., Shayxontohur t., Navoiy ko'chasi 14</span>
+        <span class="top-bar-link"><i class="fa-solid fa-clock"></i> Har kuni: 09:00 - 21:00</span>
+        <span class="top-bar-promo"><i class="fa-solid fa-gift"></i> Maxsus promokod: <strong>USTOZ20</strong> (-20% chegirma)</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:+998712008800" class="top-bar-link"><i class="fa-solid fa-phone"></i> +998 (71) 200-88-00</a>
+        <a href="#faqSection" class="top-bar-link"><i class="fa-solid fa-circle-question"></i> Savol-javoblar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. Asosiy Header
+       ========================================== -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <!-- Do'kon Logotipi -->
+      <a href="#" class="logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-bolt-lightning"></i>
+        </div>
+        <div class="logo-text">Bozor<span>ix</span></div>
+      </a>
+
+      <!-- Qidiruv paneli -->
+      <div class="header-search">
+        <div class="search-wrapper">
+          <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted); margin-right: 0.5rem;"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="Mahsulot nomi, modeli yoki xususiyati bo'yicha qidirish..." autocomplete="off">
+          <button class="search-clear-btn" id="searchClearBtn" title="Tozalash">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <button class="search-btn" title="Qidirish">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header O'ng Amallar Tugmalari -->
+      <div class="header-actions">
+        <!-- Tungi/Kunduzgi rejim -->
+        <button class="header-btn" id="themeToggleBtn" title="Tungi/Kunduzgi rejim">
+          <i class="fa-regular fa-moon"></i>
+        </button>
+
+        <!-- Sevimlilar (Wishlist) -->
+        <button class="header-btn" id="openWishBtn" title="Sevimlilar ro'yxati">
+          <i class="fa-regular fa-heart"></i>
+          <span class="btn-text">Sevimlilar</span>
+          <span class="badge-count" id="wishBadge">0</span>
+        </button>
+
+        <!-- Savatcha (Cart) -->
+        <button class="header-btn" id="openCartBtn" title="Savatcha">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="btn-text">Savatcha</span>
+          <span class="badge-count" id="cartBadge">0</span>
+          <span class="cart-amount hidden md:inline" id="cartHeaderTotal">0 so'm</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       3. Kategoriyalar Gorizontal Paneli (Pills)
+       ========================================== -->
+  <div class="nav-sub">
+    <div class="container nav-sub-inner">
+      <div class="category-pills" id="categoryPills">
+        <!-- JS orqali to'ldiriladi -->
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================
+         4. Bosh Sahifa Hero Banner Sektsiyasi
+         ========================================== -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <!-- Katta Slayder -->
+        <div class="hero-slider-box">
+          <!-- Slide 1: iPhone 15 Pro Max -->
+          <div class="hero-slide active">
+            <div class="hero-content">
+              <span class="hero-tag"><i class="fa-solid fa-fire"></i> Bozorix tavsiyasi</span>
+              <h1 class="hero-title">Apple iPhone 15 Pro Max<br>Titanium Korpus</h1>
+              <p class="hero-desc">Kuchli Apple A17 Pro chipi, 5x optik zumli kamera va eng yengil titan dizayn. Rasmiy 1 yil kafolat bilan.</p>
+              <div class="hero-price-badge">
+                <span class="hero-price">15 850 000 so'm</span>
+                <span class="hero-old-price">17 500 000 so'm</span>
+              </div>
+              <a href="#catalogSection" class="hero-btn">
+                <span>Xarid qilish</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="hero-img-box">
+              <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80" alt="iPhone 15 Pro Max" class="hero-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=800&q=80';">
+            </div>
+          </div>
+
+          <!-- Slide 2: MacBook Air M3 -->
+          <div class="hero-slide">
+            <div class="hero-content">
+              <span class="hero-tag" style="background: rgba(59, 130, 246, 0.35);"><i class="fa-solid fa-laptop"></i> O'ta Yupqa & Tezkor</span>
+              <h1 class="hero-title">MacBook Air 15"<br>Apple M3 Chipi</h1>
+              <p class="hero-desc">18 soatgacha to'xtovsiz ishlash quvvati, aql bovar qilmas tezlik va 15.3 dyuymli tengsiz Liquid Retina displey.</p>
+              <div class="hero-price-badge">
+                <span class="hero-price">18 200 000 so'm</span>
+                <span class="hero-old-price">20 500 000 so'm</span>
+              </div>
+              <a href="#catalogSection" class="hero-btn">
+                <span>Katalogda ko'rish</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="hero-img-box">
+              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="MacBook Air M3" class="hero-img">
+            </div>
+          </div>
+
+          <!-- Slide 3: PlayStation 5 Slim -->
+          <div class="hero-slide">
+            <div class="hero-content">
+              <span class="hero-tag" style="background: rgba(168, 85, 247, 0.35);"><i class="fa-solid fa-gamepad"></i> Yangi Avlod O'yinlari</span>
+              <h1 class="hero-title">PlayStation 5 Slim<br>1TB SSD + DualSense</h1>
+              <p class="hero-desc">Haptik sezgilar, 3D audio hamda ultra tezkor SSD xotira yordamida sevimli o'yinlaringizdan to'liq bahramand bo'ling.</p>
+              <div class="hero-price-badge">
+                <span class="hero-price">6 650 000 so'm</span>
+                <span class="hero-old-price">7 400 000 so'm</span>
+              </div>
+              <a href="#catalogSection" class="hero-btn">
+                <span>Buyurtma berish</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="hero-img-box">
+              <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80" alt="PlayStation 5" class="hero-img">
+            </div>
+          </div>
+
+          <!-- Slayder nuqtalari -->
+          <div class="slider-controls">
+            <div class="slider-dot active"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
+          </div>
+        </div>
+
+        <!-- O'ng tomondagi Promo Bannerlar -->
+        <div class="hero-side-banners">
+          <div class="side-banner open-product-qv" data-product-id="4" style="cursor: pointer; background: linear-gradient(135deg, #eff6ff, #dbeafe);">
+            <div class="side-banner-text">
+              <span class="side-banner-tag">Maxsus Taklif</span>
+              <h3 class="side-banner-title">Sony WH-1000XM5 Premium ANC</h3>
+              <span class="side-banner-link">
+                Batafsil ko'rish <i class="fa-solid fa-arrow-right"></i>
+              </span>
+            </div>
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" alt="Sony Headphones" class="side-banner-img">
+          </div>
+
+          <div class="side-banner open-product-qv" data-product-id="5" style="cursor: pointer; background: linear-gradient(135deg, #fef3c7, #fde68a);">
+            <div class="side-banner-text">
+              <span class="side-banner-tag" style="color: #b45309;">Smart Soatlar</span>
+              <h3 class="side-banner-title">Apple Watch Ultra 2 Titanda</h3>
+              <span class="side-banner-link" style="color: #b45309;">
+                Batafsil ko'rish <i class="fa-solid fa-arrow-right"></i>
+              </span>
+            </div>
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80" alt="Apple Watch" class="side-banner-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         5. Kategoriyalar Vitrinasi (Showcase)
+         ========================================== -->
+    <section class="container categories-showcase">
+      <div class="categories-showcase-grid">
+        <div class="category-card-item" data-category="smartphones">
+          <div class="cat-card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+          <span class="cat-card-name">Smartfonlar</span>
+          <span class="cat-card-count">5 ta model</span>
+        </div>
+        <div class="category-card-item" data-category="laptops">
+          <div class="cat-card-icon"><i class="fa-solid fa-laptop"></i></div>
+          <span class="cat-card-name">Noutbuklar & PC</span>
+          <span class="cat-card-count">4 ta model</span>
+        </div>
+        <div class="category-card-item" data-category="audio">
+          <div class="cat-card-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+          <span class="cat-card-name">Audio & Quloqchin</span>
+          <span class="cat-card-count">4 ta model</span>
+        </div>
+        <div class="category-card-item" data-category="wearables">
+          <div class="cat-card-icon"><i class="fa-solid fa-clock"></i></div>
+          <span class="cat-card-name">Aqlli soatlar</span>
+          <span class="cat-card-count">3 ta model</span>
+        </div>
+        <div class="category-card-item" data-category="home-appliances">
+          <div class="cat-card-icon"><i class="fa-solid fa-blender-phone"></i></div>
+          <span class="cat-card-name">Maishiy texnika</span>
+          <span class="cat-card-count">2 ta model</span>
+        </div>
+        <div class="category-card-item" data-category="gaming">
+          <div class="cat-card-icon"><i class="fa-solid fa-gamepad"></i></div>
+          <span class="cat-card-name">Geyming & Konsol</span>
+          <span class="cat-card-count">2 ta model</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         6. Afzalliklarimiz (Why Choose Us)
+         ========================================== -->
+    <section class="features-bar">
+      <div class="container features-grid">
+        <div class="feature-item">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">Tezkor yetkazib berish</h4>
+            <p class="feature-desc">Toshkent bo'ylab 3 soatda, viloyatlarga 24 soat ichida</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">100% Rasmiy Kafolat</h4>
+            <p class="feature-desc">Barcha mahsulotlarga rasmiy servis markazi kafolati</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-credit-card"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">Qulay to'lov usullari</h4>
+            <p class="feature-desc">Qabul qilganda naqd, Payme va Click orqali to'lov</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon-box">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <div>
+            <h4 class="feature-title">24/7 Qo'llab-quvvatlash</h4>
+            <p class="feature-desc">Mutaxassislarimiz har doim aloqada va yordamga tayyor</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         7. Flash Sale & Taymer Sektsiyasi
+         ========================================== -->
+    <section class="container">
+      <div class="flash-sale-box">
+        <div class="flash-sale-info">
+          <i class="fa-solid fa-bolt-lightning flash-sale-icon"></i>
+          <div>
+            <h3 class="flash-sale-title">Kunning Super Chegirmalari!</h3>
+            <p class="flash-sale-subtitle">Tanlangan tovarlarga 20% gacha maxsus narxlar. Shoshiling, aksiya muddati cheklangan!</p>
+          </div>
+        </div>
+
+        <div class="countdown-timer">
+          <div class="countdown-block">
+            <span class="countdown-num" id="cdHours">07</span>
+            <span class="countdown-lbl">Soat</span>
+          </div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cdMinutes">42</span>
+            <span class="countdown-lbl">Daqiqa</span>
+          </div>
+          <span class="countdown-colon">:</span>
+          <div class="countdown-block">
+            <span class="countdown-num" id="cdSeconds">18</span>
+            <span class="countdown-lbl">Soniya</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         8. Mahsulotlar Katalogi (Asosiy Sektsiya)
+         ========================================== -->
+    <section class="catalog-section" id="catalogSection">
+      <div class="container">
+        <!-- Katalog Sarlavhasi va Toolbar -->
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">
+              <i class="fa-solid fa-layer-group" style="color: var(--primary);"></i>
+              Mahsulotlar Katalogi
+            </h2>
+            <p class="section-subtitle" id="productsCount">Barcha saralangan tovarlar ro'yxati</p>
+          </div>
+
+          <div class="catalog-toolbar">
+            <!-- Mobil Filtr Tugmasi -->
+            <button class="header-btn" id="mobileFilterBtn" style="display: none;">
+              <i class="fa-solid fa-sliders"></i>
+              <span>Filtr</span>
+            </button>
+
+            <!-- Saralash -->
+            <div class="sort-select-wrapper">
+              <select id="sortSelect" class="sort-select">
+                <option value="popular">Eng ommabop</option>
+                <option value="price-low">Narxi: Arzondan qimmatga</option>
+                <option value="price-high">Narxi: Qimmatdan arzonga</option>
+                <option value="rating">Reytingi bo'yicha</option>
+                <option value="newest">Yangi qo'shilganlar</option>
+              </select>
+            </div>
+
+            <!-- Ko'rinish rejimi -->
+            <div class="view-toggles">
+              <button class="view-btn active" id="viewGridBtn" title="Setka ko'rinishi">
+                <i class="fa-solid fa-grip"></i>
+              </button>
+              <button class="view-btn" id="viewListBtn" title="Ro'yxat ko'rinishi">
+                <i class="fa-solid fa-list"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Asosiy Katalog Layout: Chap Filtr + O'ng Kartochkalar -->
+        <div class="catalog-layout">
+          <!-- Chap Yon Filtr (Sidebar) -->
+          <aside class="filter-sidebar">
+            <div class="filter-header">
+              <h3 class="filter-title"><i class="fa-solid fa-sliders"></i> Filtrlar</h3>
+              <button class="filter-reset-btn" id="resetFiltersBtn">Tozalash</button>
+            </div>
+
+            <!-- Kategoriyalar ro'yxati -->
+            <div class="filter-group">
+              <h4 class="filter-group-title">Kategoriyalar</h4>
+              <div class="category-filter-list" id="categoryFilterList">
+                <!-- JS orqali to'ldiriladi -->
+              </div>
+            </div>
+
+            <!-- Narx Filtri -->
+            <div class="filter-group">
+              <h4 class="filter-group-title">Narx oralig'i (so'm)</h4>
+              <div class="price-inputs">
+                <div class="price-input-box">
+                  <label>Dan</label>
+                  <input type="text" id="priceInputMin" value="0" readonly>
+                </div>
+                <div class="price-input-box">
+                  <label>Gacha</label>
+                  <input type="text" id="priceInputMax" value="30 000 000" readonly>
+                </div>
+              </div>
+              <input type="range" id="priceSlider" class="price-slider-range" min="1000000" max="30000000" step="500000" value="30000000">
+            </div>
+
+            <!-- Status Nishonlari Filtri -->
+            <div class="filter-group">
+              <h4 class="filter-group-title">Mahsulot holati</h4>
+              <div class="checkbox-filter-list">
+                <label class="checkbox-label">
+                  <input type="checkbox" class="badge-checkbox" value="HIT">
+                  <span>🔥 Hit sotuv</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" class="badge-checkbox" value="CHEGIRMA">
+                  <span>🏷️ Chegirma</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" class="badge-checkbox" value="YANGI">
+                  <span>✨ Yangi mahsulot</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" class="badge-checkbox" value="TAVSIYA">
+                  <span>👍 Mutaxassis tavsiyasi</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Kafolat ma'lumot qutisi -->
+            <div style="background: var(--bg-surface); padding: 1.15rem; border-radius: var(--radius-lg); font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; border: 1px solid var(--border-light);">
+              <i class="fa-solid fa-circle-check" style="color: var(--success); margin-right: 0.35rem;"></i>
+              Barcha tovarlar 100% original bo'lib, ishlab chiqaruvchi rasmiy kafolati bilan sotiladi.
+            </div>
+          </aside>
+
+          <!-- O'ng Mahsulotlar Ro'yxati (Grid) -->
+          <div class="products-grid" id="productsGrid">
+            <!-- JS orqali dinamik chiqariladi -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         9. Mijozlar Fikrlari (Testimonials)
+         ========================================== -->
+    <section class="container testimonials-section">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span style="color: var(--primary); font-weight: 800; font-size: 0.85rem; text-transform: uppercase;">Mijozlarimiz fikri</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin-top: 0.35rem;">Bizning mamnun xaridorlarimiz</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "Bozorix do'konidan iPhone 15 Pro Max xarid qildim. Toshkent bo'ylab 2 soatda yetkazib berishdi. Qadoq butun, kafolat varaqasi va kvitansiyasi bor. Rahmat!"
+          </p>
+          <div class="testimonial-user">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Madina" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Madina Rahimova</div>
+              <div class="testimonial-status"><i class="fa-solid fa-check-circle"></i> Tasdiqlangan xaridor</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "MacBook Air M3 noutbukini dasturlash uchun oldim. Narxi bozordagidan ancha qulay tushdi. USTOZ20 promokodi orqali 20% chegirmaga ega bo'ldim."
+          </p>
+          <div class="testimonial-user">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Bekzod" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Bekzod Yusupov</div>
+              <div class="testimonial-status"><i class="fa-solid fa-check-circle"></i> Tasdiqlangan xaridor</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "Sony XM5 quloqchini ovoz sifati ajoyib darajada. Shovqinni so'ndirish rejimi samolyotda ham, ko'chada ham tinchlik yaratadi. Servis va tezkor xarid juda zo'r."
+          </p>
+          <div class="testimonial-user">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Javohir" class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Javohir Ergashev</div>
+              <div class="testimonial-status"><i class="fa-solid fa-check-circle"></i> Tasdiqlangan xaridor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         10. Ko'p Beriladigan Savollar (FAQ Accordion)
+         ========================================== -->
+    <section class="container faq-section" id="faqSection">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span style="color: var(--primary); font-weight: 800; font-size: 0.85rem; text-transform: uppercase;">Yordam markazi</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin-top: 0.35rem;">Ko'p beriladigan savollar</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>Yetkazib berish qancha vaqt oladi va narxi qancha?</span>
+            <i class="fa-solid fa-chevron-down faq-chevron"></i>
+          </div>
+          <div class="faq-answer">
+            Toshkent shahri bo'ylab buyurtmalar 3 soat ichida kuryer orqali eshigingizgacha yetkaziladi. O'zbekistonning barcha viloyatlariga esa 24 soat ichida yetkaziladi. Buyurtma summasi 1 000 000 so'mdan oshsa, yetkazib berish butunlay <strong>BEPUL</strong>!
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Mahsulotlarga kafolat beriladimi?</span>
+            <i class="fa-solid fa-chevron-down faq-chevron"></i>
+          </div>
+          <div class="faq-answer">
+            Ha, albatta. Bozorix faqat 100% original, yangi va zavod qadog'idagi tovarlarni sotadi. Barcha mahsulotlarga ishlab chiqaruvchi va rasmiy servis markazi tomonidan 1 yildan 2 yilgacha rasmiy kafolat taqdim etiladi.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>To'lovni qanday amalga oshirish mumkin?</span>
+            <i class="fa-solid fa-chevron-down faq-chevron"></i>
+          </div>
+          <div class="faq-answer">
+            Siz to'lovni mahsulotni to'liq tekshirib olganingizdan so'ng kuryerga naqd pulda yoki Payme, Click Up, Uzum Bank ilovalari orqali xavfsiz to'lashingiz mumkin.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Tovarni almashtirish yoki qaytarish tartibi qanday?</span>
+            <i class="fa-solid fa-chevron-down faq-chevron"></i>
+          </div>
+          <div class="faq-answer">
+            Agar mahsulotda zavod nuqsoni aniqlansa yoki sizga mos kelmasa, O'zbekiston Respublikasi iste'molchilar huquqlarini himoya qilish to'g'risidagi qonuniga muvofiq 14 kun ichida boshqa mahsulotga almashtirib beriladi yoki to'lovingiz to'liq qaytariladi.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       11. Footer
+       ========================================== -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <!-- Kolonka 1: Logo & Tavsif -->
+      <div>
+        <a href="#" class="footer-logo">
+          <div class="logo-icon-box" style="width: 38px; height: 38px; font-size: 1.1rem;">
+            <i class="fa-solid fa-bolt-lightning"></i>
+          </div>
+          <div>Bozor<span>ix</span></div>
+        </a>
+        <p class="footer-desc">
+          Bozorix — yangi avlod elektronika, smartfonlar, noutbuklar va maishiy texnika onlayn savdo platformasi. Rasmiy kafolat va tezkor yetkazib berish.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Kolonka 2: Kategoriyalar -->
+      <div>
+        <h4 class="footer-col-title">Katalog</h4>
+        <ul class="footer-links">
+          <li><a href="#catalogSection">Smartfonlar</a></li>
+          <li><a href="#catalogSection">Noutbuklar & Kompyuterlar</a></li>
+          <li><a href="#catalogSection">Audio va Quloqchinlar</a></li>
+          <li><a href="#catalogSection">Aqlli soatlar</a></li>
+          <li><a href="#catalogSection">Geyming & Konsollar</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolonka 3: Foydali Havolalar -->
+      <div>
+        <h4 class="footer-col-title">Mijozlarga</h4>
+        <ul class="footer-links">
+          <li><a href="#faqSection">Yetkazib berish va to'lov</a></li>
+          <li><a href="#faqSection">Kafolat shartlari</a></li>
+          <li><a href="#faqSection">Maxfiylik siyosati</a></li>
+          <li><a href="#faqSection">Ko'p beriladigan savollar</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolonka 4: Bog'lanish -->
+      <div>
+        <h4 class="footer-col-title">Bog'lanish</h4>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>+998 (71) 200-88-00<br>+998 (90) 900-88-00</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>info@bozorix.uz<br>buyurtma@bozorix.uz</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Toshkent sh., Shayxontohur t., Navoiy ko'chasi, 14-uy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pastki Mualliflik Huquqi -->
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Bozorix.uz — Barcha huquqlar himoyalangan.</p>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <span style="font-size: 0.8rem; color: #64748b;">To'lov tizimlari:</span>
+        <span style="font-weight: 800; color: #fff; background: #1e293b; padding: 3px 10px; border-radius: 6px;">Payme</span>
+        <span style="font-weight: 800; color: #fff; background: #1e293b; padding: 3px 10px; border-radius: 6px;">Click Up</span>
+        <span style="font-weight: 800; color: #fff; background: #1e293b; padding: 3px 10px; border-radius: 6px;">Uzum Bank</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       12. Mobil Pastki Navigatsiya (Bottom Bar)
+       ========================================== -->
+  <div class="mobile-bottom-nav">
+    <div class="mobile-nav-items">
+      <a href="#" class="mobile-nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>Bosh sahifa</span>
+      </a>
+      <a href="#catalogSection" class="mobile-nav-item">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Katalog</span>
+      </a>
+      <button class="mobile-nav-item" id="openWishMobile">
+        <i class="fa-regular fa-heart"></i>
+        <span class="badge-count" id="wishBadgeMobile">0</span>
+        <span>Sevimlilar</span>
+      </button>
+      <button class="mobile-nav-item" id="openCartMobile">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge-count" id="cartBadgeMobile">0</span>
+        <span>Savatcha</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       13. MODALLAR VA DRAWERLAR
+       ========================================== -->
+
+  <!-- Modal Fon Qorayishi (Backdrop) -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+
+  <!-- Savatcha Yon Paneli (Cart Drawer) -->
+  <aside class="drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <i class="fa-solid fa-cart-shopping" style="color: var(--primary);"></i>
+        Savatcha <span id="cartItemsCount" style="color: var(--text-muted); font-size: 0.95rem;">(0)</span>
+      </h3>
+      <button class="drawer-close-btn close-modal-btn" title="Yopish">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Bepul Yetkazib berish Progress Bari -->
+    <div style="padding: 1rem 1.75rem 0;">
+      <div class="free-shipping-progress-box">
+        <div class="free-shipping-text" id="freeShippingText">
+          <i class="fa-solid fa-truck-fast"></i> 1 000 000 so'mdan oshsa yetkazish BEPUL!
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="shippingProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Savatchadagi tovarlar ro'yxati -->
+    <div class="drawer-body" id="cartItemsList">
+      <!-- JS orqali to'ldiriladi -->
+    </div>
+
+    <!-- Savatcha Ostki Qismi -->
+    <div class="drawer-footer">
+      <!-- Kupon / Promokod bloki -->
+      <div id="couponSection">
+        <div class="coupon-box">
+          <input type="text" id="couponInput" class="coupon-input" placeholder="Promokod: USTOZ20 yoki BOZORIX20" maxlength="15">
+          <button class="coupon-btn" id="applyCouponBtn">Qo'llash</button>
+        </div>
+        <div id="couponAppliedBox"></div>
+      </div>
+
+      <div class="cart-summary-row">
+        <span>Mahsulotlar narxi:</span>
+        <span id="cartSubtotal" style="font-weight: 700;">0 so'm</span>
+      </div>
+      <div class="cart-summary-row" id="cartDiscountRow" style="display: none; color: #10b981;">
+        <span>Promokod chegirmasi:</span>
+        <span id="cartDiscount" style="font-weight: 700;">-0 so'm</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Yetkazib berish:</span>
+        <span id="cartShipping" style="font-weight: 700;">0 so'm</span>
+      </div>
+      <div class="cart-summary-total">
+        <span>Jami to'lov:</span>
+        <span class="cart-total-num" id="cartTotal">0 so'm</span>
+      </div>
+      <div class="demo-banner-strip">
+        <i class="fa-solid fa-lock" style="color: #f59e0b; font-size: 0.95rem;"></i>
+        <span>Hozircha sayt namoyish rejimida. Rasmiylashtirish vaqtincha to'xtatilgan.</span>
+      </div>
+      <button class="checkout-btn locked" id="checkoutBtn">
+        <i class="fa-solid fa-lock"></i> Rasmiylashtirish (Hozircha to'xtatilgan)
+      </button>
+    </div>
+  </aside>
+
+  <!-- Sevimlilar Yon Paneli (Wishlist Drawer) -->
+  <aside class="drawer" id="wishlistDrawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+        Sevimlilar <span id="wishItemsCount" style="color: var(--text-muted); font-size: 0.95rem;">(0)</span>
+      </h3>
+      <button class="drawer-close-btn close-modal-btn" title="Yopish">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="drawer-body" id="wishItemsList">
+      <!-- JS orqali to'ldiriladi -->
+    </div>
+  </aside>
+
+  <!-- Mahsulot Haqida Batafsil Ma'lumot (Quick View Modal) -->
+  <div class="center-modal" id="quickViewModal">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div id="quickViewModalBody">
+      <!-- JS orqali to'ldiriladi -->
+    </div>
+  </div>
+
+  <!-- Tezkor 1-Klikda Xarid Modali (Fast Checkout Modal) -->
+  <div class="center-modal" id="fastBuyModal" style="max-width: 480px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-bolt" style="color: var(--primary);"></i> 1 bosishda tezkor xarid
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.25rem;">
+        Telefon raqamingizni qoldiring, operatorimiz 5 daqiqada siz bilan bog'lanadi!
+      </p>
+
+      <div id="fastBuyProductBox" style="background: var(--bg-surface); padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 1.25rem; display: flex; gap: 1rem; align-items: center;">
+        <!-- JS to'ldiradi -->
+      </div>
+
+      <form id="fastBuyForm">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="fastName">Ismingiz *</label>
+          <input type="text" id="fastName" name="fastName" class="form-input" placeholder="Masalan: Sardor Aliyev" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="fastPhone">Telefon raqamingiz *</label>
+          <input type="tel" id="fastPhone" name="fastPhone" class="form-input" value="+998 " required>
+        </div>
+        <button type="submit" class="checkout-btn" style="padding: 0.9rem;">
+          <i class="fa-solid fa-check"></i> Buyurtmani tasdiqlash
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Buyurtma Rasmiylashtirish (Checkout Modal) -->
+  <div class="center-modal" id="checkoutModal">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="checkout-modal-inner">
+      <h3 class="checkout-modal-title">
+        <i class="fa-solid fa-truck-ramp-box" style="color: var(--primary);"></i>
+        Buyurtmani rasmiylashtirish
+      </h3>
+      <p class="checkout-modal-subtitle">Yetkazib berish ma'lumotlarini kiriting va buyurtmani tasdiqlang</p>
+
+      <!-- Buyurtma tarkibi xulosasi -->
+      <div id="checkoutSummary"></div>
+
+      <form id="checkoutForm">
+        <div class="checkout-form-grid">
+          <div class="form-group">
+            <label for="customerName">Ism va familiyangiz *</label>
+            <input type="text" id="customerName" name="customerName" class="form-input" placeholder="Masalan: Sardor Aliyev" required>
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">Telefon raqamingiz *</label>
+            <input type="tel" id="customerPhone" name="customerPhone" class="form-input" placeholder="+998 90 123 45 67" required>
+          </div>
+        </div>
+
+        <div class="checkout-form-grid">
+          <div class="form-group">
+            <label for="customerCity">Shahar / Viloyat *</label>
+            <select id="customerCity" name="customerCity" class="form-select">
+              <option value="Toshkent shahri">Toshkent shahri</option>
+              <option value="Toshkent viloyati">Toshkent viloyati</option>
+              <option value="Samarqand">Samarqand viloyati</option>
+              <option value="Buxoro">Buxoro viloyati</option>
+              <option value="Andijon">Andijon viloyati</option>
+              <option value="Farg'ona">Farg'ona viloyati</option>
+              <option value="Namangan">Namangan viloyati</option>
+              <option value="Qashqadaryo">Qashqadaryo viloyati</option>
+              <option value="Surxondaryo">Surxondaryo viloyati</option>
+              <option value="Xorazm">Xorazm viloyati</option>
+              <option value="Navoiy">Navoiy viloyati</option>
+              <option value="Jizzax">Jizzax viloyati</option>
+              <option value="Sirdaryo">Sirdaryo viloyati</option>
+              <option value="Qoraqalpog'iston">Qoraqalpog'iston Respublikasi</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="customerAddress">Yetkazish manzili (ko'cha, uy, xonadon) *</label>
+            <input type="text" id="customerAddress" name="customerAddress" class="form-input" placeholder="Masalan: Chilonzor 7-mavze, 12-uy, 45-xonadon" required>
+          </div>
+        </div>
+
+        <!-- To'lov usuli -->
+        <div class="form-group" style="margin-top: 0.5rem;">
+          <label>To'lov usulini tanlang:</label>
+          <div class="payment-methods-grid">
+            <label class="payment-radio-label">
+              <input type="radio" name="paymentMethod" value="cash" checked>
+              <i class="fa-solid fa-money-bill-wave" style="font-size: 1.25rem;"></i>
+              <span>Qabul qilganda naqd</span>
+            </label>
+            <label class="payment-radio-label">
+              <input type="radio" name="paymentMethod" value="payme">
+              <i class="fa-solid fa-credit-card" style="font-size: 1.25rem;"></i>
+              <span>Payme</span>
+            </label>
+            <label class="payment-radio-label">
+              <input type="radio" name="paymentMethod" value="click">
+              <i class="fa-solid fa-mobile-screen" style="font-size: 1.25rem;"></i>
+              <span>Click Up</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="customerNotes">Kuryer uchun qo'shimcha izoh (ixtiyoriy)</label>
+          <textarea id="customerNotes" name="customerNotes" class="form-textarea" placeholder="Masalan: Domofon kodi 45, yetib kelganda qo'ng'iroq qiling..."></textarea>
+        </div>
+
+        <button type="submit" class="checkout-btn" style="padding: 1rem; font-size: 1rem;">
+          <i class="fa-solid fa-check"></i> Buyurtmani tasdiqlash
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Buyurtma Muvaffaqiyatli Yakunlanganda Chiqadigan Kvitansiya (Order Success Modal) -->
+  <div class="center-modal" id="successModal">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="receipt-box" id="receiptBox">
+      <!-- JS orqali to'ldiriladi -->
+    </div>
+  </div>
+
+  <!-- Buyurtma Hozircha To'xtatilganligini Bildiruvchi Modal (Demo Notice Modal) -->
+  <div class="center-modal" id="orderNoticeModal" style="max-width: 490px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="text-align: center; padding: 1.5rem 1rem 0.75rem;">
+      <div style="width: 76px; height: 76px; background: rgba(245, 158, 11, 0.12); color: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.3rem; margin: 0 auto 1.25rem;">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-main);">
+        Rasmiylashtirish hozircha to'xtatilgan
+      </h3>
+      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+        Hurmatli foydalanuvchi! <strong>Bozorix</strong> onlayn do'koni ayni paytda <strong>taqdimot va sinov (Demo)</strong> rejimida ishlamoqda. Haqiqiy buyurtmalarni rasmiylashtirish funksiyasi vaqtincha cheklangan.
+      </p>
+      <div style="background: var(--bg-surface); padding: 1.15rem; border-radius: var(--radius-lg); border: 1.5px dashed var(--border-light); margin-bottom: 1.5rem; text-align: left;">
+        <div style="font-size: 0.875rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">
+          <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Sinab ko'rishingiz mumkin bo'lgan imkoniyatlar:
+        </div>
+        <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1.25rem; margin: 0; line-height: 1.7;">
+          <li>Mahsulotlarni qidirish va toifalar bo'yicha saralash</li>
+          <li>Xotira va ranglarni tanlab jonli narx o'zgarishini ko'rish</li>
+          <li>Savatga tovar qo'shish va sonini boshqarish</li>
+          <li><strong>USTOZ20</strong> promokodi orqali 20% chegirma hisoblash</li>
+          <li>Sevimlilar ro'yxatiga qo'shish va tungi/kunduzgi rejimni yoqish</li>
+        </ul>
+      </div>
+      <button class="hero-btn" id="closeOrderNoticeBtn" style="background: var(--primary); color: #ffffff; width: 100%; justify-content: center; padding: 0.9rem; font-weight: 800; font-size: 0.95rem;">
+        Tushundim, tanishishda davom etish
+      </button>
+    </div>
+  </div>
+
+  <!-- Suzuvchi Xabarnomalar (Toast Container) -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Skriptlar -->
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

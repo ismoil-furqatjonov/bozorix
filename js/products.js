@@ -1,0 +1,662 @@
+/**
+ * Bozorix - Mahsulotlar Ma'lumotlar Bazasi (products.js)
+ * Har bir mahsulot tabiiy, aniq va original vektor/foto rasmlar,
+ * to'liq texnik xususiyatlar, xotira variantlari va narxlar bilan ta'minlangan.
+ */
+
+const categoriesData = [
+  { id: 'all', name: 'Barcha mahsulotlar', icon: 'fa-solid fa-border-all', count: 20 },
+  { id: 'smartphones', name: 'Smartfonlar', icon: 'fa-solid fa-mobile-screen-button', count: 5 },
+  { id: 'laptops', name: 'Noutbuklar & PC', icon: 'fa-solid fa-laptop', count: 4 },
+  { id: 'audio', name: 'Audio & Quloqchinlar', icon: 'fa-solid fa-headphones-simple', count: 4 },
+  { id: 'wearables', name: 'Aqlli soatlar', icon: 'fa-solid fa-clock', count: 3 },
+  { id: 'home-appliances', name: 'Maishiy texnika', icon: 'fa-solid fa-blender-phone', count: 2 },
+  { id: 'gaming', name: 'Geyming & Konsol', icon: 'fa-solid fa-gamepad', count: 2 }
+];
+
+const productsData = [
+  {
+    id: 1,
+    name: "Apple iPhone 15 Pro Max Natural Titanium",
+    category: "smartphones",
+    categoryName: "Smartfonlar",
+    price: 15850000,
+    oldPrice: 17500000,
+    monthlyPrice: 1490000,
+    discount: 9,
+    rating: 4.9,
+    reviewsCount: 148,
+    image: "assets/products/iphone-15-pro.svg",
+    gallery: [
+      "assets/products/iphone-15-pro.svg",
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 14,
+    isFeatured: true,
+    isFlashSale: true,
+    description: "Aviatsiya sinfidagi titan korpus, eng kuchli Apple A17 Pro (3nm) protsessori, 5x optik periskop zumli professional kamera tizimi va Action tugmasi.",
+    features: {
+      "Ekran": "6.7 dyuym Super Retina XDR OLED, 120Hz ProMotion, 2000 nit",
+      "Protsessor": "Apple A17 Pro (6 yadroli CPU, 6 yadroli GPU, 16 yadroli Neural Engine)",
+      "Tezkor xotira (RAM)": "8 GB LPDDR5",
+      "Asosiy kamera": "48 MP (asosiy) + 12 MP (telefoto 5x) + 12 MP (ultra-keng burchak)",
+      "Akkumulyator": "4422 mA/soat, Tezkor zaryadlash 50% 30 daqiqada (USB-C 3.0)",
+      "Himoya": "IP68 standartidagi suv va changdan to'liq himoyalangan",
+      "Kafolat": "1 yil rasmiy Apple kafolati"
+    },
+    storageOptions: [
+      { size: "256GB", price: 15850000 },
+      { size: "512GB", price: 17950000 },
+      { size: "1TB", price: 19990000 }
+    ],
+    colors: ["#9a958e", "#282a2e", "#e3e4e6", "#444955"]
+  },
+  {
+    id: 2,
+    name: "Samsung Galaxy S24 Ultra Titanium Gray",
+    category: "smartphones",
+    categoryName: "Smartfonlar",
+    price: 14790000,
+    oldPrice: 16200000,
+    monthlyPrice: 1390000,
+    discount: 8,
+    rating: 4.8,
+    reviewsCount: 112,
+    image: "assets/products/samsung-s24-ultra.svg",
+    gallery: [
+      "assets/products/samsung-s24-ultra.svg",
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 9,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Galaxy AI sun'iy intellekt funksiyalari (jonli tarjima, circle to search), o'rnatilgan S-Pen qalami, 200MP kamera va aks ettirmaydigan Gorilla Armor shishasi.",
+    features: {
+      "Ekran": "6.8 dyuym Dynamic LTPO AMOLED 2X, 120Hz, 2600 nit",
+      "Protsessor": "Qualcomm Snapdragon 8 Gen 3 for Galaxy (4 nm)",
+      "Tezkor xotira (RAM)": "12 GB LPDDR5X",
+      "Asosiy kamera": "200 MP + 50 MP (5x periskop) + 10 MP + 12 MP",
+      "Akkumulyator": "5000 mA/soat, 45W tezkor quvvatlash",
+      "Qo'shimcha": "O'rnatilgan S-Pen, IP68 suvdan himoya",
+      "Kafolat": "1 yil rasmiy Samsung kafolati"
+    },
+    storageOptions: [
+      { size: "256GB", price: 13490000 },
+      { size: "512GB", price: 14790000 },
+      { size: "1TB", price: 16900000 }
+    ],
+    colors: ["#63676d", "#1e2124", "#e7da74", "#5b5478"]
+  },
+  {
+    id: 3,
+    name: "Apple MacBook Air 15 M3 Midnight",
+    category: "laptops",
+    categoryName: "Noutbuklar & PC",
+    price: 18200000,
+    oldPrice: 20500000,
+    monthlyPrice: 1720000,
+    discount: 11,
+    rating: 4.9,
+    reviewsCount: 85,
+    image: "assets/products/macbook-air-m3.svg",
+    gallery: [
+      "assets/products/macbook-air-m3.svg",
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "CHEGIRMA",
+    inStock: true,
+    stockCount: 6,
+    isFeatured: true,
+    isFlashSale: true,
+    description: "M3 chipining kuchi, 18 soatgacha to'xtovsiz batareya quvvati, o'ta yupqa alyuminiy korpus va 15.3 dyuymli tengsiz Liquid Retina displey.",
+    features: {
+      "Ekran": "15.3 dyuym Liquid Retina IPS, 2880x1864, 500 nit, True Tone",
+      "Protsessor": "Apple M3 (8 yadroli CPU, 10 yadroli GPU, 16 yadroli Neural Engine)",
+      "Tezkor xotira (RAM)": "16 GB birlashgan yuqori tezlikdagi xotira",
+      "Vazni": "1.51 kg, qalinligi bor-yo'g'i 11.5 mm",
+      "Batareya": "18 soatgacha video tomosha qilish va internetda ishlash",
+      "Portlar": "MagSafe 3, 2x Thunderbolt / USB 4, 3.5mm naushnik uyasi",
+      "Kafolat": "1 yil rasmiy Apple kafolati"
+    },
+    storageOptions: [
+      { size: "512GB SSD", price: 18200000 },
+      { size: "1TB SSD", price: 21500000 }
+    ],
+    colors: ["#1e2530", "#e3e4e5", "#cfcfcf", "#edd5c1"]
+  },
+  {
+    id: 4,
+    name: "Sony WH-1000XM5 Simsiz Quloqchin",
+    category: "audio",
+    categoryName: "Audio & Quloqchinlar",
+    price: 4350000,
+    oldPrice: 4890000,
+    monthlyPrice: 410000,
+    discount: 11,
+    rating: 4.8,
+    reviewsCount: 135,
+    image: "assets/products/sony-wh1000xm5.svg",
+    gallery: [
+      "assets/products/sony-wh1000xm5.svg",
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "TAVSIYA",
+    inStock: true,
+    stockCount: 18,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Sanoatdagi eng ilg'or faol shovqin bekor qilish (ANC) tizimi, 8 ta mikrofon va 2 ta V1/QN1 protsessori bilan billurdek toza Hi-Res ovoz.",
+    features: {
+      "Turi": "Yopiq turdagi to'liq quloqni qoplovchi simsiz Hi-Res quloqchin",
+      "Shovqin so'ndirish": "Auto NC Optimizer bilan jihozlangan 8 ta mikrofonli tizim",
+      "Ishlash vaqti": "ANC yoqilganda 30 soat, o'chirilganda 40 soat",
+      "Tezkor quvvatlash": "3 daqiqalik quvvat bilan 3 soat musiqa tinglash",
+      "Kodeklar": "LDAC, AAC, SBC yuqori aniqlikdagi audio",
+      "Kafolat": "1 yil rasmiy Sony kafolati"
+    },
+    colors: ["#171717", "#e5e5dc", "#243447"]
+  },
+  {
+    id: 5,
+    name: "Apple Watch Ultra 2 49mm Titanium",
+    category: "wearables",
+    categoryName: "Aqlli soatlar",
+    price: 10400000,
+    oldPrice: 11500000,
+    monthlyPrice: 980000,
+    discount: 9,
+    rating: 4.9,
+    reviewsCount: 76,
+    image: "assets/products/apple-watch-ultra-2.svg",
+    gallery: [
+      "assets/products/apple-watch-ultra-2.svg"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 8,
+    isFeatured: true,
+    isFlashSale: true,
+    description: "Ekstremal sharoitlar va professional sportchilar uchun 49mm titan korpus, 3000 nit quyosh ostida ham ko'rinuvchi Retina ekran va S9 SiP chipi.",
+    features: {
+      "Korpus": "Aerokosmik sinfdagi titan, 49 mm, sapfir old shisha",
+      "Displey": "Always-On Retina OLED, 3000 nit eng yuqori yorqinlik",
+      "Suvga chidamlilik": "100 metrgacha suv o'tkazmaydi (EN13319 standartida)",
+      "Batareya": "Oddiy rejimda 36 soat, tejash rejimida 72 soat",
+      "Datchiklar": "EKG, Qondagi kislorod, Tana harorati, Chuqurlik o'lchagich",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    colors: ["#e4e4e7", "#ff7a00", "#18181b"]
+  },
+  {
+    id: 6,
+    name: "Sony PlayStation 5 Slim 1TB + DualSense",
+    category: "gaming",
+    categoryName: "Geyming & Konsol",
+    price: 6650000,
+    oldPrice: 7400000,
+    monthlyPrice: 625000,
+    discount: 10,
+    rating: 4.9,
+    reviewsCount: 182,
+    image: "assets/products/playstation-5.svg",
+    gallery: [
+      "assets/products/playstation-5.svg"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 15,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Ultra tezkor PCIe Gen 4 SSD, haptik taktil sezgilar va Tempest 3D audio texnologiyasi bilan 4K 120Hz o'yinlardan to'liq bahramand bo'ling.",
+    features: {
+      "Doimiy xotira": "1 TB ultra tezkor maxsus PCIe Gen 4 SSD",
+      "Grafika": "AMD Radeon RDNA 2 asosidagi nurlarni kuzatish (Ray Tracing)",
+      "Kadrlar chastotasi": "4K 120Hz gacha, 8K chiqishni qo'llab-quvvatlaydi",
+      "Komplekt": "PS5 Slim konsoli, DualSense geympad, HDMI 2.1 kabel, quvvat kabeli",
+      "Kafolat": "1 yil rasmiy servis kafolati"
+    },
+    colors: ["#ffffff", "#000000"]
+  },
+  {
+    id: 7,
+    name: "Dyson V15 Detect Absolute Changyutgich",
+    category: "home-appliances",
+    categoryName: "Maishiy texnika",
+    price: 9200000,
+    oldPrice: 10200000,
+    monthlyPrice: 865000,
+    discount: 9,
+    rating: 4.8,
+    reviewsCount: 45,
+    image: "assets/products/dyson-v15.svg",
+    gallery: [
+      "assets/products/dyson-v15.svg"
+    ],
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 7,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Ko'rinmas mikro chang zarralarini yorituvchi yashil lazer nuri, piezo-datchik va avtomatik so'rish quvvatini boshqarish tizimi.",
+    features: {
+      "So'rish quvvati": "240 AW (aerovatt) yuqori quvvat",
+      "Ishlash vaqti": "Bitta quvvatlanishda 60 daqiqagacha uzluksiz tozalash",
+      "Filtrlash": "0.1 mikronli zarralarning 99.99% ini to'liq ushlab qoladi",
+      "Displey": "Rangli LCD ekranida zarralar hisobi va qolgan vaqt ko'rinadi",
+      "Kafolat": "2 yil rasmiy Dyson kafolati"
+    },
+    colors: ["#ffd700", "#708090"]
+  },
+  {
+    id: 8,
+    name: "Apple AirPods Pro 2 (USB-C)",
+    category: "audio",
+    categoryName: "Audio & Quloqchinlar",
+    price: 3100000,
+    oldPrice: 3500000,
+    monthlyPrice: 290000,
+    discount: 11,
+    rating: 4.9,
+    reviewsCount: 260,
+    image: "assets/products/airpods-pro-2.svg",
+    gallery: [
+      "assets/products/airpods-pro-2.svg"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 25,
+    isFeatured: true,
+    isFlashSale: true,
+    description: "H2 chipi, 2 baravar kuchaytirilgan shovqinni so'ndirish, adaptiv shaffoflik rejimi, fazoviy audio va USB-C quvvatlash g'ilofi.",
+    features: {
+      "Chip": "Apple H2 audio chipi va U1 aniq qidiruv chipi",
+      "Shovqin so'ndirish": "Faol shovqinni so'ndirish (Active Noise Cancellation)",
+      "Ishlash muddati": "G'ilof bilan 30 soatgacha, bitta quvvatda 6 soat",
+      "Himoya": "IP54 chang va sachrashdan himoyalangan",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    colors: ["#ffffff"]
+  },
+  {
+    id: 9,
+    name: "Asus ROG Zephyrus G16 OLED Gaming PC",
+    category: "laptops",
+    categoryName: "Noutbuklar & PC",
+    price: 24500000,
+    oldPrice: 27900000,
+    monthlyPrice: 2290000,
+    discount: 12,
+    rating: 4.9,
+    reviewsCount: 42,
+    image: "assets/products/asus-rog-zephyrus.svg",
+    gallery: [
+      "assets/products/asus-rog-zephyrus.svg"
+    ],
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 4,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Intel Core Ultra 9, RTX 4080 va 2.5K 240Hz ROG Nebula OLED displeyiga ega ultra yupqa va kuchli professional geyming noutbuk.",
+    features: {
+      "Ekran": "16 dyuym OLED 2.5K (2560 x 1600), 240Hz, 0.2ms, G-Sync, DCI-P3 100%",
+      "Protsessor": "Intel Core Ultra 9 185H (16 yadro, 22 potok, 5.1 GHz gacha)",
+      "Videokarta": "NVIDIA GeForce RTX 4080 12GB GDDR6 (145W)",
+      "Operativ xotira": "32 GB LPDDR5X 7467 MHz",
+      "Doimiy xotira": "1 TB PCIe 4.0 NVMe M.2 SSD",
+      "Kafolat": "2 yil rasmiy Asus kafolati"
+    },
+    colors: ["#1c1c1c", "#ebebeb"]
+  },
+  {
+    id: 10,
+    name: "Xiaomi 14 Ultra Leica Kamera",
+    category: "smartphones",
+    categoryName: "Smartfonlar",
+    price: 12900000,
+    oldPrice: 14100000,
+    monthlyPrice: 1210000,
+    discount: 8,
+    rating: 4.7,
+    reviewsCount: 68,
+    image: "assets/products/xiaomi-14-ultra.svg",
+    gallery: [
+      "assets/products/xiaomi-14-ultra.svg"
+    ],
+    badge: "TAVSIYA",
+    inStock: true,
+    stockCount: 11,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Leica Summilux optikasi, 1 dyuymli Sony LYT-900 sensori, to'rtta 50MP kamera va o'zgaruvchan diafragma bilan jihozlangan fotoflagman.",
+    features: {
+      "Ekran": "6.73 dyuym AMOLED WQHD+, 120Hz LTPO, 3000 nit yorqinlik",
+      "Protsessor": "Qualcomm Snapdragon 8 Gen 3 (4 nm)",
+      "Kameralar": "4 ta 50 MP Leica kamera (asosiy 1 dyuymli datchik)",
+      "Akkumulyator": "5000 mA/soat, 90W simli, 80W simsiz quvvatlash",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    storageOptions: [
+      { size: "512GB", price: 12900000 },
+      { size: "1TB", price: 14500000 }
+    ],
+    colors: ["#111111", "#fafafa"]
+  },
+  {
+    id: 11,
+    name: "Samsung Galaxy Watch 6 Classic 47mm",
+    category: "wearables",
+    categoryName: "Aqlli soatlar",
+    price: 3600000,
+    oldPrice: 4200000,
+    monthlyPrice: 340000,
+    discount: 14,
+    rating: 4.7,
+    reviewsCount: 89,
+    image: "assets/products/galaxy-watch-6.svg",
+    gallery: [
+      "assets/products/galaxy-watch-6.svg"
+    ],
+    badge: "CHEGIRMA",
+    inStock: true,
+    stockCount: 13,
+    isFeatured: false,
+    isFlashSale: true,
+    description: "Klassik mexanik aylanuvchi bezel, qon bosimi va EKG o'lchash, uyqu sifati tahlili bilan biznes uslubdagi premium aqlli soat.",
+    features: {
+      "Ekran": "1.5 dyuym Super AMOLED, mustahkam sapfir shisha",
+      "Korpus": "Zanglamaydigan po'lat, mexanik aylanuvchi gardish",
+      "Salomatlik": "EKG, qon bosimi, tana tarkibi tahlili (BIA), uyqu apnesi",
+      "Tizim": "Wear OS Powered by Samsung, Google Play xizmatlari",
+      "Kafolat": "1 yil rasmiy Samsung kafolati"
+    },
+    colors: ["#1f1f1f", "#e6e6e6"]
+  },
+  {
+    id: 12,
+    name: "DeLonghi Magnifica S Qahva Mashinasi",
+    category: "home-appliances",
+    categoryName: "Maishiy texnika",
+    price: 6300000,
+    oldPrice: 7100000,
+    monthlyPrice: 590000,
+    discount: 11,
+    rating: 4.8,
+    reviewsCount: 74,
+    image: "assets/products/delonghi-magnifica.svg",
+    gallery: [
+      "assets/products/delonghi-magnifica.svg"
+    ],
+    badge: "TAVSIYA",
+    inStock: true,
+    stockCount: 6,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Donli va maydalangan qahvadan Italiya sifatidagi espresso, kapuchino va latte tayyorlovchi avtomatik qahva mashinasi.",
+    features: {
+      "Bosim": "15 bar professional italyan nasosi",
+      "Tegirmon": "13 xil maydalash darajasiga ega po'lat tegirmon",
+      "Kapuchinator": "Qalin sut ko'pigi uchun qo'lda sozlanuvchi moslama",
+      "Tozalash": "Avtomatik yuvish va ohakdan tozalash dasturlari",
+      "Kafolat": "2 yil rasmiy DeLonghi kafolati"
+    },
+    colors: ["#1c1c1c", "#c0c0c0"]
+  },
+  {
+    id: 13,
+    name: "Lenovo Legion Pro 5 16 Gaming Laptop",
+    category: "laptops",
+    categoryName: "Noutbuklar & PC",
+    price: 17300000,
+    oldPrice: 19000000,
+    monthlyPrice: 1620000,
+    discount: 8,
+    rating: 4.8,
+    reviewsCount: 56,
+    image: "assets/products/lenovo-legion-pro.svg",
+    gallery: [
+      "assets/products/lenovo-legion-pro.svg"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 8,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Intel Core i7-13700HX, RTX 4070 (140W) va 165Hz 2.5K WQXGA ekran bilan og'ir geyming va 3D dizayn ishlari uchun.",
+    features: {
+      "Ekran": "16 dyuym WQXGA IPS, 165Hz, 100% sRGB, Dolby Vision",
+      "Protsessor": "Intel Core i7-13700HX (16 yadro, 24 potok, 5.0 GHz gacha)",
+      "Videokarta": "NVIDIA GeForce RTX 4070 8GB GDDR6 (140W TGP)",
+      "Xotira": "32 GB DDR5 5200MHz, 1 TB NVMe PCIe 4.0 SSD",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    colors: ["#2b2b2b"]
+  },
+  {
+    id: 14,
+    name: "Marshall Stanmore III Bluetooth Kalonka",
+    category: "audio",
+    categoryName: "Audio & Quloqchinlar",
+    price: 4950000,
+    oldPrice: 5500000,
+    monthlyPrice: 465000,
+    discount: 10,
+    rating: 4.9,
+    reviewsCount: 78,
+    image: "assets/products/marshall-stanmore.svg",
+    gallery: [
+      "assets/products/marshall-stanmore.svg"
+    ],
+    badge: "TAVSIYA",
+    inStock: true,
+    stockCount: 10,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Klassik retro charm korpus, latun burama analog regulyatorlar va xonani to'ldiruvchi chuqur, qudratli bas ovozi.",
+    features: {
+      "Quvvat": "80 Vt D toifasidagi yuqori samarali kuchaytirgich",
+      "Ulanish": "Bluetooth 5.2, 3.5 mm AUX, analog RCA kirishlari",
+      "O'lchamlari": "350 x 203 x 188 mm, og'irligi 4.25 kg",
+      "Kafolat": "1 yil rasmiy Marshall kafolati"
+    },
+    colors: ["#1a1a1a", "#ede8d0", "#5c3317"]
+  },
+  {
+    id: 15,
+    name: "Nintendo Switch OLED Model White",
+    category: "gaming",
+    categoryName: "Geyming & Konsol",
+    price: 4100000,
+    oldPrice: 4600000,
+    monthlyPrice: 385000,
+    discount: 10,
+    rating: 4.8,
+    reviewsCount: 95,
+    image: "assets/products/nintendo-switch.svg",
+    gallery: [
+      "assets/products/nintendo-switch.svg"
+    ],
+    badge: "CHEGIRMA",
+    inStock: true,
+    stockCount: 14,
+    isFeatured: false,
+    isFlashSale: true,
+    description: "7 dyuymli yorqin OLED sensorli ekran, sozlanuvchi keng tirgak va do'stlar bilan istalgan joyda birga o'ynash imkoniyati.",
+    features: {
+      "Ekran": "7 dyuymli chuqur qora rangli OLED displey",
+      "Rejimlar": "TV rejimi, stol usti rejimi va qo'lda o'ynash rejimi",
+      "Xotira": "64 GB o'rnatilgan, microSD bilan 2TB gacha kengaytiriladi",
+      "Batareya": "O'yin turiga qarab 4.5 dan 9 soatgacha avtonom ishlash",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    colors: ["#ffffff", "#003b70"]
+  },
+  {
+    id: 16,
+    name: "Apple iPad Air 11 M2 Space Gray",
+    category: "laptops",
+    categoryName: "Noutbuklar & PC",
+    price: 8900000,
+    oldPrice: 9800000,
+    monthlyPrice: 835000,
+    discount: 9,
+    rating: 4.9,
+    reviewsCount: 58,
+    image: "assets/products/ipad-air-m2.svg",
+    gallery: [
+      "assets/products/ipad-air-m2.svg"
+    ],
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 11,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "M2 chipining kuchi, Apple Pencil Pro ko'magi, 11 dyuymli Liquid Retina ekrani bilan o'qish, chizish va video montaj uchun mukammal planshet.",
+    features: {
+      "Displey": "11 dyuym Liquid Retina, True Tone, keng P3 rang qamrovi",
+      "Chip": "Apple M2 (8 yadroli CPU, 10 yadroli GPU, 16 yadroli Neural Engine)",
+      "Kameralar": "12 MP gorizontal old va 12 MP 4K orqa kamera",
+      "Kafolat": "1 yil rasmiy Apple kafolati"
+    },
+    storageOptions: [
+      { size: "128GB", price: 8900000 },
+      { size: "256GB", price: 10400000 }
+    ],
+    colors: ["#68696e", "#3a3c42"]
+  },
+  {
+    id: 17,
+    name: "Apple AirPods Max Space Gray",
+    category: "audio",
+    categoryName: "Audio & Quloqchinlar",
+    price: 7200000,
+    oldPrice: 8100000,
+    monthlyPrice: 675000,
+    discount: 11,
+    rating: 4.9,
+    reviewsCount: 88,
+    image: "assets/products/airpods-max.svg",
+    gallery: [
+      "assets/products/airpods-max.svg"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 6,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Anodlangan alyuminiy chashkalar, fazoviy audio va har bir quloqda mustaqil ishlovchi ikkita Apple H1 chipi bilan tengsiz Hi-Fi ovoz.",
+    features: {
+      "Drayver": "Apple maxsus ishlab chiqqan 40 mm dinamik drayver",
+      "Shovqin so'ndirish": "Faol shovqinni so'ndirish va shaffoflik rejimi",
+      "Ish vaqti": "ANC va Spatial Audio bilan 20 soatgacha to'xtovsiz ijro",
+      "Kafolat": "1 yil rasmiy Apple kafolati"
+    },
+    colors: ["#2d2f33", "#e0e2e5", "#b7c0cc"]
+  },
+  {
+    id: 18,
+    name: "Google Pixel 8 Pro Bay Blue",
+    category: "smartphones",
+    categoryName: "Smartfonlar",
+    price: 10800000,
+    oldPrice: 12000000,
+    monthlyPrice: 1010000,
+    discount: 10,
+    rating: 4.7,
+    reviewsCount: 63,
+    image: "assets/products/pixel-8-pro.svg",
+    gallery: [
+      "assets/products/pixel-8-pro.svg"
+    ],
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 7,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Google Tensor G3 chipi, Magic Audio Eraser va Best Take sun'iy intellekt xususiyatlari hamda 7 yillik to'liq kafolatlangan Android yangilanishlari.",
+    features: {
+      "Ekran": "6.7 dyuym Super Actua OLED, 1-120Hz LTPO, 2400 nit",
+      "Protsessor": "Google Tensor G3 va Titan M2 xavfsizlik chipi",
+      "Kameralar": "50 MP asosiy + 48 MP ultra-keng + 48 MP telefoto (5x)",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    storageOptions: [
+      { size: "128GB", price: 10800000 },
+      { size: "256GB", price: 11900000 }
+    ],
+    colors: ["#7aa7c7", "#1e1e1e", "#f3efea"]
+  },
+  {
+    id: 19,
+    name: "Apple Watch Series 9 45mm GPS",
+    category: "wearables",
+    categoryName: "Aqlli soatlar",
+    price: 5200000,
+    oldPrice: 5800000,
+    monthlyPrice: 485000,
+    discount: 10,
+    rating: 4.8,
+    reviewsCount: 104,
+    image: "assets/products/apple-watch-9.svg",
+    gallery: [
+      "assets/products/apple-watch-9.svg"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 16,
+    isFeatured: false,
+    isFlashSale: true,
+    description: "S9 SiP chipi, Double Tap imo-ishorasi (qo'lni tekkizmasdan qo'ng'iroqlarga javob berish) va 2000 nit Retina displey.",
+    features: {
+      "Korpus": "100% qayta ishlangan alyuminiy, 45 mm",
+      "Displey": "Always-On Retina OLED, 2000 nit yorqinlik",
+      "Salomatlik": "EKG, qondagi kislorod, tana harorati datchigi",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    colors: ["#1e2530", "#e8e5dc", "#d62828"]
+  },
+  {
+    id: 20,
+    name: "Samsung Galaxy S23 FE Mint",
+    category: "smartphones",
+    categoryName: "Smartfonlar",
+    price: 6450000,
+    oldPrice: 7200000,
+    monthlyPrice: 605000,
+    discount: 10,
+    rating: 4.7,
+    reviewsCount: 82,
+    image: "assets/products/galaxy-s23-fe.svg",
+    gallery: [
+      "assets/products/galaxy-s23-fe.svg"
+    ],
+    badge: "CHEGIRMA",
+    inStock: true,
+    stockCount: 14,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Flagman imkoniyatlari arzon narxda: 50MP tungi kamera, 120Hz silliq Dynamic AMOLED ekran va suvdan himoyalangan korpus.",
+    features: {
+      "Ekran": "6.4 dyuym Dynamic AMOLED 2X, 120Hz, HDR10+",
+      "Protsessor": "Exynos 2200 (4 nm yuqori unumdorlik)",
+      "Kameralar": "50 MP + 8 MP (3x optik zoom) + 12 MP ultra-keng",
+      "Batareya": "4500 mA/soat, 25W tezkor quvvatlash",
+      "Kafolat": "1 yil rasmiy Samsung kafolati"
+    },
+    storageOptions: [
+      { size: "128GB", price: 6450000 },
+      { size: "256GB", price: 7300000 }
+    ],
+    colors: ["#a8d5ba", "#4a4e69", "#f2e9e4"]
+  }
+];
+
+// O'zbek so'mida formatlash yordamchisi
+function formatPrice(amount) {
+  if (isNaN(amount) || amount === null || amount === undefined) return "0 so'm";
+  return new Intl.NumberFormat('uz-UZ').format(amount) + " so'm";
+}

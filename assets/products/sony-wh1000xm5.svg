@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgSony" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="sonyMatte" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d3139"/>
+      <stop offset="50%" stop-color="#181a1f"/>
+      <stop offset="100%" stop-color="#0e1013"/>
+    </linearGradient>
+    <filter id="sonyShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="24" fill="url(#bgSony)"/>
+  <ellipse cx="250" cy="445" rx="140" ry="18" fill="#0f172a" opacity="0.18" filter="blur(10px)"/>
+
+  <g filter="url(#sonyShadow)">
+    <!-- Continuous Sleek Headband -->
+    <path d="M 140 250 C 140 100, 360 100, 360 250" fill="none" stroke="url(#sonyMatte)" stroke-width="26" stroke-linecap="round"/>
+    <path d="M 155 220 C 155 125, 345 125, 345 220" fill="none" stroke="#333842" stroke-width="12" stroke-linecap="round"/>
+    
+    <!-- Stepless Sliders -->
+    <rect x="132" y="230" width="14" height="40" rx="7" fill="#475569"/>
+    <rect x="354" y="230" width="14" height="40" rx="7" fill="#475569"/>
+
+    <!-- Left Ear Cup Assembly -->
+    <g transform="translate(90, 240)">
+      <!-- Angled Pivot Hanger -->
+      <path d="M 48 30 L 30 70" stroke="#1e293b" stroke-width="14" stroke-linecap="round"/>
+      <!-- Outer Cup Shell -->
+      <ellipse cx="45" cy="110" rx="42" ry="62" fill="url(#sonyMatte)"/>
+      <ellipse cx="45" cy="110" rx="36" ry="54" fill="#111317"/>
+      <!-- Soft Cushion -->
+      <ellipse cx="62" cy="110" rx="18" ry="58" fill="#1e2229"/>
+      <!-- SONY Gold Accent -->
+      <text x="35" y="80" fill="#d97706" font-family="sans-serif" font-size="7" font-weight="900" letter-spacing="1">SONY</text>
+    </g>
+
+    <!-- Right Ear Cup Assembly -->
+    <g transform="translate(320, 240)">
+      <!-- Angled Pivot Hanger -->
+      <path d="M 42 30 L 60 70" stroke="#1e293b" stroke-width="14" stroke-linecap="round"/>
+      <!-- Soft Cushion (Inner) -->
+      <ellipse cx="28" cy="110" rx="18" ry="58" fill="#1e2229"/>
+      <!-- Outer Cup Shell -->
+      <ellipse cx="45" cy="110" rx="42" ry="62" fill="url(#sonyMatte)"/>
+      <ellipse cx="45" cy="110" rx="36" ry="54" fill="#111317"/>
+      <!-- SONY Gold Accent -->
+      <text x="55" y="80" fill="#d97706" font-family="sans-serif" font-size="7" font-weight="900" letter-spacing="1">SONY</text>
+    </g>
+  </g>
+</svg>

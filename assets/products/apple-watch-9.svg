@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgW9" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="midnightAlum" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <filter id="w9Shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="24" fill="url(#bgW9)"/>
+  <ellipse cx="250" cy="450" rx="90" ry="16" fill="#0f172a" opacity="0.15" filter="blur(10px)"/>
+
+  <!-- Midnight Sport Band -->
+  <path d="M 195 30 L 305 30 L 300 135 L 200 135 Z" fill="#0f172a"/>
+  <path d="M 200 365 L 300 365 L 305 470 L 195 470 Z" fill="#0f172a"/>
+
+  <!-- Watch Chassis -->
+  <g filter="url(#w9Shadow)">
+    <!-- Curved Aluminum Case -->
+    <rect x="165" y="125" width="170" height="215" rx="50" fill="url(#midnightAlum)"/>
+    
+    <!-- Seamless Curved Front Glass -->
+    <rect x="171" y="131" width="158" height="203" rx="46" fill="#020617"/>
+
+    <!-- Digital Crown & Button Right -->
+    <rect x="334" y="170" width="8" height="34" rx="3" fill="#475569"/>
+    <rect x="334" y="230" width="6" height="28" rx="2" fill="#334155"/>
+
+    <!-- Activity Rings Watch Face -->
+    <!-- Move Ring (Red) -->
+    <circle cx="250" cy="232" r="60" fill="none" stroke="#ef4444" stroke-width="9" stroke-linecap="round" stroke-dasharray="280, 50"/>
+    <!-- Exercise Ring (Green) -->
+    <circle cx="250" cy="232" r="47" fill="none" stroke="#22c55e" stroke-width="9" stroke-linecap="round" stroke-dasharray="210, 80"/>
+    <!-- Stand Ring (Cyan) -->
+    <circle cx="250" cy="232" r="34" fill="none" stroke="#06b6d4" stroke-width="9" stroke-linecap="round" stroke-dasharray="160, 50"/>
+
+    <text x="250" y="238" text-anchor="middle" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="20" font-weight="700">10:09</text>
+  </g>
+</svg>

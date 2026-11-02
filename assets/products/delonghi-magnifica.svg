@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgDel" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="machineMetal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="chromeTrim" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <filter id="delShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="24" fill="url(#bgDel)"/>
+  <ellipse cx="250" cy="450" rx="160" ry="18" fill="#0f172a" opacity="0.16" filter="blur(10px)"/>
+
+  <g filter="url(#delShadow)">
+    <!-- Main Body Chassis -->
+    <rect x="135" y="70" width="230" height="340" rx="16" fill="url(#machineMetal)"/>
+    <rect x="145" y="80" width="210" height="320" rx="10" fill="#18181b"/>
+
+    <!-- Top Beans Hopper Lip -->
+    <polygon points="150,70 350,70 340,95 160,95" fill="#27272a"/>
+    <text x="250" y="90" text-anchor="middle" fill="#d4af37" font-family="'Times New Roman', serif" font-size="11" font-weight="900" letter-spacing="1">De'Longhi</text>
+
+    <!-- Control Dial Panel -->
+    <rect x="160" y="110" width="180" height="65" rx="8" fill="#27272a" stroke="#3f3f46" stroke-width="1.5"/>
+    <!-- Rotary Dial in Center -->
+    <circle cx="250" cy="142" r="20" fill="url(#chromeTrim)" stroke="#18181b" stroke-width="2"/>
+    <circle cx="250" cy="142" r="14" fill="#09090b"/>
+    <line x1="250" y1="130" x2="250" y2="138" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- LED Indicators -->
+    <circle cx="185" cy="130" r="3.5" fill="#22c55e"/>
+    <circle cx="185" cy="145" r="3.5" fill="#f59e0b"/>
+    <circle cx="185" cy="160" r="3.5" fill="#ef4444"/>
+    <circle cx="315" cy="135" r="5" fill="#0ea5e9"/>
+    <circle cx="315" cy="150" r="5" fill="#0ea5e9"/>
+
+    <!-- Coffee Dispenser Spout (Adjustable Chrome Head) -->
+    <rect x="215" y="195" width="70" height="50" rx="6" fill="url(#chromeTrim)"/>
+    <!-- Dual Spouts -->
+    <circle cx="235" cy="245" r="6" fill="#1e293b"/>
+    <circle cx="265" cy="245" r="6" fill="#1e293b"/>
+    <!-- Espresso Pour Streams -->
+    <line x1="235" y1="248" x2="235" y2="280" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+    <line x1="265" y1="248" x2="265" y2="280" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Traditional Steam Wand on Left -->
+    <path d="M 175 195 L 165 240 L 168 280" fill="none" stroke="url(#chromeTrim)" stroke-width="7" stroke-linecap="round"/>
+    <rect x="162" y="275" width="12" height="15" rx="3" fill="#18181b"/>
+
+    <!-- Glass Espresso Cup on Drip Tray -->
+    <path d="M 220 280 L 280 280 L 272 325 L 228 325 Z" fill="rgba(255,255,255,0.4)" stroke="#e2e8f0" stroke-width="2"/>
+    <path d="M 224 295 L 276 295 L 270 323 L 230 323 Z" fill="#92400e"/> <!-- Coffee -->
+    <ellipse cx="250" cy="295" rx="25" ry="4" fill="#d97706"/> <!-- Crema -->
+    <!-- Handle -->
+    <path d="M 280 290 Q 295 305 277 315" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+
+    <!-- Chrome Drip Tray Base -->
+    <polygon points="140,360 360,360 370,410 130,410" fill="url(#chromeTrim)"/>
+    <!-- Metal Grill Slots -->
+    <line x1="160" y1="375" x2="340" y2="375" stroke="#18181b" stroke-width="2"/>
+    <line x1="155" y1="385" x2="345" y2="385" stroke="#18181b" stroke-width="2"/>
+    <line x1="150" y1="395" x2="350" y2="395" stroke="#18181b" stroke-width="2"/>
+  </g>
+</svg>

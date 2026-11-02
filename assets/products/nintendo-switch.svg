@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgSw" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="switchScreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="30%" stop-color="#4f46e5"/>
+      <stop offset="70%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="swShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="24" fill="url(#bgSw)"/>
+  <ellipse cx="250" cy="445" rx="170" ry="18" fill="#0f172a" opacity="0.16" filter="blur(10px)"/>
+
+  <g filter="url(#swShadow)">
+    <!-- Console Center Screen Housing -->
+    <rect x="125" y="145" width="250" height="210" rx="12" fill="#09090b"/>
+    <!-- 7.0-inch OLED Display -->
+    <rect x="135" y="155" width="230" height="190" rx="6" fill="url(#switchScreen)"/>
+    <polygon points="230,225 275,250 230,275" fill="#ffffff" opacity="0.9" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.4))"/>
+
+    <!-- Left White Joy-Con -->
+    <g transform="translate(65, 145)">
+      <!-- Body -->
+      <path d="M 60 0 L 25 0 Q 0 0 0 25 L 0 185 Q 0 210 25 210 L 60 210 Z" fill="#ffffff"/>
+      <!-- Minus Button -->
+      <rect x="42" y="24" width="10" height="3" fill="#334155"/>
+      <!-- Left Analog Stick -->
+      <circle cx="30" cy="65" r="14" fill="#475569"/>
+      <circle cx="30" cy="65" r="9" fill="#1e293b"/>
+      <!-- D-Pad Direction Buttons -->
+      <circle cx="30" cy="115" r="4.5" fill="#334155"/>
+      <circle cx="30" cy="135" r="4.5" fill="#334155"/>
+      <circle cx="20" cy="125" r="4.5" fill="#334155"/>
+      <circle cx="40" cy="125" r="4.5" fill="#334155"/>
+      <!-- Capture Button -->
+      <rect x="40" y="160" width="8" height="8" rx="2" fill="#334155"/>
+    </g>
+
+    <!-- Right White Joy-Con -->
+    <g transform="translate(375, 145)">
+      <!-- Body -->
+      <path d="M 0 0 L 35 0 Q 60 0 60 25 L 60 185 Q 60 210 35 210 L 0 210 Z" fill="#ffffff"/>
+      <!-- Plus Button -->
+      <path d="M 12 25 L 18 25 M 15 22 L 15 28" stroke="#334155" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- ABXY Buttons -->
+      <circle cx="30" cy="60" r="4.5" fill="#334155"/>
+      <circle cx="30" cy="80" r="4.5" fill="#334155"/>
+      <circle cx="20" cy="70" r="4.5" fill="#334155"/>
+      <circle cx="40" cy="70" r="4.5" fill="#334155"/>
+      <!-- Right Analog Stick -->
+      <circle cx="30" cy="125" r="14" fill="#475569"/>
+      <circle cx="30" cy="125" r="9" fill="#1e293b"/>
+      <!-- Home Button -->
+      <circle cx="18" cy="164" r="5" fill="#334155"/>
+    </g>
+  </g>
+</svg>

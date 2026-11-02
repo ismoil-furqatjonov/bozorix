@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgWatch" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="ultraTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e0db"/>
+      <stop offset="50%" stop-color="#b8b3ab"/>
+      <stop offset="100%" stop-color="#8a857d"/>
+    </linearGradient>
+    <linearGradient id="orangeBand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="50%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <filter id="watchShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="24" fill="url(#bgWatch)"/>
+  <ellipse cx="250" cy="450" rx="100" ry="16" fill="#0f172a" opacity="0.15" filter="blur(10px)"/>
+
+  <!-- Orange Alpine Loop Strap -->
+  <g>
+    <!-- Top Strap -->
+    <path d="M 185 30 L 315 30 L 310 135 L 190 135 Z" fill="url(#orangeBand)"/>
+    <!-- Ribbed Texture on Strap -->
+    <line x1="187" y1="50" x2="313" y2="50" stroke="#9a3412" stroke-width="3"/>
+    <line x1="188" y1="70" x2="312" y2="70" stroke="#9a3412" stroke-width="3"/>
+    <line x1="189" y1="90" x2="311" y2="90" stroke="#9a3412" stroke-width="3"/>
+    <line x1="190" y1="110" x2="310" y2="110" stroke="#9a3412" stroke-width="3"/>
+
+    <!-- Bottom Strap -->
+    <path d="M 190 365 L 310 365 L 315 470 L 185 470 Z" fill="url(#orangeBand)"/>
+    <line x1="190" y1="390" x2="310" y2="390" stroke="#9a3412" stroke-width="3"/>
+    <line x1="189" y1="410" x2="311" y2="410" stroke="#9a3412" stroke-width="3"/>
+    <line x1="188" y1="430" x2="312" y2="430" stroke="#9a3412" stroke-width="3"/>
+    <line x1="187" y1="450" x2="313" y2="450" stroke="#9a3412" stroke-width="3"/>
+  </g>
+
+  <!-- Watch Chassis -->
+  <g filter="url(#watchShadow)">
+    <!-- 49mm Titanium Case -->
+    <rect x="155" y="115" width="190" height="235" rx="55" fill="url(#ultraTitanium)"/>
+    
+    <!-- Digital Crown Guard & Crown (Right Side) -->
+    <path d="M 345 170 L 362 178 L 362 250 L 345 258 Z" fill="#9ca3af"/>
+    <!-- Orange Crown Rim -->
+    <rect x="350" y="186" width="16" height="42" rx="4" fill="#ea580c"/>
+    <rect x="354" y="190" width="8" height="34" rx="2" fill="#18181b"/>
+    <!-- Side Button -->
+    <rect x="348" y="240" width="8" height="22" rx="3" fill="#374151"/>
+
+    <!-- Orange Action Button (Left Side) -->
+    <rect x="142" y="190" width="14" height="48" rx="5" fill="#f97316"/>
+    <rect x="144" y="194" width="10" height="40" rx="3" fill="#ea580c"/>
+
+    <!-- Raised Flat Sapphire Bezel -->
+    <rect x="165" y="125" width="170" height="215" rx="46" fill="#1c1917"/>
+    <!-- OLED Screen -->
+    <rect x="170" y="130" width="160" height="205" rx="42" fill="#000000"/>
+
+    <!-- Wayfinder Dial Graphic -->
+    <circle cx="250" cy="232" r="72" fill="none" stroke="#27272a" stroke-width="3"/>
+    <circle cx="250" cy="232" r="54" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="6,4"/>
+    
+    <!-- Watch Face Digital Content -->
+    <text x="250" y="210" text-anchor="middle" fill="#f97316" font-family="-apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="1">ELEVATION 442M</text>
+    <text x="250" y="252" text-anchor="middle" fill="#ffffff" font-family="-apple-system, sans-serif" font-size="44" font-weight="700">09:41</text>
+    <text x="250" y="278" text-anchor="middle" fill="#22c55e" font-family="-apple-system, sans-serif" font-size="12" font-weight="700">♥ 68 BPM · 3000 NIT</text>
+  </g>
+</svg>

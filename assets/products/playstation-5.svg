@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgPS" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="psGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <filter id="psShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0f172a" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" rx="24" fill="url(#bgPS)"/>
+  <ellipse cx="250" cy="450" rx="170" ry="18" fill="#0f172a" opacity="0.15" filter="blur(10px)"/>
+
+  <!-- PS5 Console (Left / Center) -->
+  <g filter="url(#psShadow)">
+    <!-- Back White Fin Panel -->
+    <path d="M 175 70 C 190 60, 205 180, 205 400 L 175 400 Z" fill="#e2e8f0"/>
+    
+    <!-- Glossy Black Center Tower -->
+    <rect x="145" y="80" width="45" height="325" rx="10" fill="#09090b"/>
+    <!-- Blue Power Light Strip -->
+    <path d="M 148 90 L 148 380" stroke="url(#psGlow)" stroke-width="4" stroke-linecap="round" filter="drop-shadow(0 0 6px #3b82f6)"/>
+
+    <!-- Front White Fin Panel -->
+    <path d="M 120 70 Q 155 180 155 400 L 125 400 Q 125 180 100 80 Z" fill="#ffffff"/>
+    
+    <!-- USB Ports -->
+    <circle cx="168" cy="340" r="2.5" fill="#38bdf8"/>
+    <rect x="165" y="355" width="6" height="3" fill="#cbd5e1"/>
+    <!-- Disc Drive Slit -->
+    <line x1="145" y1="375" x2="185" y2="375" stroke="#334155" stroke-width="2"/>
+    
+    <!-- PS Stand Base -->
+    <ellipse cx="160" cy="405" rx="50" ry="10" fill="#1e293b"/>
+  </g>
+
+  <!-- DualSense Controller (Foreground Right) -->
+  <g transform="translate(250, 240)" filter="url(#psShadow)">
+    <!-- Outer White Grip Shell -->
+    <path d="M 30 70 Q 20 150 45 170 Q 75 185 85 140 L 105 110 L 125 140 Q 135 185 165 170 Q 190 150 180 70 Q 105 40 30 70 Z" fill="#ffffff"/>
+    <!-- Black Inner Core -->
+    <path d="M 60 100 Q 105 120 150 100 L 140 150 Q 105 165 70 150 Z" fill="#09090b"/>
+    
+    <!-- Glowing Touchpad -->
+    <rect x="75" y="65" width="60" height="35" rx="6" fill="#18181b" stroke="#3b82f6" stroke-width="1.8" filter="drop-shadow(0 0 4px #3b82f6)"/>
+    <!-- D-Pad Left -->
+    <path d="M 52 82 L 58 82 M 55 79 L 55 85" stroke="#334155" stroke-width="4" stroke-linecap="round"/>
+    <!-- Action Buttons Right (Square, Triangle, Cross, Circle) -->
+    <circle cx="152" cy="76" r="3" fill="#334155"/>
+    <circle cx="160" cy="84" r="3" fill="#334155"/>
+    <circle cx="152" cy="92" r="3" fill="#334155"/>
+    <circle cx="144" cy="84" r="3" fill="#334155"/>
+
+    <!-- Thumbsticks -->
+    <circle cx="85" cy="125" r="14" fill="#27272a"/>
+    <circle cx="85" cy="125" r="9" fill="#18181b"/>
+    <circle cx="125" cy="125" r="14" fill="#27272a"/>
+    <circle cx="125" cy="125" r="9" fill="#18181b"/>
+    
+    <!-- PS Home Button -->
+    <polygon points="105,108 102,114 108,114" fill="#ffffff"/>
+  </g>
+</svg>
