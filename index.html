@@ -6,6 +6,43 @@
   <title>Bozorix — Zamonaviy Elektronika va Texnika Do'koni</title>
   <meta name="description" content="Bozorix — O'zbekistondagi yangi avlod elektronika, smartfonlar va maishiy texnika onlayn platformasi. Rasmiy kafolat va 3 soatda tezkor yetkazib berish.">
   
+  <!-- SEO & Social Open Graph -->
+  <meta property="og:title" content="Bozorix — Zamonaviy Elektronika va Texnika Do'koni">
+  <meta property="og:description" content="O'zbekistondagi eng so'nggi gadjetlar, smartfonlar, noutbuklar va maishiy texnikalar rasmiy kafolat bilan.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bozorix.uz/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bozorix.uz — Elektronika va Gadjetlar">
+  <meta name="twitter:description" content="Eng sara texnikalar, rasmiy 1 yillik kafolat va tezkor yetkazib berish.">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ElectronicsStore",
+    "name": "Bozorix",
+    "image": "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?auto=format&fit=crop&w=1200&q=80",
+    "url": "https://bozorix.uz",
+    "telephone": "+998712008800",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Navoiy ko'chasi 14",
+      "addressLocality": "Toshkent",
+      "addressRegion": "Toshkent shahri",
+      "postalCode": "100011",
+      "addressCountry": "UZ"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    }
+  }
+  </script>
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
 
@@ -106,6 +143,13 @@
         <!-- Tungi/Kunduzgi rejim -->
         <button class="header-btn" id="themeToggleBtn" title="Tungi/Kunduzgi rejim" data-i18n-title="theme_toggle" aria-label="Tungi yoki kunduzgi rejim">
           <i class="fa-regular fa-moon"></i>
+        </button>
+
+        <!-- Taqqoslash (Compare) -->
+        <button class="header-btn" id="openCompareBtn" title="Taqqoslash" data-i18n-title="compare_title" aria-label="Mahsulotlarni taqqoslash">
+          <i class="fa-solid fa-code-compare"></i>
+          <span class="btn-text" data-i18n="compare_btn">Taqqoslash</span>
+          <span class="badge-count" id="compareBadge">0</span>
         </button>
 
         <!-- Sevimlilar (Wishlist) -->
@@ -330,8 +374,8 @@
             <i class="fa-solid fa-headset"></i>
           </div>
           <div>
-            <h4 class="feature-title" data-i18n="feat_4_title">24/7 Mijozlarni Qo'llash</h4>
-            <p class="feature-desc" data-i18n="feat_4_desc">Har qanday savol va muammolar yechimi</p>
+            <h4 class="feature-title" data-i18n="feat_4_title">Har Kuni Tezkor Yordam</h4>
+            <p class="feature-desc" data-i18n="feat_4_desc">09:00 - 21:00 mijozlarni qo'llab-quvvatlash</p>
           </div>
         </div>
       </div>
@@ -572,7 +616,7 @@
             <i class="fa-solid fa-chevron-down faq-chevron"></i>
           </div>
           <div class="faq-answer">
-            Ha, albatta. Bozorix faqat 100% original, yangi va zavod qadog'idagi tovarlarni sotadi. Barcha mahsulotlarga ishlab chiqaruvchi va rasmiy servis markazi tomonidan 1 yildan 2 yilgacha rasmiy kafolat taqdim etiladi.
+            Ha, albatta. Bozorix faqat 100% original, yangi va zavod qadog'idagi tovarlarni sotadi. Barcha mahsulotlarga ishlab chiqaruvchi va rasmiy servis markazi tomonidan 12 oy (1 yil) to'liq rasmiy servis kafolati taqdim etiladi.
           </div>
         </div>
 
@@ -639,9 +683,11 @@
       <div>
         <h4 class="footer-col-title">Mijozlarga</h4>
         <ul class="footer-links">
-          <li><a href="#faqSection">Yetkazib berish va to'lov</a></li>
-          <li><a href="#faqSection">Kafolat shartlari</a></li>
-          <li><a href="#faqSection">Maxfiylik siyosati</a></li>
+          <li><a href="#" id="footerDeliveryBtn">Yetkazib berish va to'lov</a></li>
+          <li><a href="#" id="footerWarrantyBtn">Kafolat va qaytarish</a></li>
+          <li><a href="#" id="footerPrivacyBtn">Maxfiylik siyosati</a></li>
+          <li><a href="#" id="footerTermsBtn">Foydalanish shartlari</a></li>
+          <li><a href="#" id="footerCompanyBtn">Kompaniya rekvizitlari</a></li>
           <li><a href="#faqSection">Ko'p beriladigan savollar</a></li>
         </ul>
       </div>
@@ -828,8 +874,8 @@
           <label for="fastPhone">Telefon raqamingiz *</label>
           <input type="tel" id="fastPhone" name="fastPhone" class="form-input" value="+998 " required>
         </div>
-        <button type="submit" class="checkout-btn" style="padding: 0.9rem;">
-          <i class="fa-solid fa-check"></i> Buyurtmani tasdiqlash
+        <button type="submit" class="checkout-btn checkout-btn-soon" id="fastBuySubmitBtn" style="padding: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-solid fa-clock"></i> <span data-i18n="order_btn_soon">TEZ KUNDA</span>
         </button>
       </form>
     </div>
@@ -895,19 +941,44 @@
           <label data-i18n="payment_method">To'lov usulini tanlang:</label>
           <div class="payment-methods-grid">
             <label class="payment-radio-label">
-              <input type="radio" name="paymentMethod" value="cash" checked>
-              <i class="fa-solid fa-money-bill-wave" style="font-size: 1.25rem;"></i>
-              <span data-i18n="payment_cash">Qabul qilganda naqd</span>
-            </label>
-            <label class="payment-radio-label">
-              <input type="radio" name="paymentMethod" value="payme">
-              <i class="fa-solid fa-credit-card" style="font-size: 1.25rem;"></i>
-              <span>Payme</span>
+              <input type="radio" name="paymentMethod" value="payme" checked>
+              <div class="payment-label-info">
+                <i class="fa-solid fa-credit-card" style="font-size: 1.25rem; color: #00cccc;"></i>
+                <span data-i18n="payment_method_payme">Payme</span>
+              </div>
+              <span class="badge-soon" data-i18n="badge_soon">TEZ KUNDA</span>
             </label>
             <label class="payment-radio-label">
               <input type="radio" name="paymentMethod" value="click">
-              <i class="fa-solid fa-mobile-screen" style="font-size: 1.25rem;"></i>
-              <span>Click Up</span>
+              <div class="payment-label-info">
+                <i class="fa-solid fa-mobile-screen" style="font-size: 1.25rem; color: #0077ff;"></i>
+                <span data-i18n="payment_method_click">Click Up</span>
+              </div>
+              <span class="badge-soon" data-i18n="badge_soon">TEZ KUNDA</span>
+            </label>
+            <label class="payment-radio-label">
+              <input type="radio" name="paymentMethod" value="uzum">
+              <div class="payment-label-info">
+                <i class="fa-solid fa-wallet" style="font-size: 1.25rem; color: #7000ff;"></i>
+                <span data-i18n="payment_method_uzum">Uzum Bank</span>
+              </div>
+              <span class="badge-soon" data-i18n="badge_soon">TEZ KUNDA</span>
+            </label>
+            <label class="payment-radio-label">
+              <input type="radio" name="paymentMethod" value="card">
+              <div class="payment-label-info">
+                <i class="fa-solid fa-money-check-dollar" style="font-size: 1.25rem; color: #10b981;"></i>
+                <span data-i18n="payment_method_card">Bank kartasi (Uzcard / Humo / Visa)</span>
+              </div>
+              <span class="badge-soon" data-i18n="badge_soon">TEZ KUNDA</span>
+            </label>
+            <label class="payment-radio-label">
+              <input type="radio" name="paymentMethod" value="cash">
+              <div class="payment-label-info">
+                <i class="fa-solid fa-money-bill-wave" style="font-size: 1.25rem; color: #f59e0b;"></i>
+                <span data-i18n="payment_method_cash">Qabul qilganda naqd</span>
+              </div>
+              <span class="badge-soon" data-i18n="badge_soon">TEZ KUNDA</span>
             </label>
           </div>
         </div>
@@ -917,10 +988,8 @@
           <textarea id="customerNotes" name="customerNotes" class="form-textarea" placeholder="Masalan: Domofon kodi 45, yetib kelganda qo'ng'iroq qiling..."></textarea>
         </div>
 
-        <button type="submit" class="checkout-btn" style="padding: 1rem; font-size: 1rem;">
-          <i class="fa-solid fa-circle-check"></i> <span data-i18n="confirm_order">Buyurtmani Tasdiqlash</span>
-        </button>
-          <i class="fa-solid fa-check"></i> Buyurtmani tasdiqlash
+        <button type="submit" class="checkout-btn checkout-btn-soon" id="checkoutSubmitBtn" style="padding: 1rem; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+          <i class="fa-solid fa-clock"></i> <span data-i18n="order_btn_soon">TEZ KUNDA</span>
         </button>
       </form>
     </div>
@@ -1039,8 +1108,11 @@
       </div>
 
       <div class="cabinet-nav">
-        <button class="cabinet-nav-btn active" id="cabTabOrdersBtn"><i class="fa-solid fa-clock-rotate-left"></i> Mening Buyurtmalarim</button>
-        <button class="cabinet-nav-btn" id="cabTabProfileBtn"><i class="fa-regular fa-id-card"></i> Mening Ma'lumotlarim</button>
+        <button class="cabinet-nav-btn active" id="cabTabOrdersBtn"><i class="fa-solid fa-clock-rotate-left"></i> <span data-i18n="my_orders">Mening Buyurtmalarim</span></button>
+        <button class="cabinet-nav-btn" id="cabTabProfileBtn"><i class="fa-regular fa-id-card"></i> <span data-i18n="my_profile">Mening Ma'lumotlarim</span></button>
+        <button class="cabinet-nav-btn" id="cabTabAddressesBtn"><i class="fa-solid fa-map-location-dot"></i> <span data-i18n="cab_addresses">Saqlangan manzillar</span></button>
+        <button class="cabinet-nav-btn" id="cabTabNotifBtn"><i class="fa-solid fa-bell"></i> <span data-i18n="cab_notifications">Bildirishnomalar</span></button>
+        <button class="cabinet-nav-btn" id="cabTabBonusBtn"><i class="fa-solid fa-coins"></i> <span data-i18n="cab_bonuses">Keshbek & Bonus</span></button>
       </div>
 
       <div class="cabinet-body">
@@ -1078,6 +1150,93 @@
               <i class="fa-solid fa-floppy-disk"></i> Ma'lumotlarni saqlash
             </button>
           </form>
+        </div>
+
+        <!-- 3-tab: Saqlangan Manzillar -->
+        <div id="cabAddressesSection" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="font-weight: 700;">Yetkazib berish manzillari</h4>
+            <button class="hero-btn" id="addNewAddressBtn" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; background: var(--primary); color: #fff;">
+              <i class="fa-solid fa-plus"></i> Yangi manzil
+            </button>
+          </div>
+          <div id="cabAddressesList">
+            <div class="cab-address-card">
+              <div>
+                <div style="font-weight: 700; color: var(--text-main);"><i class="fa-solid fa-house" style="color: var(--primary);"></i> Asosiy manzil (Uy)</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Toshkent sh., Yunusobod 4-mavze, 18-uy, 42-xonadon</div>
+              </div>
+              <span class="order-status-badge status-yetkazildi" style="font-size: 0.72rem;">Birlamchi</span>
+            </div>
+            <div class="cab-address-card">
+              <div>
+                <div style="font-weight: 700; color: var(--text-main);"><i class="fa-solid fa-briefcase" style="color: var(--primary);"></i> Ish joyi (Ofis)</div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Toshkent sh., Shayxontohur t., Navoiy ko'chasi 14-uy</div>
+              </div>
+              <button class="hero-btn" style="background: none; border: none; color: #dc2626; cursor: pointer;" title="O'chirish"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4-tab: Bildirishnomalar sozlamasi -->
+        <div id="cabNotifSection" style="display: none;">
+          <h4 style="font-weight: 700; margin-bottom: 1rem;">Xabarnomalar va bildirishnomalar</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.85rem; max-width: 520px;">
+            <label style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-surface); cursor: pointer;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.9rem;">SMS orqali buyurtma holati</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Kuryer yetib kelishi va treking o'zgarishlari haqida SMS</div>
+              </div>
+              <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+            </label>
+            <label style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-surface); cursor: pointer;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.9rem;">Elektron kvitansiya (Email)</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Har bir xarid uchun rasmiy fiskal chek nusxasini yuborish</div>
+              </div>
+              <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+            </label>
+            <label style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-surface); cursor: pointer;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.9rem;">Maxsus aksiyalar va promokodlar</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">20% gacha yopiq chegirmalar va yangiliklar xabarlari</div>
+              </div>
+              <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+            </label>
+          </div>
+        </div>
+
+        <!-- 5-tab: Keshbek va Bonus -->
+        <div id="cabBonusSection" style="display: none;">
+          <div class="cab-bonus-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Bozorix Bonus Balansingiz</div>
+                <div style="font-size: 2rem; font-weight: 900; color: var(--primary); margin-top: 0.25rem;">240 000 so'm</div>
+              </div>
+              <div style="width: 52px; height: 52px; background: #fbbf24; color: #78350f; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem;">
+              Siz har bir xaridingizdan <strong>2% keshbek</strong> olasiz. Keyingi xaridlaringizda bonuslar orqali to'lov summasining 50% gacha qismini to'lashingiz mumkin.
+            </p>
+          </div>
+          <div style="font-weight: 700; margin-bottom: 0.5rem;">Bonuslar tarixi</div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; justify-content: space-between; padding: 0.65rem 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.85rem;">
+              <span>Xarid keshbeki (#BZX-2026-104921)</span>
+              <strong style="color: #10b981;">+62 000 so'm</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.65rem 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.85rem;">
+              <span>Xarid keshbeki (#BZX-2026-302189)</span>
+              <strong style="color: #10b981;">+87 000 so'm</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.65rem 0.85rem; border: 1px solid var(--border-light); border-radius: var(--radius-md); font-size: 0.85rem;">
+              <span>Xush kelibsiz bonusi</span>
+              <strong style="color: #10b981;">+91 000 so'm</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1186,7 +1345,7 @@
 
         <div style="background: var(--bg-surface); padding: 1.15rem; border-radius: var(--radius-xl); border: 1px solid var(--border-light);">
           <div style="font-weight: 800; font-size: 1rem; color: #f59e0b; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
-            <i class="fa-solid fa-medal"></i> 1 Yildan 2 Yilgacha Rasmiy Kafolat
+            <i class="fa-solid fa-medal"></i> 12 Oy (1 Yil) Rasmiy Servis Kafolati
           </div>
           <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
             Barcha tovarlarimiz Apple, Samsung, Sony, Asus, Dyson kabi brendlarning asl va rasmiy sertifikatlangan nusxalari hisoblanadi. Har bir buyurtmaga rasmiy kafolat taloni va do'kon muhri tushirilgan kvitansiya ilova qilinadi.
@@ -1316,6 +1475,235 @@
         </button>
       </div>
     </div>
+  </div>
+
+  <!-- ==========================================
+       18. Buyurtma "TEZ KUNDA" Xabarnoma Modali
+       ========================================== -->
+  <div class="center-modal" id="orderComingSoonModal" style="max-width: 520px; text-align: center;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.5rem 2rem;">
+      <div style="width: 72px; height: 72px; background: linear-gradient(135deg, #eff6ff, #dbeafe); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.25rem; margin: 0 auto 1.25rem; box-shadow: 0 8px 20px rgba(37,99,235,0.15);">
+        <i class="fa-solid fa-rocket"></i>
+      </div>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;" data-i18n="order_soon_modal_title">
+        Onlayn buyurtma berish xizmati tez kunda ishga tushadi!
+      </h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;" data-i18n="order_soon_modal_desc">
+        Hurmatli mijoz! Bozorix savdo platformasida to'lov va rasmiy buyurtma berish imkoniyati yaqin kunlarda to'liq faollashtiriladi. Hozirda platforma taqdimot va sinov rejimida ishlamoqda. Siz tanlagan mahsulotlar savatingizda xavfsiz saqlanib qoladi. E'tiboringiz va qiziqishingiz uchun tashakkur!
+      </p>
+      <div style="background: var(--bg-surface); padding: 1rem; border-radius: var(--radius-lg); text-align: left; margin-bottom: 1.5rem; font-size: 0.85rem; border: 1px solid var(--border-light);">
+        <div style="margin-bottom: 0.35rem;"><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Savatchangizdagi tovarlar to'liq saqlanadi</div>
+        <div style="margin-bottom: 0.35rem;"><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> 12 oylik rasmiy kafolat va servis shartnomasi</div>
+        <div><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Payme, Click Up va Uzum Bank orqali xavfsiz to'lov</div>
+      </div>
+      <button class="checkout-btn close-modal-btn" style="padding: 0.85rem 2rem; width: auto; margin: 0 auto;">
+        Tushunarli
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       19. Mahsulotlarni Taqqoslash Modali (Compare Modal)
+       ========================================== -->
+  <div class="center-modal compare-modal-wrap" id="compareModal">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+      <div>
+        <h3 style="font-size: 1.35rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-code-compare" style="color: var(--primary);"></i>
+          <span data-i18n="compare_title">Mahsulotlarni taqqoslash</span>
+          <span id="compareCountBadge" style="font-size: 0.85rem; color: var(--text-muted);">(0 ta mahsulot)</span>
+        </h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Texnik parametrlar va xususiyatlarni yonma-yon solishtiring</p>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <button id="toggleCompareDiffBtn" class="hero-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: var(--bg-surface); border: 1px solid var(--border-light); color: var(--text-main);">
+          <i class="fa-solid fa-sliders"></i> <span data-i18n="compare_diff_only">Faqat farqlarni ko'rsatish</span>
+        </button>
+        <button id="clearCompareBtn" class="hero-btn" style="padding: 0.5rem 1rem; font-size: 0.85rem; background: #fee2e2; border: none; color: #dc2626;">
+          <i class="fa-solid fa-trash-can"></i> <span data-i18n="compare_clear">Tozalash</span>
+        </button>
+      </div>
+    </div>
+    <div id="compareTableContainer">
+      <!-- JS orqali jadval to'ldiriladi -->
+    </div>
+  </div>
+
+  <!-- ==========================================
+       20. Omborda Tugagan Tovar Uchun Xabarnoma Modali
+       ========================================== -->
+  <div class="center-modal" id="notifyStockModal" style="max-width: 480px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+        <i class="fa-regular fa-bell" style="color: #f59e0b;"></i>
+        <span data-i18n="notify_modal_title">Mahsulot kelganda xabar berish</span>
+      </h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;" data-i18n="notify_modal_desc">
+        Telefon raqamingiz yoki emailingizni qoldiring, tovar omborga kelishi bilan sizga darhol bepul SMS yoki bildirishnoma yuboramiz.
+      </p>
+      <div id="notifyProductInfo" style="display: flex; gap: 0.75rem; align-items: center; background: var(--bg-surface); padding: 0.75rem; border-radius: var(--radius-md); margin-bottom: 1.25rem;">
+        <!-- JS to'ldiradi -->
+      </div>
+      <form id="notifyStockForm">
+        <input type="hidden" id="notifyProductId" value="">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="notifyContact">Telefon raqamingiz yoki Email *</label>
+          <input type="text" id="notifyContact" class="form-input" placeholder="+998 90 123 45 67 yoki email" required>
+        </div>
+        <button type="submit" class="checkout-btn" style="padding: 0.9rem;">
+          <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_send_notify">Xabardor qilish</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       21. Kompaniya Rekvizitlari Modali
+       ========================================== -->
+  <div class="center-modal" id="companyDetailsModal" style="max-width: 600px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-building" style="color: var(--primary);"></i>
+        <span data-i18n="company_info_title">Kompaniya haqida va Rekvizitlar</span>
+      </h3>
+      <div style="font-size: 0.9rem; line-height: 1.8; color: var(--text-main);">
+        <p><strong>To'liq nomi:</strong> "BOZORIX ELECTRONICS" Mas'uliyati Cheklangan Jamiyati (MCHJ)</p>
+        <p><strong>Brend:</strong> Bozorix (Bozorix.uz)</p>
+        <p><strong>STIR (INN):</strong> 309 812 456</p>
+        <p><strong>OGRN (Davlat ro'yxat raqami):</strong> 124010004921</p>
+        <p><strong>Yuridik manzil:</strong> 100011, O'zbekiston Respublikasi, Toshkent shahri, Shayxontohur tumani, Navoiy ko'chasi, 14-uy</p>
+        <p><strong>Xizmat ko'rsatuvchi bank:</strong> ATB "Kapitalbank" Toshkent shahar filiali</p>
+        <p><strong>Hisob-kitob raqami (H/R):</strong> 2020 8000 9001 2345 6001</p>
+        <p><strong>Bank kodi (MFO):</strong> 00974</p>
+        <p><strong>Yagona aloqa markazi:</strong> +998 (71) 200-88-00, +998 (90) 900-88-00</p>
+        <p><strong>Elektron pochta:</strong> info@bozorix.uz, buyurtma@bozorix.uz</p>
+        <p><strong>Ish tartibi:</strong> Har kuni 09:00 dan 21:00 gacha (dam olish kunlarisiz)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       22. Maxfiylik Siyosati Modali
+       ========================================== -->
+  <div class="center-modal" id="privacyModal" style="max-width: 650px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i>
+        <span data-i18n="privacy_title">Maxfiylik siyosati</span>
+      </h3>
+      <div style="font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); max-height: 60vh; overflow-y: auto; padding-right: 0.5rem;">
+        <p style="margin-bottom: 0.75rem;"><strong>1. Umumiy qoidalar:</strong> Bozorix platformasi foydalanuvchilarning shaxsiy ma'lumotlari xavfsizligini ta'minlashga qat'iy rioya qiladi. Ushbu siyosat mijozlarimizdan olinadigan ma'lumotlarni yig'ish, saqlash va himoya qilish tartibini belgilaydi.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>2. Qanday ma'lumotlar to'planadi:</strong> Saytdan ro'yxatdan o'tishda, xarid qilishda yoki buyurtmani rasmiylashtirishda kiritiladigan ism, telefon raqam, email va yetkazib berish manzili.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>3. Ma'lumotlardan foydalanish maqsadi:</strong> Mijozlarga tezkor xizmat ko'rsatish, buyurtmalarni o'z vaqtida yetkazish, kvitansiya taqdim etish va xizmat sifatini yaxshilash maqsadida foydalaniladi.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>4. Xavfsizlik va shifrlash:</strong> Foydalanuvchi parollari SHA-256 HMAC orqali shifrlanadi. Barcha ma'lumotlar himoyalangan serverlarda saqlanadi va uchinchi shaxslarga berilmaydi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       23. Foydalanish Shartlari Modali
+       ========================================== -->
+  <div class="center-modal" id="termsModal" style="max-width: 650px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-file-contract" style="color: var(--primary);"></i>
+        <span data-i18n="terms_title">Foydalanish shartlari</span>
+      </h3>
+      <div style="font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); max-height: 60vh; overflow-y: auto; padding-right: 0.5rem;">
+        <p style="margin-bottom: 0.75rem;"><strong>1. Ommaviy oferta:</strong> Ushbu hujjat Bozorix elektron do'konidan tovarlar xarid qilishning rasmiy shartlari va qoidalarini belgilaydi.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>2. Buyurtma berish:</strong> Xaridor sayt orqali tovar tanlaydi, yetkazish ma'lumotlarini to'ldiradi va tasdiqlaydi. Buyurtma tasdiqlangach, unikal raqam generatsiya qilinadi.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>3. Narxlar va chegirmalar:</strong> Saytdagi barcha narxlar milliy valyuta (so'm)da ko'rsatilgan. Rasmiy promokodlar kiritilganda chegirmalar avtomatik hisoblanadi.</p>
+        <p style="margin-bottom: 0.75rem;"><strong>4. Kafolat va qaytarish:</strong> Tovarda zavod nuqsoni aniqlangan taqdirda, O'zbekiston Respublikasining "Iste'molchilar huquqlarini himoya qilish to'g'risida"gi qonuniga binoan 14 kun ichida almashtiriladi yoki to'lov qaytariladi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       24. Kafolat va Qaytarish Tartibi Modali
+       ========================================== -->
+  <div class="center-modal" id="warrantyModal" style="max-width: 650px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-award" style="color: var(--primary);"></i>
+        <span data-i18n="warranty_title">Kafolat va qaytarish tartibi</span>
+      </h3>
+      <div style="font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); max-height: 60vh; overflow-y: auto; padding-right: 0.5rem;">
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 1rem; border-left: 4px solid #10b981;">
+          <strong style="color: var(--text-main); font-size: 0.95rem;">12 Oylik Rasmiy Kafolat</strong>
+          <p style="margin-top: 0.25rem;">Bozorix sotuvidagi barcha elektronika mahsulotlariga rasmiy ishlab chiqaruvchi va akkreditatsiyalangan servis markazlari tomonidan 12 oy to'liq bepul servis kafolati beriladi.</p>
+        </div>
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: var(--radius-lg); margin-bottom: 1rem; border-left: 4px solid var(--primary);">
+          <strong style="color: var(--text-main); font-size: 0.95rem;">14 Kun Ichida Tovarni Qaytarish yoki Almashtirish</strong>
+          <p style="margin-top: 0.25rem;">Agar tovar sizga ma'qul kelmasa yoki zavod nuqsoni aniqlansa, tovar ko'rinishi, qadog'i va kvitansiyasi saqlangan holda 14 kun ichida to'liq pulingiz qaytarib beriladi yoki yangisiga almashtiriladi.</p>
+        </div>
+        <div style="background: var(--bg-surface); padding: 1rem; border-radius: var(--radius-lg); border-left: 4px solid #f59e0b;">
+          <strong style="color: var(--text-main); font-size: 0.95rem;">Rasmiy Servis Markazlari</strong>
+          <p style="margin-top: 0.25rem;">Apple Authorized Service, Samsung Service Plaza, Xiaomi Service va rasmiy hamkor markazlarida ta'mirlash va profilaktika amalga oshiriladi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       25. Jonli Yordam Chat Vidjeti (Live Chat)
+       ========================================== -->
+  <button id="floatingChatBtn" class="floating-chat-btn" title="Onlayn Yordamchi (Jonli Chat)" aria-label="Onlayn operator bilan chat">
+    <span class="chat-pulse-dot"></span>
+    <i class="fa-solid fa-headset"></i>
+    <span data-i18n="chat_title">Yordam</span>
+  </button>
+
+  <div id="liveChatBox" class="chat-box-widget">
+    <div class="chat-header">
+      <div class="chat-header-user">
+        <div class="chat-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div>
+          <div style="font-weight: 800; font-size: 0.95rem;" data-i18n="chat_title">Bozorix Yordam</div>
+          <div style="font-size: 0.75rem; opacity: 0.9; display: flex; align-items: center; gap: 4px;">
+            <span style="width: 6px; height: 6px; background: #4ade80; border-radius: 50%;"></span>
+            <span data-i18n="chat_online">Operator onlayn</span>
+          </div>
+        </div>
+      </div>
+      <button id="closeChatBtn" style="background: none; border: none; color: #fff; font-size: 1.1rem; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="chat-body" id="chatMessages">
+      <div class="chat-bubble chat-bubble-bot" data-i18n="chat_welcome">
+        Assalomu alaykum! Bozorix yordam markaziga xush kelibsiz. Sizga qanday yordam bera olamiz?
+      </div>
+      <div class="chat-chips" id="chatChips">
+        <button class="chat-chip-btn" data-faq="delivery">🚚 Yetkazib berish narxi va vaqti</button>
+        <button class="chat-chip-btn" data-faq="warranty">🛡️ 1 yillik kafolat shartlari</button>
+        <button class="chat-chip-btn" data-faq="payment">💳 To'lov usullari (TEZ KUNDA)</button>
+        <button class="chat-chip-btn" data-faq="tracking">📍 Buyurtmani kuzatish</button>
+        <button class="chat-chip-btn" data-faq="operator">📞 Operator bilan bog'lanish</button>
+      </div>
+    </div>
+    <form class="chat-input-row" id="chatForm">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Savolingizni yozing..." data-i18n-placeholder="chat_input_placeholder" autocomplete="off">
+      <button type="submit" class="chat-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
   </div>
 
   <!-- Suzuvchi Xabarnomalar (Toast Container) -->

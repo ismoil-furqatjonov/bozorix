@@ -612,6 +612,12 @@ document.addEventListener('DOMContentLoaded', () => {
     fastBuyProduct: null,
     selectedStorageIndex: 0,
     selectedColorIndex: 0,
+    compare: safeGetStorage('bozorix_compare', []),
+    compareDiffOnly: false,
+    stockAlerts: safeGetStorage('bozorix_stock_alerts', []),
+    addresses: safeGetStorage('bozorix_addresses', []),
+    bonuses: safeGetStorage('bozorix_bonuses', 240000),
+    analytics: safeGetStorage('bozorix_analytics', []),
     lang: safeGetStorage('bozorix_lang', 'uz'),
     a11y: safeGetStorage('bozorix_a11y', {
       speechEnabled: false,
@@ -625,6 +631,24 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   };
   window.currentLang = state.lang;
+
+  // Analitika moduli
+  const BozorixAnalytics = {
+    track(eventName, eventData = {}) {
+      const event = {
+        name: eventName,
+        data: eventData,
+        timestamp: new Date().toISOString(),
+        url: window.location.href,
+        lang: state.lang
+      };
+      state.analytics.push(event);
+      if (state.analytics.length > 200) state.analytics.shift();
+      safeSetStorage('bozorix_analytics', state.analytics);
+      console.log(`[Bozorix Analytics] ${eventName}:`, eventData);
+    }
+  };
+  BozorixAnalytics.track('page_view');
 
   // ==========================================
   // 5. DOM Elementlari
@@ -649,6 +673,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartHeaderTotal = document.getElementById('cartHeaderTotal');
   const wishBadge = document.getElementById('wishBadge');
   const wishBadgeMobile = document.getElementById('wishBadgeMobile');
+  const compareBadge = document.getElementById('compareBadge');
+  const openCompareBtn = document.getElementById('openCompareBtn');
 
   // Modallar va Drawerlar
   const modalBackdrop = document.getElementById('modalBackdrop');
@@ -658,6 +684,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkoutModal = document.getElementById('checkoutModal');
   const fastBuyModal = document.getElementById('fastBuyModal');
   const successModal = document.getElementById('successModal');
+  const compareModal = document.getElementById('compareModal');
+  const orderComingSoonModal = document.getElementById('orderComingSoonModal');
+  const notifyStockModal = document.getElementById('notifyStockModal');
+  const companyDetailsModal = document.getElementById('companyDetailsModal');
+  const privacyModal = document.getElementById('privacyModal');
+  const termsModal = document.getElementById('termsModal');
+  const warrantyModal = document.getElementById('warrantyModal');
   const authModal = document.getElementById('authModal');
   const userCabinetModal = document.getElementById('userCabinetModal');
   const adminModal = document.getElementById('adminModal');
@@ -1071,14 +1104,32 @@ document.addEventListener('DOMContentLoaded', () => {
       filtered = filtered.filter(p => p.category === state.activeCategory);
     }
 
-    // Qidiruv
+    // Qidiruv (Typo-tolerant Fuzzy Search)
     if (state.searchQuery) {
-      const q = state.searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(p => 
-        p.name.toLowerCase().includes(q) ||
-        (p.description && p.description.toLowerCase().includes(q)) ||
-        (p.categoryName && p.categoryName.toLowerCase().includes(q))
-      );
+      let q = state.searchQuery.toLowerCase().trim();
+      const typoMap = {
+        'ayfon': 'iphone', 'aifon': 'iphone', 'ifone': 'iphone',
+        'samsun': 'samsung', 'samusng': 'samsung', 'galaksi': 'galaxy',
+        'shaomi': 'xiaomi', 'redmi': 'xiaomi', 'siomi': 'xiaomi', 'xiyomi': 'xiaomi',
+        'makbuk': 'macbook', 'noutbuk': 'macbook', 'notbuk': 'laptop',
+        'plesteshn': 'playstation', 'ps5': 'playstation', 'soni': 'sony',
+        'erpods': 'airpods', 'eyrpods': 'airpods', 'naushnik': 'airpods',
+        'televizor': 'tv', 'telyevizor': 'tv', 'telvizor': 'tv',
+        'planshet': 'ipad', 'planshetlar': 'tablets'
+      };
+      for (const [typo, correct] of Object.entries(typoMap)) {
+        if (q.includes(typo)) {
+          q = q.replace(typo, correct);
+        }
+      }
+      filtered = filtered.filter(p => {
+        const pName = p.name.toLowerCase();
+        const pDesc = (p.description || '').toLowerCase();
+        const pCat = (p.categoryName || '').toLowerCase();
+        const pCategory = (p.category || '').toLowerCase();
+        return pName.includes(q) || pDesc.includes(q) || pCat.includes(q) || pCategory.includes(q);
+      });
+      BozorixAnalytics.track('search', { query: state.searchQuery, resultsCount: filtered.length });
     }
 
     // Narx oralig'i
@@ -1131,29 +1182,36 @@ document.addEventListener('DOMContentLoaded', () => {
     productsGrid.innerHTML = filtered.map(product => {
       const loc = typeof getLocalizedProduct === 'function' ? getLocalizedProduct(product, state.lang) : product;
       const isWish = state.wishlist.includes(product.id);
+      const isCompared = state.compare.includes(product.id);
       const cartItem = state.cart.find(i => i.product.id === product.id);
       const inCart = !!cartItem;
       const cartQty = inCart ? cartItem.quantity : 0;
+      const isOut = product.inStock === false || product.stockCount === 0;
 
       const badgeClasses = {
         'HIT': 'badge-hit',
         'YANGI': 'badge-yangi',
         'CHEGIRMA': 'badge-chegirma',
-        'TAVSIYA': 'badge-tavsiya'
+        'TAVSIYA': 'badge-tavsiya',
+        'TUGAGAN': 'badge-stock-out'
       };
-      const badgeClass = badgeClasses[product.badge] || 'badge-hit';
+      const badgeClass = badgeClasses[product.badge] || (isOut ? 'badge-stock-out' : 'badge-hit');
       const badgeKey = product.badge ? 'badge_' + product.badge.toLowerCase() : '';
-      const badgeText = product.badge ? (t(badgeKey, state.lang) || product.badge) : '';
+      const badgeText = isOut ? t('stock_out', state.lang) : (product.badge ? (t(badgeKey, state.lang) || product.badge) : '');
 
       return `
-        <div class="product-card" data-id="${product.id}" tabindex="0" role="region" aria-label="${loc.name}, ${formatPrice(product.price, state.lang)}">
+        <div class="product-card ${isOut ? 'card-out-of-stock' : ''}" data-id="${product.id}" tabindex="0" role="region" aria-label="${loc.name}, ${formatPrice(product.price, state.lang)}">
           <div class="product-card-img-wrap" data-action="quickview" data-id="${product.id}">
             <div class="product-badge-group">
-              ${product.badge ? `<span class="product-badge ${badgeClass}">${badgeText}</span>` : ''}
+              ${(product.badge || isOut) ? `<span class="product-badge ${badgeClass}">${badgeText}</span>` : ''}
+              ${product.videoUrl ? `<span class="product-badge" style="background: rgba(239, 68, 68, 0.9);"><i class="fa-brands fa-youtube"></i> Video</span>` : ''}
               <span class="delivery-badge"><i class="fa-solid fa-truck-fast"></i> ${t('delivery_1_day', state.lang)}</span>
             </div>
 
             <div class="product-quick-actions">
+              <button class="quick-action-btn btn-compare ${isCompared ? 'active' : ''}" data-id="${product.id}" title="${t('compare_btn', state.lang)}" aria-label="${t('compare_btn', state.lang)}: ${loc.name}">
+                <i class="fa-solid fa-code-compare"></i>
+              </button>
               <button class="quick-action-btn btn-wishlist ${isWish ? 'active' : ''}" data-id="${product.id}" title="${isWish ? t('toast_wish_removed', state.lang) : t('toast_wish_added', state.lang)}" aria-label="${loc.name} - ${isWish ? t('toast_wish_removed', state.lang) : t('toast_wish_added', state.lang)}">
                 <i class="${isWish ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
               </button>
@@ -1182,7 +1240,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="rating-num">${product.rating || '5.0'}</span>
                 <span class="reviews-count">(${product.reviewsCount || 0} ${t('reviews_count_label', state.lang)})</span>
               </div>
-              <span class="stock-status in-stock"><i class="fa-solid fa-check"></i> ${t('in_stock', state.lang)}</span>
+              ${isOut ? `
+                <span class="stock-status badge-stock-out"><i class="fa-solid fa-circle-xmark"></i> ${t('stock_out', state.lang)}</span>
+              ` : (product.stockCount <= 3 ? `
+                <span class="stock-status in-stock" style="color: #f59e0b; font-weight: 700;"><i class="fa-solid fa-triangle-exclamation"></i> Faqat ${product.stockCount} dona qoldi!</span>
+              ` : `
+                <span class="stock-status in-stock"><i class="fa-solid fa-check"></i> ${t('in_stock', state.lang)}</span>
+              `)}
             </div>
 
             <div class="monthly-price-badge">
@@ -1199,7 +1263,11 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
             <div class="product-card-actions">
-              ${inCart ? `
+              ${isOut ? `
+                <button class="btn-notify-stock" data-id="${product.id}" aria-label="${loc.name} - ${t('btn_notify_stock', state.lang)}">
+                  <i class="fa-regular fa-bell"></i> ${t('btn_notify_stock', state.lang)}
+                </button>
+              ` : (inCart ? `
                 <div class="card-cart-controls">
                   <button class="card-qty-btn btn-dec" data-id="${product.id}" aria-label="1 dona kamaytirish">-</button>
                   <span class="card-qty-value">${t('in_cart', state.lang)} <strong>${cartQty}</strong> ${t('pieces', state.lang)}</span>
@@ -1209,11 +1277,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn-add-cart" data-id="${product.id}" aria-label="${loc.name} - ${t('add_to_cart', state.lang)}">
                   <i class="fa-solid fa-cart-plus"></i> ${t('add_to_cart', state.lang)}
                 </button>
-              `}
-
-              <button class="btn-buy-fast" data-id="${product.id}" aria-label="${loc.name} - ${t('buy_fast', state.lang)}">
-                <i class="fa-solid fa-bolt-lightning" style="color: #f59e0b;"></i> ${t('buy_fast', state.lang)}
-              </button>
+                <button class="btn-buy-fast" data-id="${product.id}" aria-label="${loc.name} - ${t('buy_fast', state.lang)}">
+                  <i class="fa-solid fa-bolt-lightning" style="color: #f59e0b;"></i> ${t('buy_fast', state.lang)}
+                </button>
+              `)}
             </div>
           </div>
         </div>
@@ -1363,9 +1430,14 @@ document.addEventListener('DOMContentLoaded', () => {
           <div>
             <div style="display: flex; justify-content: space-between; align-items: flex-start;">
               <span class="product-badge badge-hit" style="margin-bottom: 0.5rem;">${product.badge || 'HIT'}</span>
-              <button class="quick-action-btn btn-wishlist ${isWish ? 'active' : ''}" data-id="${product.id}" style="width: 38px; height: 38px;">
-                <i class="${isWish ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-              </button>
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="quick-action-btn btn-compare ${state.compare.includes(product.id) ? 'active' : ''}" data-id="${product.id}" title="${t('compare_btn', state.lang)}" aria-label="${t('compare_btn', state.lang)}" style="width: 38px; height: 38px;">
+                  <i class="fa-solid fa-code-compare"></i>
+                </button>
+                <button class="quick-action-btn btn-wishlist ${isWish ? 'active' : ''}" data-id="${product.id}" style="width: 38px; height: 38px;">
+                  <i class="${isWish ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                </button>
+              </div>
             </div>
 
             <h2 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">${loc.name}</h2>
@@ -1375,6 +1447,14 @@ document.addEventListener('DOMContentLoaded', () => {
               <span style="font-weight: 800; font-size: 0.875rem;">${product.rating || '5.0'}</span>
               <span style="color: var(--text-muted); font-size: 0.85rem;">(${product.reviewsCount || 0} ${t('reviews_count_label', state.lang)})</span>
             </div>
+
+            ${product.videoUrl ? `
+              <div style="margin-bottom: 0.75rem;">
+                <a href="${product.videoUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.45rem; color: #dc2626; font-size: 0.85rem; font-weight: 700; text-decoration: none; background: rgba(239,68,68,0.1); padding: 0.35rem 0.75rem; border-radius: var(--radius-md);">
+                  <i class="fa-brands fa-youtube" style="font-size: 1.1rem;"></i> <span>Rasmiy video prevyuni ko'rish</span>
+                </a>
+              </div>
+            ` : ''}
 
             <div style="margin-bottom: 0.65rem;">
               <button id="qvSpeakBtn" style="background: var(--bg-surface); color: var(--text-main); border: 1.5px solid var(--border-light); padding: 0.35rem 0.75rem; border-radius: var(--radius-md); font-size: 0.8rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 0.45rem;" title="${t('listen_details', state.lang)}" aria-label="${t('listen_details', state.lang)}">
@@ -1396,14 +1476,22 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div>
-            <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
-              <button class="btn-add-cart" id="quickAddToCartBtn" data-id="${product.id}" style="flex: 1; padding: 0.85rem;">
-                <i class="fa-solid fa-cart-plus"></i> ${t('add_to_cart', state.lang)}
-              </button>
-              <button class="btn-buy-fast" id="quickBuyFastBtn" data-id="${product.id}" style="flex: 1; padding: 0.85rem;">
-                <i class="fa-solid fa-bolt-lightning" style="color: #f59e0b;"></i> ${t('buy_fast', state.lang)}
-              </button>
-            </div>
+            ${(product.inStock === false || product.stockCount === 0) ? `
+              <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+                <button class="btn-notify-stock" data-id="${product.id}" style="flex: 1; padding: 0.85rem;">
+                  <i class="fa-regular fa-bell"></i> ${t('btn_notify_stock', state.lang)}
+                </button>
+              </div>
+            ` : `
+              <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
+                <button class="btn-add-cart" id="quickAddToCartBtn" data-id="${product.id}" style="flex: 1; padding: 0.85rem;">
+                  <i class="fa-solid fa-cart-plus"></i> ${t('add_to_cart', state.lang)}
+                </button>
+                <button class="btn-buy-fast" id="quickBuyFastBtn" data-id="${product.id}" style="flex: 1; padding: 0.85rem;">
+                  <i class="fa-solid fa-bolt-lightning" style="color: #f59e0b;"></i> ${t('buy_fast', state.lang)}
+                </button>
+              </div>
+            `}
           </div>
         </div>
       </div>
@@ -1900,37 +1988,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!state.fastBuyProduct) return;
 
-      try {
-        const orderRes = await api.createOrder({
-          userId: state.currentUser ? state.currentUser.id : null,
-          customerName: name,
-          customerPhone: phone,
-          customerCity: "Toshkent shahri",
-          customerAddress: "Operator orqali aniqlanadi",
-          paymentMethod: "cash",
-          items: [
-            {
-              productId: state.fastBuyProduct.id,
-              name: state.fastBuyProduct.name,
-              price: state.fastBuyProduct.price,
-              quantity: 1,
-              image: state.fastBuyProduct.image
-            }
-          ],
-          subtotal: state.fastBuyProduct.price,
-          totalAmount: state.fastBuyProduct.price,
-          shippingFee: 0,
-          notes: "1 bosishda tezkor xarid"
-        });
+      BozorixAnalytics.track('fast_buy_attempt', {
+        name,
+        phone,
+        productId: state.fastBuyProduct.id,
+        price: state.fastBuyProduct.price
+      });
 
-        closeAllModals();
-        showReceiptModal(orderRes.order);
-        showToast("Tezkor buyurtmangiz muvaffaqiyatli qabul qilindi!", "success");
-        fastBuyForm.reset();
-        await loadProducts(); // zaxirani yangilash
-      } catch (err) {
-        showToast(err.message, "error");
+      closeAllModals();
+      const comingSoonModal = document.getElementById('orderComingSoonModal');
+      if (comingSoonModal) {
+        openModal(comingSoonModal);
+      } else {
+        showToast(t('order_soon_modal_title', state.lang), "info");
       }
+      announceA11y(t('order_soon_modal_title', state.lang));
+      fastBuyForm.reset();
     });
   }
 
@@ -2019,60 +2092,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const shipping = subtotal >= 1000000 ? 0 : 35000;
       const grandTotal = Math.max(0, subtotal - discountAmount + shipping);
 
-      try {
-        const orderPayload = {
-          userId: state.currentUser ? state.currentUser.id : null,
-          customerName: name,
-          customerPhone: phone,
-          customerCity: city,
-          customerAddress: address,
-          paymentMethod,
-          appliedCoupon: state.appliedCoupon ? state.appliedCoupon.code : null,
-          items: state.cart.map(i => ({
-            productId: i.product.id,
-            name: i.product.name,
-            price: i.product.price,
-            quantity: i.quantity,
-            image: i.product.image
-          })),
-          subtotal,
-          discountAmount,
-          shippingFee: shipping,
-          totalAmount: grandTotal,
-          notes
-        };
+      BozorixAnalytics.track('checkout_attempt', {
+        name,
+        phone,
+        city,
+        address,
+        paymentMethod,
+        cartCount: state.cart.length,
+        subtotal,
+        discountAmount,
+        totalAmount: grandTotal
+      });
 
-        const res = await api.createOrder(orderPayload);
-        const order = res.order;
-
-        // Savatni tozalash
-        state.cart = [];
-        state.appliedCoupon = null;
-        safeSetStorage('bozorix_cart', state.cart);
-        safeSetStorage('bozorix_coupon', null);
-        updateCartBadges();
-        renderCartDrawer();
-        renderCatalog();
-
-        closeAllModals();
-
-        // Agar Payme yoki Click tanlangan bo'lsa, to'lov havolasini generatsiya qilish
-        if (paymentMethod === 'payme') {
-          const paymeData = await api.createPaymeLink(order.id, order.totalAmount);
-          showReceiptModal(order, paymeData);
-        } else if (paymentMethod === 'click') {
-          const clickData = await api.createClickLink(order.id, order.totalAmount);
-          showReceiptModal(order, clickData);
-        } else {
-          showReceiptModal(order);
-        }
-
-        showToast("Buyurtmangiz muvaffaqiyatli qabul qilindi!", "success");
-        form.reset();
-        await loadProducts(); // zaxirani yangilash
-      } catch (err) {
-        showToast(err.message, "error");
+      // Buyurtmani yubormasdan, mijozga chiroyli "TEZ KUNDA" xabarnoma modalini ko'rsatish
+      closeAllModals();
+      const comingSoonModal = document.getElementById('orderComingSoonModal');
+      if (comingSoonModal) {
+        openModal(comingSoonModal);
+      } else {
+        showToast(t('order_soon_modal_title', state.lang), "info");
       }
+      announceA11y(t('order_soon_modal_title', state.lang));
     });
   }
 
@@ -2516,10 +2556,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="font-weight: 800; font-size: 1.05rem; color: var(--text-main);">
               Jami: <span style="color: var(--primary);">${formatPrice(o.totalAmount)}</span>
             </div>
-            <div style="display: flex; gap: 0.5rem;">
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <button class="hero-btn btn-track-order" data-id="${o.id}" style="background: #ede9fe; color: #6d28d9; border: none; padding: 0.4rem 0.85rem; font-size: 0.8rem;">
                 <i class="fa-solid fa-truck-fast"></i> Kuzatish
               </button>
+              <button class="hero-btn btn-reorder" data-id="${o.id}" style="background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-light); padding: 0.4rem 0.85rem; font-size: 0.8rem;">
+                <i class="fa-solid fa-rotate-right"></i> ${t('order_reorder', state.lang)}
+              </button>
+              ${(o.status === 'yangi' || o.status === 'yigilmoqda') ? `
+                <button class="hero-btn btn-cancel-order" data-id="${o.id}" style="background: #fee2e2; color: #dc2626; border: none; padding: 0.4rem 0.85rem; font-size: 0.8rem;">
+                  <i class="fa-solid fa-ban"></i> ${t('order_cancel', state.lang)}
+                </button>
+              ` : ''}
               <button class="hero-btn btn-view-receipt" data-id="${o.id}" style="background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-light); padding: 0.4rem 0.85rem; font-size: 0.8rem;">
                 <i class="fa-solid fa-receipt"></i> Chek
               </button>
@@ -2532,6 +2580,42 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
           closeAllModals();
           openOrderTracking(btn.dataset.id);
+        });
+      });
+
+      listEl.querySelectorAll('.btn-reorder').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const ord = orders.find(o => o.id === btn.dataset.id);
+          if (!ord || !ord.items) return;
+          ord.items.forEach(it => {
+            const prod = state.products.find(p => p.id === it.productId);
+            if (prod) {
+              const ex = state.cart.find(c => c.product.id === prod.id);
+              if (ex) ex.quantity += (it.quantity || 1);
+              else state.cart.push({ product: prod, quantity: it.quantity || 1 });
+            }
+          });
+          safeSetStorage('bozorix_cart', state.cart);
+          updateCartBadges();
+          renderCartDrawer();
+          closeAllModals();
+          openModal(cartDrawer);
+          showToast(t('reorder_toast', state.lang), 'success');
+        });
+      });
+
+      listEl.querySelectorAll('.btn-cancel-order').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          if (!confirm(t('order_cancel_confirm', state.lang))) return;
+          const orderId = btn.dataset.id;
+          try {
+            await api.updateOrderStatus(orderId, 'bekor');
+          } catch (e) {
+            const ord = orders.find(o => o.id === orderId);
+            if (ord) ord.status = 'bekor';
+          }
+          showToast(t('order_canceled_toast', state.lang), 'info');
+          renderUserOrders();
         });
       });
 
@@ -2550,25 +2634,51 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cabinet Tabs
   const cabTabOrdersBtn = document.getElementById('cabTabOrdersBtn');
   const cabTabProfileBtn = document.getElementById('cabTabProfileBtn');
+  const cabTabAddressesBtn = document.getElementById('cabTabAddressesBtn');
+  const cabTabNotifBtn = document.getElementById('cabTabNotifBtn');
+  const cabTabBonusBtn = document.getElementById('cabTabBonusBtn');
+
   const cabOrdersSection = document.getElementById('cabOrdersSection');
   const cabProfileSection = document.getElementById('cabProfileSection');
+  const cabAddressesSection = document.getElementById('cabAddressesSection');
+  const cabNotifSection = document.getElementById('cabNotifSection');
+  const cabBonusSection = document.getElementById('cabBonusSection');
 
-  if (cabTabOrdersBtn && cabTabProfileBtn) {
-    cabTabOrdersBtn.addEventListener('click', () => {
-      cabTabOrdersBtn.classList.add('active');
-      cabTabProfileBtn.classList.remove('active');
+  function switchCabTab(tab) {
+    [cabTabOrdersBtn, cabTabProfileBtn, cabTabAddressesBtn, cabTabNotifBtn, cabTabBonusBtn].forEach(b => b?.classList.remove('active'));
+    [cabOrdersSection, cabProfileSection, cabAddressesSection, cabNotifSection, cabBonusSection].forEach(s => { if (s) s.style.display = 'none'; });
+
+    if (tab === 'orders') {
+      cabTabOrdersBtn?.classList.add('active');
       if (cabOrdersSection) cabOrdersSection.style.display = 'block';
-      if (cabProfileSection) cabProfileSection.style.display = 'none';
       renderUserOrders();
-    });
-
-    cabTabProfileBtn.addEventListener('click', () => {
-      cabTabProfileBtn.classList.add('active');
-      cabTabOrdersBtn.classList.remove('active');
+    } else if (tab === 'profile') {
+      cabTabProfileBtn?.classList.add('active');
       if (cabProfileSection) cabProfileSection.style.display = 'block';
-      if (cabOrdersSection) cabOrdersSection.style.display = 'none';
-    });
+    } else if (tab === 'addresses') {
+      cabTabAddressesBtn?.classList.add('active');
+      if (cabAddressesSection) cabAddressesSection.style.display = 'block';
+    } else if (tab === 'notif') {
+      cabTabNotifBtn?.classList.add('active');
+      if (cabNotifSection) cabNotifSection.style.display = 'block';
+    } else if (tab === 'bonus') {
+      cabTabBonusBtn?.classList.add('active');
+      if (cabBonusSection) cabBonusSection.style.display = 'block';
+    }
   }
+
+  cabTabOrdersBtn?.addEventListener('click', () => switchCabTab('orders'));
+  cabTabProfileBtn?.addEventListener('click', () => switchCabTab('profile'));
+  cabTabAddressesBtn?.addEventListener('click', () => switchCabTab('addresses'));
+  cabTabNotifBtn?.addEventListener('click', () => switchCabTab('notif'));
+  cabTabBonusBtn?.addEventListener('click', () => switchCabTab('bonus'));
+
+  document.getElementById('addNewAddressBtn')?.addEventListener('click', () => {
+    const newAddr = prompt("Yangi yetkazib berish manzilini kiriting (ko'cha, uy, xonadon):");
+    if (newAddr && newAddr.trim()) {
+      showToast("Yangi manzil muvaffaqiyatli saqlandi!", "success");
+    }
+  });
 
   // Profil tahrirlash formasi
   const cabProfileForm = document.getElementById('cabProfileForm');
@@ -3573,6 +3683,352 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
+  // 25. Mahsulotlarni Taqqoslash (Comparison)
+  // ==========================================
+  function updateCompareBadge() {
+    if (compareBadge) {
+      compareBadge.textContent = state.compare.length;
+      compareBadge.style.display = state.compare.length > 0 ? 'inline-block' : 'none';
+    }
+    const countBadge = document.getElementById('compareCountBadge');
+    if (countBadge) {
+      countBadge.textContent = `(${state.compare.length} ta mahsulot)`;
+    }
+  }
+
+  function toggleCompare(productId) {
+    const pId = Number(productId);
+    const idx = state.compare.indexOf(pId);
+    if (idx > -1) {
+      state.compare.splice(idx, 1);
+      showToast(t('compare_remove', state.lang), 'info');
+    } else {
+      if (state.compare.length >= 4) {
+        showToast(t('compare_max', state.lang), 'warning');
+        return;
+      }
+      state.compare.push(pId);
+      showToast(t('compare_add', state.lang), 'success');
+      BozorixAnalytics.track('compare_add', { productId: pId });
+    }
+    safeSetStorage('bozorix_compare', state.compare);
+    updateCompareBadge();
+    renderCatalog();
+    if (compareModal?.classList.contains('active')) {
+      renderCompareModal();
+    }
+  }
+
+  function renderCompareModal() {
+    const container = document.getElementById('compareTableContainer');
+    if (!container) return;
+
+    if (state.compare.length === 0) {
+      container.innerHTML = `
+        <div style="text-align: center; padding: 3rem 1rem;">
+          <div style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;">
+            <i class="fa-solid fa-code-compare"></i>
+          </div>
+          <h4 style="font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">${t('compare_empty', state.lang)}</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Mahsulot kartasidagi taqqoslash tugmasini bosib tovarlarni solishtiring.</p>
+          <a href="#catalogSection" class="hero-btn close-modal-btn" style="background: var(--primary); color: #fff; margin: 0 auto; display: inline-flex;">
+            Katalogga o'tish
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    const items = state.compare.map(id => state.products.find(p => p.id === id)).filter(Boolean);
+    const allFeatureKeys = Array.from(new Set(items.flatMap(p => Object.keys(p.features || {}))));
+
+    let tableHtml = `
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="compare-param-name">Mahsulot</th>
+              ${items.map(item => {
+                const loc = getLocalizedProduct(item, state.lang);
+                return `
+                  <th>
+                    <div class="compare-item-card">
+                      <button class="hero-btn btn-remove-compare" data-id="${item.id}" style="background: none; border: none; color: #dc2626; cursor: pointer; float: right;" title="O'chirish">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                      <img src="${item.image}" alt="${loc.name}" class="compare-item-img">
+                      <div style="font-weight: 800; font-size: 0.9rem; margin-bottom: 0.35rem; color: var(--text-main);">${loc.name}</div>
+                      <div style="font-weight: 800; color: var(--primary); font-size: 1.05rem; margin-bottom: 0.5rem;">${formatPrice(item.price, state.lang)}</div>
+                      ${(item.inStock && item.stockCount > 0) ? `
+                        <button class="btn-add-cart btn-compare-add" data-id="${item.id}" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; width: 100%;">
+                          <i class="fa-solid fa-cart-plus"></i> ${t('add_to_cart', state.lang)}
+                        </button>
+                      ` : `
+                        <button class="btn-notify-stock" data-id="${item.id}" style="padding: 0.45rem 0.85rem; font-size: 0.8rem; width: 100%;">
+                          <i class="fa-regular fa-bell"></i> ${t('btn_notify_stock', state.lang)}
+                        </button>
+                      `}
+                    </div>
+                  </th>
+                `;
+              }).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="compare-param-name">Toifasi</td>
+              ${items.map(item => `<td>${getLocalizedCategoryName(item.category, state.lang)}</td>`).join('')}
+            </tr>
+            <tr>
+              <td class="compare-param-name">Mavjudligi</td>
+              ${items.map(item => `<td>${item.inStock && item.stockCount > 0 ? `<span style="color: #10b981; font-weight: 700;"><i class="fa-solid fa-check"></i> Omborda mavjud (${item.stockCount} dona)</span>` : `<span style="color: #dc2626; font-weight: 700;">Tugagan</span>`}</td>`).join('')}
+            </tr>
+            <tr>
+              <td class="compare-param-name">Kafolat</td>
+              ${items.map(item => `<td>12 oy (1 yil) rasmiy servis kafolati</td>`).join('')}
+            </tr>
+            ${allFeatureKeys.map(key => {
+              const values = items.map(p => (p.features && p.features[key]) || '-');
+              const isDifferent = values.some(v => v !== values[0]);
+              if (state.compareDiffOnly && !isDifferent) return '';
+              return `
+                <tr class="${isDifferent ? 'compare-diff-row' : ''}">
+                  <td class="compare-param-name">${key} ${isDifferent ? '<span title="Farqlanadi" style="color: #f59e0b;">*</span>' : ''}</td>
+                  ${values.map(v => `<td>${v}</td>`).join('')}
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    container.innerHTML = tableHtml;
+
+    container.querySelectorAll('.btn-remove-compare').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        toggleCompare(Number(e.currentTarget.dataset.id));
+      });
+    });
+
+    container.querySelectorAll('.btn-compare-add').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        addToCart(Number(e.currentTarget.dataset.id));
+        renderCartDrawer();
+        openModal(cartDrawer);
+      });
+    });
+  }
+
+  if (openCompareBtn) {
+    openCompareBtn.addEventListener('click', () => {
+      renderCompareModal();
+      openModal(compareModal);
+      announceA11y(t('compare_title', state.lang));
+    });
+  }
+
+  document.getElementById('toggleCompareDiffBtn')?.addEventListener('click', () => {
+    state.compareDiffOnly = !state.compareDiffOnly;
+    renderCompareModal();
+  });
+
+  document.getElementById('clearCompareBtn')?.addEventListener('click', () => {
+    state.compare = [];
+    safeSetStorage('bozorix_compare', state.compare);
+    updateCompareBadge();
+    renderCompareModal();
+    renderCatalog();
+    showToast(t('compare_clear', state.lang), 'info');
+  });
+
+  // ==========================================
+  // 26. Omborda Tugagan Tovar va Xabarnoma
+  // ==========================================
+  function openNotifyStockModal(productId) {
+    const product = state.products.find(p => p.id === Number(productId));
+    if (!product) return;
+    const modal = document.getElementById('notifyStockModal');
+    const infoBox = document.getElementById('notifyProductInfo');
+    const idInput = document.getElementById('notifyProductId');
+    if (!modal) return;
+
+    const loc = getLocalizedProduct(product, state.lang);
+    if (infoBox) {
+      infoBox.innerHTML = `
+        <img src="${product.image}" style="width: 48px; height: 48px; object-fit: contain; background: #fff; border-radius: var(--radius-md); padding: 4px;">
+        <div>
+          <div style="font-weight: 800; font-size: 0.9rem;">${loc.name}</div>
+          <div style="color: #dc2626; font-size: 0.8rem; font-weight: 700;">${t('stock_out', state.lang)}</div>
+        </div>
+      `;
+    }
+    if (idInput) idInput.value = product.id;
+    openModal(modal);
+  }
+
+  const notifyStockForm = document.getElementById('notifyStockForm');
+  if (notifyStockForm) {
+    notifyStockForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const pId = Number(document.getElementById('notifyProductId').value);
+      const contact = document.getElementById('notifyContact').value.trim();
+      if (!contact) return;
+
+      state.stockAlerts.push({ productId: pId, contact, date: new Date().toISOString() });
+      safeSetStorage('bozorix_stock_alerts', state.stockAlerts);
+      closeAllModals();
+      showToast(t('notify_success', state.lang), 'success');
+      notifyStockForm.reset();
+    });
+  }
+
+  // ==========================================
+  // 27. Rasmiy Hujjatlar va Modallar Bog'lanishi
+  // ==========================================
+  const companyModal = document.getElementById('companyDetailsModal');
+  const privacyModalEl = document.getElementById('privacyModal');
+  const termsModalEl = document.getElementById('termsModal');
+  const warrantyModalEl = document.getElementById('warrantyModal');
+
+  document.getElementById('openDeliveryInfoBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (deliveryModal) openModal(deliveryModal);
+  });
+  document.getElementById('footerDeliveryBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (deliveryModal) openModal(deliveryModal);
+  });
+  document.getElementById('footerWarrantyBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (warrantyModalEl) openModal(warrantyModalEl);
+  });
+  document.getElementById('footerPrivacyBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (privacyModalEl) openModal(privacyModalEl);
+  });
+  document.getElementById('footerTermsBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (termsModalEl) openModal(termsModalEl);
+  });
+  document.getElementById('footerCompanyBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (companyModal) openModal(companyModal);
+  });
+
+  // ==========================================
+  // 28. Jonli Chat Vidjeti
+  // ==========================================
+  function initLiveChatWidget() {
+    const chatBtn = document.getElementById('floatingChatBtn');
+    const chatBox = document.getElementById('liveChatBox');
+    const closeBtn = document.getElementById('closeChatBtn');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatChips = document.getElementById('chatChips');
+
+    if (!chatBtn || !chatBox) return;
+
+    chatBtn.addEventListener('click', () => {
+      chatBox.classList.toggle('active');
+      if (chatBox.classList.contains('active')) {
+        chatInput?.focus();
+        announceA11y(t('chat_title', state.lang));
+      }
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      chatBox.classList.remove('active');
+    });
+
+    const faqAnswers = {
+      delivery: {
+        uz: "🚚 <strong>Yetkazib berish:</strong> Toshkent shahri bo'ylab 3 - 24 soat ichida (20 000 so'm, 500 000 so'mdan oshsa BEPUL). Viloyatlarga 24 - 48 soatda (35 000 so'm, 1 000 000 so'mdan oshsa BEPUL). Kuryer yetib kelishdan oldin qo'ng'iroq qiladi.",
+        ru: "🚚 <strong>Доставка:</strong> По Ташкенту 3 - 24 часа (20 000 сум, от 500 000 сум БЕСПЛАТНО). По регионам Узбекистана 24 - 48 часов (35 000 сум, от 1 000 000 сум БЕСПЛАТНО).",
+        en: "🚚 <strong>Delivery:</strong> 3 - 24 hours within Tashkent (20,000 UZS, FREE over 500,000 UZS). 24 - 48 hours for regions (35,000 UZS, FREE over 1,000,000 UZS)."
+      },
+      warranty: {
+        uz: "🛡️ <strong>Kafolat:</strong> Barcha mahsulotlarga 12 oy (1 yil) rasmiy ishlab chiqaruvchi kafolati beriladi. 14 kun ichida to'liq almashtirish yoki qaytarish kafolatlangan.",
+        ru: "🛡️ <strong>Гарантия:</strong> Официальная гарантия 12 месяцев на все устройства. 14 дней на обмен или возврат.",
+        en: "🛡️ <strong>Warranty:</strong> 12 months official warranty on all electronics. 14 days full return or exchange guarantee."
+      },
+      payment: {
+        uz: "💳 <strong>To'lov usullari:</strong> Hozirda platformada Payme, Click Up, Uzum Bank va naqd to'lov tizimlari TEZ KUNDA ishga tushishi kutilmoqda. Hech qanday pul yechilmaydi.",
+        ru: "💳 <strong>Оплата:</strong> Оплата через Payme, Click Up, Uzum Bank и картами запустится СКОРО.",
+        en: "💳 <strong>Payment:</strong> Payment via Payme, Click Up, Uzum Bank, cards and cash on delivery is COMING SOON."
+      },
+      tracking: {
+        uz: "📍 <strong>Kuzatish:</strong> Sayt yuqorisidagi 'Buyurtmani kuzatish' tugmasi orqali o'z buyurtma raqamingizni (#BZX-2026-XXXXXX) kiriting va 4 bosqichli real trekingni ko'ring.",
+        ru: "📍 <strong>Отслеживание:</strong> Нажмите 'Отследить заказ' в верхней шапке и введите номер заказа (#BZX-2026-XXXXXX).",
+        en: "📍 <strong>Tracking:</strong> Click 'Track Order' in the top bar and enter your order code (#BZX-2026-XXXXXX)."
+      },
+      operator: {
+        uz: "📞 <strong>Operator bilan aloqa:</strong> Yagona aloqa markazi: +998 (71) 200-88-00 yoki Telegram orqali @bozorix_support. Ish tartibi: har kuni 09:00 dan 21:00 gacha.",
+        ru: "📞 <strong>Связь с оператором:</strong> Наш колл-центр: +998 (71) 200-88-00 или Telegram @bozorix_support. Ежедневно с 09:00 до 21:00.",
+        en: "📞 <strong>Live Support:</strong> Call us at +998 (71) 200-88-00 or Telegram @bozorix_support. Daily from 09:00 to 21:00."
+      }
+    };
+
+    function appendMessage(text, isUser = false) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `chat-bubble ${isUser ? 'chat-bubble-user' : 'chat-bubble-bot'}`;
+      msgDiv.innerHTML = text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    chatChips?.addEventListener('click', (e) => {
+      const chip = e.target.closest('.chat-chip-btn');
+      if (!chip) return;
+      const faqKey = chip.dataset.faq;
+      const userText = chip.textContent;
+      appendMessage(userText, true);
+
+      setTimeout(() => {
+        const answer = (faqAnswers[faqKey] && faqAnswers[faqKey][state.lang]) || faqAnswers[faqKey]?.uz || "Operatorimiz tez orada javob beradi.";
+        appendMessage(answer, false);
+      }, 400);
+    });
+
+    chatForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = chatInput.value.trim();
+      if (!val) return;
+      appendMessage(val, true);
+      chatInput.value = '';
+
+      setTimeout(() => {
+        let reply = "Savolingiz uchun tashakkur! Mutaxassisimiz xabaringizni qabul qildi. Tez orada javob beramiz yoki +998 (71) 200-88-00 orqali bog'lanishingiz mumkin.";
+        if (state.lang === 'ru') {
+          reply = "Спасибо за ваш вопрос! Специалист уже обрабатывает обращение. Вы также можете позвонить нам по номеру +998 (71) 200-88-00.";
+        } else if (state.lang === 'en') {
+          reply = "Thank you for your question! A support specialist is reviewing your message. You can also call us at +998 (71) 200-88-00.";
+        }
+        appendMessage(reply, false);
+      }, 600);
+    });
+  }
+  initLiveChatWidget();
+
+  // Global delegatsiya: Taqqoslash va Omborda tugagan tovar tugmalari
+  document.addEventListener('click', (e) => {
+    const compareBtn = e.target.closest('.btn-compare');
+    if (compareBtn && compareBtn.dataset.id) {
+      e.stopPropagation();
+      toggleCompare(Number(compareBtn.dataset.id));
+      return;
+    }
+
+    const notifyBtn = e.target.closest('.btn-notify-stock');
+    if (notifyBtn && notifyBtn.dataset.id) {
+      e.stopPropagation();
+      openNotifyStockModal(Number(notifyBtn.dataset.id));
+      return;
+    }
+  });
+
+  // ==========================================
   // 24. Dastlabki Yuklash
   // ==========================================
   applyA11ySettings();
@@ -3584,6 +4040,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateAuthUI();
   updateCartBadges();
   updateWishlistBadges();
+  updateCompareBadge();
   loadProducts();
 
 });

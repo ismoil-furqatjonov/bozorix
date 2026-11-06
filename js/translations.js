@@ -55,8 +55,8 @@ const TRANSLATIONS = {
     feat_2_desc: "Faqat original tovarlar va servis markazi",
     feat_3_title: "Qulay To'lov Turlari",
     feat_3_desc: "Payme, Click yoki qabul qilganda naqd",
-    feat_4_title: "24/7 Mijozlarni Qo'llash",
-    feat_4_desc: "Har qanday savol va muammolar yechimi",
+    feat_4_title: "Har Kuni Tezkor Yordam",
+    feat_4_desc: "09:00 - 21:00 mijozlarni qo'llab-quvvatlash",
 
     // Katalog va Filtrlar
     catalog_title: "Mahsulotlar Katalogi",
@@ -235,7 +235,64 @@ const TRANSLATIONS = {
     toast_profile_updated: "Profil ma'lumotlari muvaffaqiyatli yangilandi",
     toast_voice_enabled: "Ovozli o'qish yoqildi. Elementlar ustiga kelganda ovozli o'qiladi.",
     toast_voice_disabled: "Ovozli o'qish o'chirildi.",
-    toast_a11y_reset: "Maxsus imkoniyatlar dastlabki holatga qaytarildi."
+    toast_a11y_reset: "Maxsus imkoniyatlar dastlabki holatga qaytarildi.",
+
+    // Yangi talablar: TEZ KUNDA buyurtma va to'lov
+    order_btn_soon: "TEZ KUNDA",
+    badge_soon: "TEZ KUNDA",
+    order_soon_modal_title: "Onlayn buyurtma berish xizmati tez kunda ishga tushadi!",
+    order_soon_modal_desc: "Hurmatli mijoz! Bozorix savdo platformasida to'lov va rasmiy buyurtma berish imkoniyati yaqin kunlarda to'liq faollashtiriladi. Hozirda platforma taqdimot va sinov rejimida ishlamoqda. Siz tanlagan mahsulotlar savatingizda xavfsiz saqlanib qoladi. E'tiboringiz va qiziqishingiz uchun tashakkur!",
+    payment_method_payme: "Payme",
+    payment_method_click: "Click Up",
+    payment_method_uzum: "Uzum Bank",
+    payment_method_card: "Bank kartasi (Uzcard / Humo / Visa)",
+    payment_method_cash: "Qabul qilganda naqd pul (Kuryerga)",
+
+    // Taqqoslash
+    compare_title: "Mahsulotlarni taqqoslash",
+    compare_btn: "Taqqoslash",
+    compare_diff_only: "Faqat farqlarni ko'rsatish",
+    compare_empty: "Taqqoslash uchun hech qanday mahsulot tanlanmagan.",
+    compare_clear: "Taqqoslashni tozalash",
+    compare_add: "Taqqoslashga qo'shildi",
+    compare_remove: "Taqqoslashdan olib tashlandi",
+    compare_max: "Maksimal 4 ta mahsulotni taqqoslash mumkin",
+
+    // Omborda tugagan tovar va xabarnoma
+    btn_notify_stock: "Menga xabar bering",
+    stock_out: "Tugagan",
+    stock_left: "Faqat {count} dona qoldi!",
+    stock_available: "Omborda {count} dona mavjud",
+    notify_modal_title: "Mahsulot kelganda xabar berish",
+    notify_modal_desc: "Telefon raqamingiz yoki emailingizni qoldiring, ushbu tovar omborga kelishi bilan sizga darhol bepul SMS yoki bildirishnoma yuboramiz.",
+    btn_send_notify: "Xabardor qilish",
+    notify_success: "Rahmat! Tovar omborga kelishi bilan sizga xabar beramiz.",
+
+    // Jonli Chat va Q&A
+    chat_title: "Bozorix Jonli Yordam",
+    chat_online: "Operator onlayn",
+    chat_welcome: "Assalomu alaykum! Bozorix yordam markaziga xush kelibsiz. Sizga qanday yordam bera olamiz?",
+    chat_send: "Yuborish",
+    chat_input_placeholder: "Savolingizni yozing...",
+    qa_title: "Mahsulot bo'yicha savol-javob",
+    qa_ask_btn: "Savol berish",
+    qa_success: "Savolingiz qabul qilindi. Tez orada javob beramiz!",
+
+    // Shaxsiy kabinet yangi imkoniyatlari
+    cab_addresses: "Saqlangan manzillar",
+    cab_notifications: "Bildirishnomalar",
+    cab_bonuses: "Bozorix Keshbek & Bonus",
+    order_reorder: "Qayta buyurtma",
+    order_cancel: "Bekor qilish",
+    order_cancel_confirm: "Haqiqatan ham ushbu buyurtmani bekor qilmoqchimisiz?",
+    order_canceled_toast: "Buyurtma muvaffaqiyatli bekor qilindi",
+    reorder_toast: "Buyurtma mahsulotlari savatga qo'shildi!",
+
+    // Rasmiy hujjatlar
+    company_info_title: "Kompaniya haqida va Rekvizitlar",
+    privacy_title: "Maxfiylik siyosati",
+    terms_title: "Foydalanish shartlari",
+    warranty_title: "Kafolat va qaytarish tartibi"
   },
 
   ru: {
@@ -288,8 +345,8 @@ const TRANSLATIONS = {
     feat_2_desc: "Только оригинальная техника и сервисные центры",
     feat_3_title: "Удобная Оплата",
     feat_3_desc: "Payme, Click или наличными при получении",
-    feat_4_title: "Поддержка 24/7",
-    feat_4_desc: "Помощь в решении любых вопросов в любое время",
+    feat_4_title: "Поддержка каждый день",
+    feat_4_desc: "09:00 - 21:00 оперативная помощь и решение вопросов",
 
     // Katalog va Filtrlar
     catalog_title: "Каталог товаров",
@@ -468,7 +525,64 @@ const TRANSLATIONS = {
     toast_profile_updated: "Данные профиля успешно обновлены",
     toast_voice_enabled: "Голосовое чтение включено. Элементы будут озвучиваться.",
     toast_voice_disabled: "Голосовое чтение выключено.",
-    toast_a11y_reset: "Настройки доступности сброшены к стандартным."
+    toast_a11y_reset: "Настройки доступности сброшены к стандартным.",
+
+    // Новые требования: СКОРО В ПРОДАЖЕ
+    order_btn_soon: "СКОРО В ПРОДАЖЕ",
+    badge_soon: "СКОРО",
+    order_soon_modal_title: "Сервис онлайн-заказов запустится в ближайшее время!",
+    order_soon_modal_desc: "Уважаемый покупатель! Оформление и оплата онлайн-заказов на платформе Bozorix запустятся в самое ближайшее время. Сейчас платформа работает в демонстрационном и презентационном режиме. Выбранные товары сохранены в вашей корзине. Спасибо за ваш интерес и доверие!",
+    payment_method_payme: "Payme",
+    payment_method_click: "Click Up",
+    payment_method_uzum: "Uzum Bank",
+    payment_method_card: "Банковская карта (Uzcard / Humo / Visa)",
+    payment_method_cash: "Наличными при получении (Курьеру)",
+
+    // Сравнение
+    compare_title: "Сравнение товаров",
+    compare_btn: "Сравнить",
+    compare_diff_only: "Только отличия",
+    compare_empty: "Нет выбранных товаров для сравнения.",
+    compare_clear: "Очистить список",
+    compare_add: "Добавлено к сравнению",
+    compare_remove: "Удалено из сравнения",
+    compare_max: "Можно сравнивать до 4 товаров одновременно",
+
+    // Уведомление о поступлении
+    btn_notify_stock: "Сообщить о поступлении",
+    stock_out: "Нет в наличии",
+    stock_left: "Осталось всего {count} шт.!",
+    stock_available: "В наличии {count} шт.",
+    notify_modal_title: "Уведомить о поступлении товара",
+    notify_modal_desc: "Оставьте ваш номер телефона или email, и мы отправим вам SMS-уведомление сразу, как только товар появится на складе.",
+    btn_send_notify: "Подписаться",
+    notify_success: "Спасибо! Мы уведомим вас о поступлении товара.",
+
+    // Чат и вопросы
+    chat_title: "Онлайн-поддержка Bozorix",
+    chat_online: "Оператор онлайн",
+    chat_welcome: "Здравствуйте! Добро пожаловать в центр поддержки Bozorix. Чем мы можем вам помочь?",
+    chat_send: "Отправить",
+    chat_input_placeholder: "Введите ваш вопрос...",
+    qa_title: "Вопросы и ответы о товаре",
+    qa_ask_btn: "Задать вопрос",
+    qa_success: "Ваш вопрос принят. Скоро предоставим ответ!",
+
+    // Личный кабинет
+    cab_addresses: "Мои адреса",
+    cab_notifications: "Уведомления",
+    cab_bonuses: "Кешбэк & Бонусы Bozorix",
+    order_reorder: "Повторить заказ",
+    order_cancel: "Отменить заказ",
+    order_cancel_confirm: "Вы действительно хотите отменить этот заказ?",
+    order_canceled_toast: "Заказ успешно отменен",
+    reorder_toast: "Товары из заказа добавлены в корзину!",
+
+    // Официальные документы
+    company_info_title: "О компании и реквизиты",
+    privacy_title: "Политика конфиденциальности",
+    terms_title: "Условия использования",
+    warranty_title: "Гарантия и порядок возврата"
   },
 
   en: {
@@ -521,8 +635,8 @@ const TRANSLATIONS = {
     feat_2_desc: "Certified original products & service centers",
     feat_3_title: "Convenient Payment",
     feat_3_desc: "Payme, Click or cash upon arrival",
-    feat_4_title: "24/7 Customer Support",
-    feat_4_desc: "Friendly assistance anytime you need",
+    feat_4_title: "Daily Customer Support",
+    feat_4_desc: "09:00 - 21:00 friendly assistance and solutions",
 
     // Katalog va Filtrlar
     catalog_title: "Product Catalog",
@@ -701,7 +815,64 @@ const TRANSLATIONS = {
     toast_profile_updated: "Profile updated successfully",
     toast_voice_enabled: "Screen reader voice enabled. Elements will be read aloud.",
     toast_voice_disabled: "Screen reader voice disabled.",
-    toast_a11y_reset: "Accessibility settings restored to defaults."
+    toast_a11y_reset: "Accessibility settings restored to defaults.",
+
+    // Coming soon order & payment
+    order_btn_soon: "COMING SOON",
+    badge_soon: "COMING SOON",
+    order_soon_modal_title: "Online ordering will be available very soon!",
+    order_soon_modal_desc: "Dear customer! Online purchasing and order placement on Bozorix are launching in the near future. The platform is currently operating in presentation and final testing mode. Your selected products will remain safely saved in your shopping cart. Thank you for your interest and support!",
+    payment_method_payme: "Payme",
+    payment_method_click: "Click Up",
+    payment_method_uzum: "Uzum Bank",
+    payment_method_card: "Bank Card (Uzcard / Humo / Visa)",
+    payment_method_cash: "Cash on Delivery",
+
+    // Comparison
+    compare_title: "Product Comparison",
+    compare_btn: "Compare",
+    compare_diff_only: "Show differences only",
+    compare_empty: "No products selected for comparison.",
+    compare_clear: "Clear comparison",
+    compare_add: "Added to comparison",
+    compare_remove: "Removed from comparison",
+    compare_max: "You can compare up to 4 products",
+
+    // Stock alert
+    btn_notify_stock: "Notify when in stock",
+    stock_out: "Out of stock",
+    stock_left: "Only {count} left in stock!",
+    stock_available: "{count} items in stock",
+    notify_modal_title: "Notify me when in stock",
+    notify_modal_desc: "Leave your phone number or email, and we will send you a free SMS or notification as soon as this product is back in stock.",
+    btn_send_notify: "Notify Me",
+    notify_success: "Thank you! We will alert you once the item arrives.",
+
+    // Live chat & Q&A
+    chat_title: "Bozorix Live Support",
+    chat_online: "Operator online",
+    chat_welcome: "Hello! Welcome to Bozorix Support Center. How can we help you today?",
+    chat_send: "Send",
+    chat_input_placeholder: "Type your question...",
+    qa_title: "Product Questions & Answers",
+    qa_ask_btn: "Ask a Question",
+    qa_success: "Your question has been received. We will reply shortly!",
+
+    // Cabinet features
+    cab_addresses: "Saved Addresses",
+    cab_notifications: "Notifications",
+    cab_bonuses: "Bozorix Cashback & Bonuses",
+    order_reorder: "Reorder",
+    order_cancel: "Cancel order",
+    order_cancel_confirm: "Are you sure you want to cancel this order?",
+    order_canceled_toast: "Order has been canceled",
+    reorder_toast: "Items from order have been added to your cart!",
+
+    // Legal & Info
+    company_info_title: "Company Information & Requisites",
+    privacy_title: "Privacy Policy",
+    terms_title: "Terms of Service",
+    warranty_title: "Warranty & Return Policy"
   }
 };
 
@@ -710,8 +881,10 @@ const CATEGORY_TRANSLATIONS = {
   all: { uz: "Barcha mahsulotlar", ru: "Все товары", en: "All Products" },
   smartphones: { uz: "Smartfonlar", ru: "Смартфоны", en: "Smartphones" },
   laptops: { uz: "Noutbuklar & PC", ru: "Ноутбуки & ПК", en: "Laptops & PC" },
+  tablets: { uz: "Planshetlar", ru: "Планшеты", en: "Tablets" },
   audio: { uz: "Audio & Quloqchinlar", ru: "Аудио & Наушники", en: "Audio & Headphones" },
   wearables: { uz: "Aqlli soatlar", ru: "Умные часы", en: "Smartwatches" },
+  tv: { uz: "Televizorlar & Media", ru: "Телевизоры & Медиа", en: "TV & Home Cinema" },
   'home-appliances': { uz: "Maishiy texnika", ru: "Бытовая техника", en: "Home Appliances" },
   gaming: { uz: "Geyming & Konsol", ru: "Гейминг & Консоли", en: "Gaming & Consoles" }
 };
@@ -956,6 +1129,126 @@ const PRODUCT_I18N = {
       name: "Roborock S8 Pro Ultra Robot Vacuum",
       categoryName: "Home Appliances",
       desc: "All-in-one docking station with auto-emptying, washing and hot air drying, 6000Pa suction, DuoRoller brushes and 3D avoidance."
+    }
+  },
+  21: {
+    ru: {
+      name: "Apple iPad Pro 11 M4 OLED Космический черный",
+      categoryName: "Планшеты",
+      desc: "Революционный чип Apple M4, дисплей Ultra Retina XDR tandem OLED, ультратонкий корпус 5.3 мм и поддержка Apple Pencil Pro."
+    },
+    en: {
+      name: "Apple iPad Pro 11 M4 OLED Space Black",
+      categoryName: "Tablets",
+      desc: "Revolutionary Apple M4 chip, groundbreaking Ultra Retina XDR tandem OLED display, ultra-thin 5.3mm design and Apple Pencil Pro support."
+    }
+  },
+  22: {
+    ru: {
+      name: "Samsung Galaxy Tab S9 Ultra 5G Графит",
+      categoryName: "Планшеты",
+      desc: "Огромный 14.6\" Dynamic AMOLED 2X дисплей, перо S Pen в комплекте, влагозащита IP68 и мощный чип Snapdragon 8 Gen 2."
+    },
+    en: {
+      name: "Samsung Galaxy Tab S9 Ultra 5G Graphite",
+      categoryName: "Tablets",
+      desc: "Massive 14.6\" Dynamic AMOLED 2X display, included S Pen, IP68 water resistance and Snapdragon 8 Gen 2 for Galaxy."
+    }
+  },
+  23: {
+    ru: {
+      name: "Xiaomi Pad 6 Max 14 Черный матовый",
+      categoryName: "Планшеты",
+      desc: "14-дюймовый дисплей 2.8K 120 Гц, чип Snapdragon 8+ Gen 1, 8 динамиков Dolby Atmos и батарея емкостью 10 000 мА·ч."
+    },
+    en: {
+      name: "Xiaomi Pad 6 Max 14 Matte Black",
+      categoryName: "Tablets",
+      desc: "14-inch 2.8K 120Hz monitor-grade display, Snapdragon 8+ Gen 1 processor, 8 stereo speakers and giant 10,000mAh battery."
+    }
+  },
+  24: {
+    ru: {
+      name: "Телевизор Samsung 65\" Neo QLED 4K Smart TV QN85D",
+      categoryName: "Телевизоры & Медиа",
+      desc: "Технология Quantum Matrix с Mini LED подсветкой, процессор NQ4 AI Gen2, игровой режим 4K 120Гц и пульт SolarCell на солнечной батарее."
+    },
+    en: {
+      name: "Samsung 65\" Neo QLED 4K Smart TV QN85D",
+      categoryName: "TV & Home Cinema",
+      desc: "Quantum Matrix Technology with Mini LEDs, NQ4 AI Gen2 Processor, 4K 120Hz gaming support and SolarCell remote control."
+    }
+  },
+  25: {
+    ru: {
+      name: "Телевизор LG OLED 55\" C3 Series 4K Cinema TV",
+      categoryName: "Телевизоры & Медиа",
+      desc: "Самоподсвечивающиеся пиксели OLED evo, бесконечная контрастность, процессор α9 AI 4K Gen6, отклик 0.1 мс и Dolby Vision IQ."
+    },
+    en: {
+      name: "LG OLED 55\" C3 Series 4K Cinema TV",
+      categoryName: "TV & Home Cinema",
+      desc: "Self-lit OLED evo display with absolute blacks, α9 AI Processor 4K Gen6, ultra-fast 0.1ms response time and Dolby Vision IQ."
+    }
+  },
+  26: {
+    ru: {
+      name: "Телевизор Xiaomi TV A Pro 55\" 4K UHD Безрамочный",
+      categoryName: "Телевизоры & Медиа",
+      desc: "Безрамочный металлический корпус, разрешение 4K Ultra HD, операционная система Google TV, звук Dolby Audio и голосовой поиск."
+    },
+    en: {
+      name: "Xiaomi TV A Pro 55\" 4K UHD Bezel-less",
+      categoryName: "TV & Home Cinema",
+      desc: "Bezel-less metallic frame, 4K Ultra HD resolution, Google TV operating system, Dolby Audio and Google Assistant voice remote."
+    }
+  },
+  27: {
+    ru: {
+      name: "Беспроводной пылесос Dyson V15 Detect Extra",
+      categoryName: "Бытовая техника",
+      desc: "Двигатель Dyson Hyperdymium с рекордной мощностью 240 аВт, лазерная подсветка микропыли, пьезодатчик и до 60 минут работы."
+    },
+    en: {
+      name: "Dyson V15 Detect Extra Cordless Vacuum",
+      categoryName: "Home Appliances",
+      desc: "Dyson Hyperdymium motor with 240AW suction power, green laser dust detection, acoustic piezo sensor and up to 60 min runtime."
+    }
+  },
+  28: {
+    ru: {
+      name: "Игровая консоль Nintendo Switch OLED Mario Red Edition",
+      categoryName: "Гейминг & Консоли",
+      desc: "Красочный 7-дюймовый OLED дисплей, эксклюзивный красный цвет Марио, широкая регулируемая опора, 64 ГБ памяти и док-станция с LAN."
+    },
+    en: {
+      name: "Nintendo Switch OLED Mario Red Edition",
+      categoryName: "Gaming & Consoles",
+      desc: "Vibrant 7-inch OLED screen, iconic Mario red finish, wide adjustable stand, 64GB internal storage and wired LAN dock."
+    }
+  },
+  29: {
+    ru: {
+      name: "Смарт-часы Apple Watch Ultra 2 Titanium 49mm",
+      categoryName: "Умные часы",
+      desc: "49-мм титановый корпус аэрокосмического класса, ярчайший дисплей 3000 нит, процессор S9 SiP, глубина погружения до 100 м и 36 часов работы."
+    },
+    en: {
+      name: "Apple Watch Ultra 2 Titanium 49mm Ocean Band",
+      categoryName: "Smartwatches",
+      desc: "49mm aerospace titanium case, ultra-bright 3000-nit Retina display, S9 SiP chip, water resistance up to 100m and 36-hour battery."
+    }
+  },
+  30: {
+    ru: {
+      name: "Портативная игровая консоль Asus ROG Ally Z1 Extreme",
+      categoryName: "Гейминг & Консоли",
+      desc: "Геймерская консоль на базе Windows 11, процессор AMD Ryzen Z1 Extreme, 7\" 120Гц FHD экран, 16 ГБ ОЗУ и поддержка игр Steam и Xbox."
+    },
+    en: {
+      name: "Asus ROG Ally Z1 Extreme Gaming Handheld",
+      categoryName: "Gaming & Consoles",
+      desc: "Windows 11 handheld gaming PC powered by AMD Ryzen Z1 Extreme, 7\" 120Hz FHD display, 16GB LPDDR5 RAM and full Steam/Xbox compatibility."
     }
   }
 };

@@ -5,13 +5,15 @@
  */
 
 const categoriesData = [
-  { id: 'all', name: 'Barcha mahsulotlar', icon: 'fa-solid fa-border-all', count: 20 },
-  { id: 'smartphones', name: 'Smartfonlar', icon: 'fa-solid fa-mobile-screen-button', count: 5 },
+  { id: 'all', name: 'Barcha mahsulotlar', icon: 'fa-solid fa-border-all', count: 30 },
+  { id: 'smartphones', name: 'Smartfonlar', icon: 'fa-solid fa-mobile-screen-button', count: 6 },
   { id: 'laptops', name: 'Noutbuklar & PC', icon: 'fa-solid fa-laptop', count: 4 },
+  { id: 'tablets', name: 'Planshetlar', icon: 'fa-solid fa-tablet-screen-button', count: 3 },
   { id: 'audio', name: 'Audio & Quloqchinlar', icon: 'fa-solid fa-headphones-simple', count: 4 },
-  { id: 'wearables', name: 'Aqlli soatlar', icon: 'fa-solid fa-clock', count: 3 },
-  { id: 'home-appliances', name: 'Maishiy texnika', icon: 'fa-solid fa-blender-phone', count: 2 },
-  { id: 'gaming', name: 'Geyming & Konsol', icon: 'fa-solid fa-gamepad', count: 2 }
+  { id: 'wearables', name: 'Aqlli soatlar', icon: 'fa-solid fa-clock', count: 4 },
+  { id: 'tv', name: 'Televizorlar & Media', icon: 'fa-solid fa-tv', count: 3 },
+  { id: 'home-appliances', name: 'Maishiy texnika', icon: 'fa-solid fa-blender-phone', count: 3 },
+  { id: 'gaming', name: 'Geyming & Konsol', icon: 'fa-solid fa-gamepad', count: 3 }
 ];
 
 const productsData = [
@@ -652,6 +654,320 @@ const productsData = [
       { size: "256GB", price: 7300000 }
     ],
     colors: ["#a8d5ba", "#4a4e69", "#f2e9e4"]
+  },
+  {
+    id: 21,
+    name: "Apple iPad Pro 11 M4 OLED Space Black",
+    category: "tablets",
+    categoryName: "Planshetlar",
+    price: 14500000,
+    oldPrice: 15900000,
+    monthlyPrice: 1360000,
+    discount: 8,
+    rating: 4.9,
+    reviewsCount: 47,
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=800&q=80"
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=y38fV4Xf8Y4",
+    badge: "HIT",
+    inStock: true,
+    stockCount: 11,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Yangi avlod M4 chipi, dunyodagi eng ilg'or Ultra Retina XDR tandem OLED ekrani, 5.3mm ultra ingichka korpus va Apple Pencil Pro qo'llab-quvvatlashi.",
+    features: {
+      "Ekran": "11 dyuym Ultra Retina XDR Tandem OLED, 120Hz ProMotion, 1600 nit",
+      "Protsessor": "Apple M4 (9 yadroli CPU, 10 yadroli GPU, 16 yadroli Neural Engine)",
+      "Tezkor xotira (RAM)": "8 GB yuqori tezlikdagi birlashtirilgan xotira",
+      "Kamera": "12 MP keng burchakli 4K ProRes kamera + LiDAR skaneri",
+      "Akkumulyator": "31.29 Vt/soat, 10 soatgacha uzluksiz video ko'rish",
+      "Kafolat": "1 yil rasmiy Apple kafolati"
+    },
+    storageOptions: [
+      { size: "256GB", price: 14500000 },
+      { size: "512GB", price: 16800000 },
+      { size: "1TB", price: 19800000 }
+    ],
+    colors: ["#1c1d1f", "#e3e4e6"]
+  },
+  {
+    id: 22,
+    name: "Samsung Galaxy Tab S9 Ultra 5G Graphite",
+    category: "tablets",
+    categoryName: "Planshetlar",
+    price: 13900000,
+    oldPrice: 15200000,
+    monthlyPrice: 1300000,
+    discount: 8,
+    rating: 4.8,
+    reviewsCount: 39,
+    image: "https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=80"
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=0kLph3U0R1E",
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 7,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "14.6 dyuymli ulkan Dynamic AMOLED 2X ekran, to'plamda S-Pen qalami, IP68 suv va changdan himoyalangan ilk flagman planshet.",
+    features: {
+      "Ekran": "14.6 dyuym Dynamic AMOLED 2X, 120Hz, HDR10+, 1848 x 2960",
+      "Protsessor": "Qualcomm Snapdragon 8 Gen 2 for Galaxy (4 nm)",
+      "Tezkor xotira (RAM)": "12 GB LPDDR5X",
+      "Kamera": "13 MP + 8 MP orqa kamera, 12 MP + 12 MP old qo'shaloq kamera",
+      "Akkumulyator": "11200 mA/soat, 45W tezkor zaryadlash",
+      "Kafolat": "1 yil rasmiy Samsung kafolati"
+    },
+    storageOptions: [
+      { size: "256GB", price: 13900000 },
+      { size: "512GB", price: 15700000 }
+    ],
+    colors: ["#2c2e33", "#eae6df"]
+  },
+  {
+    id: 23,
+    name: "Xiaomi Pad 6 Max 14 Matte Black",
+    category: "tablets",
+    categoryName: "Planshetlar",
+    price: 6200000,
+    oldPrice: 6900000,
+    monthlyPrice: 580000,
+    discount: 10,
+    rating: 4.7,
+    reviewsCount: 52,
+    image: "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "CHEGIRMA",
+    inStock: true,
+    stockCount: 15,
+    isFeatured: false,
+    isFlashSale: true,
+    description: "14 dyuymli 2.8K 120Hz monitor darajasidagi ekran, Snapdragon 8+ Gen 1 protsessori, 8 ta stereo dinamik va ulkan 10000 mA/soat batareya.",
+    features: {
+      "Ekran": "14.0 dyuym IPS LCD, 2880x1800, 120Hz, HDR10",
+      "Protsessor": "Qualcomm Snapdragon 8+ Gen 1 (4 nm)",
+      "Tezkor xotira (RAM)": "8 GB LPDDR5",
+      "Akkumulyator": "10000 mA/soat, 67W tezkor zaryadlash va 33W teskari quvvatlash",
+      "Audio": "8 ta Dolby Atmos dinamiklari",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    storageOptions: [
+      { size: "256GB", price: 6200000 },
+      { size: "512GB", price: 7100000 }
+    ],
+    colors: ["#222325", "#bcc0c4"]
+  },
+  {
+    id: 24,
+    name: "Samsung 65\" Neo QLED 4K Smart TV QN85D",
+    category: "tv",
+    categoryName: "Televizorlar & Media",
+    price: 16800000,
+    oldPrice: 18900000,
+    monthlyPrice: 1580000,
+    discount: 11,
+    rating: 4.9,
+    reviewsCount: 64,
+    image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 5,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Quantum Matrix texnologiyasi va Mini LED yoritish, NQ4 AI Gen2 neyron protsessori, 4K 120Hz geyming rejimi va quyoshdan quvvat oluvchi SolarCell pult.",
+    features: {
+      "Ekran": "65 dyuym (163 sm) Neo QLED 4K UHD (3840x2160), 120Hz",
+      "Protsessor": "NQ4 AI Gen2 4K protsessor",
+      "Ovoz tizimi": "Dolby Atmos, OTS (Object Tracking Sound), 40W 2.2CH",
+      "Geyming": "Motion Xcelerator 120Hz, FreeSync Premium Pro, 4x HDMI 2.1",
+      "Tizim": "Samsung Tizen OS, SmartThings va ovozli boshqaruv",
+      "Kafolat": "1 yil rasmiy servis kafolati"
+    },
+    colors: ["#1a1a1a"]
+  },
+  {
+    id: 25,
+    name: "LG OLED 55\" C3 Series 4K Cinema TV",
+    category: "tv",
+    categoryName: "Televizorlar & Media",
+    price: 15400000,
+    oldPrice: 17200000,
+    monthlyPrice: 1450000,
+    discount: 10,
+    rating: 4.9,
+    reviewsCount: 78,
+    image: "https://images.unsplash.com/photo-1461151304267-38535e780c79?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1461151304267-38535e780c79?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 6,
+    isFeatured: true,
+    isFlashSale: true,
+    description: "Mustaqil yonuvchi piksellarga ega OLED evo ekrani, mutlaq qora rang va cheksiz kontrast, α9 AI 4K Gen6 protsessori va kinoteatr darajasidagi Dolby Vision IQ.",
+    features: {
+      "Ekran": "55 dyuym (139 sm) 4K OLED evo, 120Hz, Pixel Dimming",
+      "Protsessor": "α9 AI Processor 4K Gen6",
+      "Geyming": "0.1ms javob vaqti, NVIDIA G-Sync, AMD FreeSync, 4x HDMI 2.1",
+      "Ovoz": "Dolby Atmos, AI Sound Pro 9.1.2 virtual kanal",
+      "Kafolat": "1 yil rasmiy LG kafolati"
+    },
+    colors: ["#2d3142"]
+  },
+  {
+    id: 26,
+    name: "Xiaomi TV A Pro 55\" 4K UHD Bezel-less",
+    category: "tv",
+    categoryName: "Televizorlar & Media",
+    price: 4700000,
+    oldPrice: 5300000,
+    monthlyPrice: 440000,
+    discount: 11,
+    rating: 4.6,
+    reviewsCount: 91,
+    image: "https://images.unsplash.com/photo-1577979749830-f1d742b96791?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1577979749830-f1d742b96791?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "TUGAGAN",
+    inStock: false,
+    stockCount: 0,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Metall romsiz premium korpus, 4K Ultra HD aniqlik, Google TV operatsion tizimi, Dolby Audio va Google Assistant ovozli boshqaruv pulti.",
+    features: {
+      "Ekran": "55 dyuym 4K UHD (3840x2160), 60Hz MEMC, DCI-P3 90%",
+      "Operatsion tizim": "Google TV va o'rnatilgan Chromecast",
+      "Ovoz": "2x 12W dinamiklar, Dolby Audio va DTS-X",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    colors: ["#1e2022"]
+  },
+  {
+    id: 27,
+    name: "Dyson V15 Detect Extra Changyutgich",
+    category: "home-appliances",
+    categoryName: "Maishiy texnika",
+    price: 8900000,
+    oldPrice: 9900000,
+    monthlyPrice: 830000,
+    discount: 10,
+    rating: 4.9,
+    reviewsCount: 88,
+    image: "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 8,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Dyson Hyperdymium dvigateli, 240 AW rekord quvvat, ko'rinmas changlarni ko'rsatuvchi yashil lazer nuri va chang zarrachalarini hisoblovchi LCD displey.",
+    features: {
+      "So'rish quvvati": "240 AW (AeroWatt), 125 000 ayl/daq Hyperdymium motor",
+      "Filtr": "99.99% mikroskopik zarrachalarni tutib qoluvchi HEPA filtr",
+      "Ish vaqti": "Bitta zaryad bilan 60 daqiqagacha avtonom ishlash",
+      "Kafolat": "1 yil rasmiy Dyson servis kafolati"
+    },
+    colors: ["#ffaa00", "#5c2d91"]
+  },
+  {
+    id: 28,
+    name: "Nintendo Switch OLED Mario Red Edition",
+    category: "gaming",
+    categoryName: "Geyming & Konsol",
+    price: 3950000,
+    oldPrice: 4400000,
+    monthlyPrice: 370000,
+    discount: 10,
+    rating: 4.8,
+    reviewsCount: 110,
+    image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "HIT",
+    inStock: true,
+    stockCount: 12,
+    isFeatured: false,
+    isFlashSale: true,
+    description: "Yorqin 7 dyuymli OLED displey, afsonaviy Mario qizil korpusi, kengaytirilgan sozlanuvchi stend, 64GB xotira va kabel ulanuvchi LAN dok-stansiya.",
+    features: {
+      "Ekran": "7.0 dyuym Multi-touch OLED displey (1280x720)",
+      "Xotira": "64 GB ichki xotira + microSD 2TB gacha",
+      "Rejimlar": "Televizor rejimi, Stol usti rejimi, Qo'l rejimi",
+      "Kafolat": "1 yil rasmiy kafolat"
+    },
+    colors: ["#e60012"]
+  },
+  {
+    id: 29,
+    name: "Apple Watch Ultra 2 Titanium 49mm Ocean Band",
+    category: "wearables",
+    categoryName: "Aqlli soatlar",
+    price: 10400000,
+    oldPrice: 11500000,
+    monthlyPrice: 970000,
+    discount: 9,
+    rating: 4.9,
+    reviewsCount: 67,
+    image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 9,
+    isFeatured: true,
+    isFlashSale: false,
+    description: "Ekstremal sharoitlar uchun 49mm aviatsiya titani, 3000 nit eng yorqin ekran, S9 chipi, 100m gacha chuqurlikka sho'ng'ish va 36 soatlik batareya.",
+    features: {
+      "Korpus": "49 mm aviatsiya titani, sapfir kristal shisha",
+      "Ekran": "Always-On Retina OLED, 3000 nit rekord yorqinlik",
+      "Sensorlar": "Ikki chastotali aniq GPS, sho'ng'ish chuqurlik o'lchagichi",
+      "Kafolat": "1 yil rasmiy Apple kafolati"
+    },
+    colors: ["#b8b2a8", "#0d3b66", "#f77f00"]
+  },
+  {
+    id: 30,
+    name: "Asus ROG Ally Z1 Extreme Gaming Handheld",
+    category: "gaming",
+    categoryName: "Geyming & Konsol",
+    price: 8200000,
+    oldPrice: 9100000,
+    monthlyPrice: 770000,
+    discount: 10,
+    rating: 4.8,
+    reviewsCount: 43,
+    image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80"
+    ],
+    badge: "YANGI",
+    inStock: true,
+    stockCount: 8,
+    isFeatured: false,
+    isFlashSale: false,
+    description: "Windows 11 platformasidagi geymer portativ kompyuteri, AMD Ryzen Z1 Extreme chipi, 7 dyuym 120Hz ekran va barcha Steam, Xbox o'yinlarini qo'llab-quvvatlash.",
+    features: {
+      "Protsessor": "AMD Ryzen Z1 Extreme (8 yadro, 16 oqim, 5.1 GHz, RDNA 3 GPU)",
+      "Ekran": "7 dyuym FHD (1920x1080) 120Hz, 500 nit, FreeSync Premium",
+      "Xotira": "16 GB LPDDR5 RAM + 512 GB PCIe 4.0 NVMe M.2 SSD",
+      "Kafolat": "1 yil rasmiy Asus kafolati"
+    },
+    colors: ["#ffffff"]
   }
 ];
 

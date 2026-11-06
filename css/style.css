@@ -3298,3 +3298,373 @@ body.a11y-high-contrast *:focus-visible {
 .btn-speak-product:hover {
   color: var(--accent);
 }
+
+/* ========================================================
+   Yangi Talablar Stillari: TEZ KUNDA, Taqqoslash, Chat, Stok
+   ======================================================== */
+
+/* "TEZ KUNDA" nishoni */
+.badge-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  border: 1px solid #f59e0b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 2px rgba(245, 158, 11, 0.15);
+}
+
+.payment-radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--bg-surface);
+}
+.payment-radio-label:hover {
+  border-color: var(--primary);
+  background: var(--bg-alt);
+}
+.payment-label-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.checkout-btn-soon {
+  background: linear-gradient(135deg, #2563eb, #1e40af) !important;
+  color: #ffffff !important;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.checkout-btn-soon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+/* Taqqoslash (Comparison) tugmasi va paneli */
+.btn-compare.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+.btn-compare.active:hover {
+  background: var(--primary-dark);
+}
+
+.compare-modal-wrap {
+  max-width: 1100px;
+  width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+}
+.compare-table-wrap {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+  text-align: left;
+}
+.compare-table th, .compare-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  border-right: 1px solid var(--border-light);
+  font-size: 0.875rem;
+}
+.compare-table th:last-child, .compare-table td:last-child {
+  border-right: none;
+}
+.compare-param-name {
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  width: 180px;
+}
+.compare-diff-row {
+  background: rgba(245, 158, 11, 0.08);
+}
+.compare-item-card {
+  text-align: center;
+}
+.compare-item-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin: 0 auto 0.5rem;
+}
+
+/* Omborda tugagan tovar */
+.card-out-of-stock {
+  opacity: 0.85;
+}
+.badge-stock-out {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #f87171;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 9999px;
+}
+.btn-notify-stock {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px dashed #f59e0b;
+  background: #fffbeb;
+  color: #b45309;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+.btn-notify-stock:hover {
+  background: #fef3c7;
+  border-style: solid;
+}
+
+/* Jonli Chat Vidjeti (Live Chat Widget) */
+.floating-chat-btn {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.5rem;
+  z-index: 99;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.floating-chat-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
+}
+.chat-pulse-dot {
+  width: 10px;
+  height: 10px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4);
+  animation: pulse-ring 2s infinite;
+}
+
+.chat-box-widget {
+  position: fixed;
+  bottom: 9.5rem;
+  right: 1.5rem;
+  width: 360px;
+  max-width: calc(100vw - 2rem);
+  height: 500px;
+  max-height: 80vh;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: chatOpen 0.25s ease-out;
+}
+.chat-box-widget.active {
+  display: flex;
+}
+@keyframes chatOpen {
+  from { opacity: 0; transform: translateY(15px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.chat-header {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chat-header-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.chat-body {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--bg-main);
+}
+.chat-bubble {
+  max-width: 85%;
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.chat-bubble-bot {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  align-self: flex-start;
+  border: 1px solid var(--border-light);
+  border-bottom-left-radius: 2px;
+}
+.chat-bubble-user {
+  background: var(--primary);
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+.chat-chip-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+.chat-chip-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+.chat-input-row {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-surface);
+}
+.chat-input {
+  flex: 1;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+.chat-input:focus {
+  border-color: var(--primary);
+}
+.chat-send-btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Q&A bloki Quick View ichida */
+.qv-tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--border-light);
+  margin: 1.25rem 0 1rem;
+}
+.qv-tab-btn {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.qv-tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+.qa-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.qa-q {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.qa-a {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+}
+
+/* Shaxsiy Kabinet yangi bo'limlari */
+.cab-address-card {
+  padding: 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-surface);
+}
+.cab-bonus-box {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 1px solid #bfdbfe;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+}
+[data-theme="dark"] .cab-bonus-box {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-color: #334155;
+}
+

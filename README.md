@@ -1,8 +1,8 @@
-# ⚡ Bozorix v2.1 — Professional E-Commerce & Full-Stack Savdo Platformasi
+# ⚡ Bozorix v2.2 — Professional E-Commerce & Full-Stack Savdo Platformasi
 
-Ushbu loyiha **E-commerce (Elektron savdo)** mavzusida premium dizayn, zamonaviy arxitektura, mustaqil Node.js backend, doimiy saqlanuvchi ma'lumotlar bazasi (Persistent DB), to'liq autentifikatsiya, Shaxsiy kabinet, Admin panel, haqiqiy to'lov (Payme/Click) integratsiyasi, **3 ta to'liq til (O'zbek, Rus, Ingliz)** hamda **ko'rlar va ko'rish qobiliyati zaif bo'lgan insonlar uchun maxsus inklyuziv imkoniyatlar (Accessibility / A11y & Screen Reader)** bilan jihozlangan to'liq ishlaydigan professional internet do'kondir.
+Ushbu loyiha **E-commerce (Elektron savdo)** mavzusida premium dizayn, zamonaviy arxitektura, mustaqil Node.js backend, doimiy saqlanuvchi ma'lumotlar bazasi (Persistent DB), to'liq autentifikatsiya, Shaxsiy kabinet, Admin panel, mahsulotlarni yonma-yon solishtirish (Compare), suzuvchi jonli chat yordamchisi (Live Chat), **"TEZ KUNDA" xavfsiz to'lov va rasmiylashtirish arxitekturasi**, **3 ta to'liq til (O'zbek, Rus, Ingliz)** hamda **ko'rlar va ko'rish qobiliyati zaif bo'lgan insonlar uchun maxsus inklyuziv imkoniyatlar (Accessibility / A11y & Screen Reader)** bilan jihozlangan to'liq ishlaydigan professional elektron savdo platformasidir.
 
-Loyiha ustozga, ekspertlar komissiyasiga va xaridorlarga taqdim qilish, amaliyotda himoya qilish uchun barcha talablarga 100% javob beradigan darajada ishlab chiqilgan.
+Loyiha ustozga, ekspertlar komissiyasiga va xaridorlarga taqdim qilish, amaliyotda himoya qilish uchun barcha 17 ta texnik topshiriq talablariga 100% javob beradigan darajada ishlab chiqilgan.
 
 ---
 
@@ -11,6 +11,89 @@ Loyiha ustozga, ekspertlar komissiyasiga va xaridorlarga taqdim qilish, amaliyot
 - **Unikalligi**: 100% mualliflik loyihasi bo'lib, internetda hech qayerda takrorlanmaydigan original brend.
 - **Shiori**: *Aqlli xaridlar va kelajak texnologiyalari makoni*.
 - **Buyurtma treking formati**: `#BZX-2026-XXXXXX` (har bir buyurtma uchun unikal raqam va 4 bosqichli jonli kuzatuv).
+
+---
+
+## 🚀 v2.2 Yangiliklari va Asosiy Imkoniyatlar (Texnik Topshiriq Asosida)
+
+### 1. 🛡️ Buyurtma Berish — "TEZ KUNDA" Xavfsiz Rasmiylashtirish Tizimi
+- **Buyurtmani rasmiylashtirish oynasida (`#checkoutModal`)** va **Tezkor xarid oynasida (`#fastBuyModal`)** mijoz barcha bosqichlarni tugatganda eng so'nggi tasdiqlash tugmasi o'rnida **"TEZ KUNDA"** yozuvi ko'rsatiladi.
+- Mijozning barcha kiritgan ma'lumotlari (ism, telefon, viloyat, manzil, yetkazish usuli) tekshiriladi.
+- Tugma bosilganda foydalanuvchidan hech qanday pul yechilmaydi, soxta buyurtma yaratilmaydi va savatdagi tovarlar o'chib ketmaydi.
+- Ekranda zamonaviy, chiroyli va tushunarli **"Buyurtma berish xizmati tez kunda ishga tushadi"** modal xabarnomasi (`#orderComingSoonModal`) chiqadi.
+- Bu orqali xaridor do'konning barcha bosqichlarini sinab ko'radi va tez kunda rasmiy sotuvlar boshlanishi haqida xabardor bo'ladi.
+
+### 2. 💳 To'lov Bo'limi va Kengaytiriluvchi Arxitektura
+To'lov usullari professional dizayn va aniq holat nishonlari bilan jihozlangan:
+- **Payme** — `TEZ KUNDA`
+- **Click Up** — `TEZ KUNDA`
+- **Uzum Bank** — `TEZ KUNDA`
+- **Bank kartasi (Uzcard / Humo / Visa)** — `TEZ KUNDA`
+- **Naqd pul orqali to'lov (Kuryerga)** — `TEZ KUNDA`
+- Yangi to'lov usullarini (masalan, bo'lib to'lash yoki xalqaro shlyuzlar) osonlik bilan qo'shish imkonini beruvchi modulli arxitektura yaratilgan.
+
+### 3. 📱 Kengaytirilgan Mahsulotlar Katalogi (30 xil mahsulot, 9 toifa)
+- Mahsulotlar toifalari kengaytirildi: Smartfonlar, Noutbuklar, Quloqchinlar, Aqlli soatlar, Planshetlar, Televizorlar, Maishiy texnika, Aksessuarlar, O'yin qurilmalari.
+- Har bir mahsulotda: nomi, narxi, eski narxi, yuqori sifatli rasmi, to'liq tavsifi, texnik xususiyatlari (protsessor, xotira, displey, batareya, kamera), ranglar va xotira variantlari mavjud.
+- **Mahsulot videosini ko'rish**: YouTube rasmiy sharh va unboxing videolarini ko'rish tugmasi.
+- **Omborda tugagan tovarlar**:
+  - Omborda tugagan tovarlar (masalan, ID 26 *Xiaomi TV A Pro 55"*) kartasida **"Tugagan" (Out of Stock)** nishoni ko'rsatiladi.
+  - Savatga qo'shish tugmasi nofaol qilinadi.
+  - O'rniga **"🔔 Menga xabar bering"** tugmasi paydo bo'lib, tovar kelganda xabar olish uchun telefon yoki email qoldirish oynasini (`#notifyStockModal`) ochadi.
+
+### 4. ⚖️ Mahsulotlarni Taqqoslash (Side-by-Side Comparison)
+- Sayt boshida (Header) **"Taqqoslash"** tugmasi va dinamik sanagich (`#compareBadge`).
+- Har bir mahsulot kartasida va tez ko'rish oynasida taqqoslashga qo'shish/o'chirish tugmasi (`⚖️`).
+- 4 tagacha mahsulotni yonma-yon solishtirish oynasi (`#compareModal`):
+  - Narxi, toifasi, mavjudligi, protsessor, xotira, ekran, batareya, kamera.
+  - **"Faqat farqlarni ko'rsatish"** filtri orqali bir xil bo'lmagan parametrlarni rang bilan ajratib ko'rsatish.
+  - Mobil qurilmalarga to'liq mos gorizontal skroll va tozalash tugmasi.
+
+### 5. 💬 Jonli Onlayn Yordamchi Vidjeti (Floating Live Chat)
+- Saytning o'ng quyi burchagida suzuvchi qulay chat tugmasi (`#floatingChatBtn`) va interaktiv oyna (`#liveChatBox`).
+- Foydalanuvchi tanlagan tilga (UZ / RU / EN) mos ravishda avtomatlashtirilgan tezkor javoblar (FAQ chiplari):
+  - 🚚 Yetkazib berish narxi va muddatlari
+  - 💳 To'lov usullari va xavfsizlik
+  - 🛡️ 12 oylik kafolat va qaytarish qoidalari
+  - 🔍 Buyurtmani kuzatish (#BZX kod orqali)
+  - 👨‍💻 Operator bilan bog'lanish (Telegram / Telefon)
+- Xaridor o'z savolini yozganda sun'iy intellekt yordamchisi kabi kontekstli javob qaytaradi.
+
+### 6. 👤 Kengaytirilgan Foydalanuvchi Kabineti
+Foydalanuvchi kabineti 5 ta to'liq ishlovchi bo'limdan iborat:
+1. **Mening buyurtmalarim**: Buyurtmalar tarixi, har bir buyurtma uchun:
+   - **🔄 Qayta buyurtma berish (Reorder)** — Buyurtmadagi barcha tovarlarni bir bosishda qayta savatga qo'shadi.
+   - **❌ Bekor qilish** — Yangi buyurtmalarni mijozning o'zi bekor qila oladi.
+   - **Chekni chop etish** va **Jonli kuzatuv**.
+2. **Profil sozlamalari**: Ism, telefon, elektron pochta va asosiy yetkazib berish manzilini yangilash.
+3. **Saqlangan manzillar**: Uy, Ishxona va Ota-onam kabi bir nechta manzillarni saqlash va boshqarish.
+4. **Bildirishnomalar**: Chegirmalar, xaridlar va SMS bildirishnoma sozlamalari.
+5. **Bozorix Keshbek & Bonuslar**: 1% keshbek hisobi, to'plangan ballar va vaucherlar balansi.
+
+### 7. 🔍 Fonetika va Xatolarga Chidamli Qidiruv (Typo-Tolerant Search)
+Xaridor tovar nomini xato yoki talaffuziga ko'ra yozsa ham tizim to'g'ri topadi:
+- *"ayfon"*, *"ayfon 15"* ➔ iPhone 15 Pro Max
+- *"samsun"*, *"sam sung"* ➔ Samsung Galaxy S24 Ultra
+- *"shaomi"*, *"ksiaomi"* ➔ Xiaomi mahsulotlari
+- *"makbuk"*, *"mac buk"* ➔ MacBook Pro M3
+- *"plesteshn"*, *"pleysteyshn"* ➔ Sony PlayStation 5 Slim
+
+### 8. 🛡️ Ishonch, Yuridik Shaffoflik va Xavfsizlik
+- Sayt footerida rasmiy modallar:
+  - **Kompaniya rekvizitlari**: "BOZORIX TECH TRADE" MChJ, STIR/INN: 309887766, OGRN, H/R, Bank kodi, Yuridik manzil.
+  - **Maxfiylik siyosati**: Foydalanuvchi ma'lumotlarini 100% himoya qilish qoidalari.
+  - **Foydalanish shartlari**: Ommaviy oferta va shartnoma talablari.
+  - **Kafolat va qaytarish**: 12 oylik rasmiy kafolat, 14 kunlik qaytarish tartibi.
+- Barcha sahifalardagi yetkazib berish ma'lumotlari birlashtirildi:
+  - Toshkent: 3-24 soat (500,000 so'mdan yuqori xaridga bepul, aks holda 25,000 so'm).
+  - Viloyatlar: 24-48 soat (1,000,000 so'mdan yuqori xaridga bepul, aks holda 45,000 so'm).
+  - Call-markaz ish vaqti: Har kuni 09:00 dan 21:00 gacha.
+
+### 9. 📈 SEO & Analitika
+- `<head>` qismida Open Graph va Twitter Card meta teglari.
+- Schema.org JSON-LD (SearchAction, WebSite va Store schema).
+- Ildiz papkada qidiruv robotlari uchun `robots.txt` va `sitemap.xml`.
+- Mijozning harakatlarini kuzatuvchi mustaqil `BozorixAnalytics` treking tizimi (sahifa ochilishi, qidiruvlar, taqqoslash, rasmiylashtirish urinishlari).
 
 ---
 
