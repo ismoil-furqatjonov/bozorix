@@ -2444,3 +2444,857 @@ body.dark-mode .demo-banner-strip {
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   Bozorix 2.0: Auth, Shaxsiy Kabinet, Admin Panel, Kuzatish va Sharhlar
+   ========================================================================== */
+
+/* Auth (Kirish / Ro'yxatdan o'tish) */
+.auth-tabs {
+  display: flex;
+  background: var(--bg-surface);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-light);
+}
+.auth-tab-btn {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.auth-tab-btn.active {
+  background: var(--bg-card);
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.demo-accounts-box {
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.825rem;
+}
+.demo-chips {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+  flex-wrap: wrap;
+}
+.demo-chip {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid rgba(37,99,235,0.2);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.demo-chip:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Shaxsiy Kabinet */
+.cabinet-modal-wrap {
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}
+.cabinet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-surface);
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+.cabinet-user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cabinet-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #1e40af);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.cabinet-nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-card);
+  overflow-x: auto;
+}
+.cabinet-nav-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+.cabinet-nav-btn.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.cabinet-body {
+  padding: 1.5rem 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Buyurtmalar Tarixi Kartochkalari */
+.order-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: all var(--transition-fast);
+}
+.order-card:hover {
+  border-color: var(--primary-light);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+}
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.order-status-badge {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.status-yangi {
+  background: #fef3c7;
+  color: #b45309;
+}
+.status-yigilmoqda {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.status-yetkazilmoqda {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+.status-yetkazildi {
+  background: #d1fae5;
+  color: #047857;
+}
+.status-bekor {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Buyurtmani Kuzatish (Tracking Stepper) */
+.track-stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.75rem 0;
+  position: relative;
+  padding-left: 2.5rem;
+}
+.track-stepper::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 17px;
+  width: 3px;
+  background: var(--border-light);
+}
+.track-step {
+  position: relative;
+}
+.track-step-dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 3px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  z-index: 2;
+  transition: all var(--transition-fast);
+}
+.track-step.done .track-step-dot {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+.track-step.current .track-step-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 0 0 5px rgba(37,99,235,0.25);
+  animation: pulse 1.5s infinite;
+}
+.track-step-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+.track-step-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.track-step-time {
+  font-size: 0.725rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* Admin Panel */
+.admin-modal-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 88vh;
+  max-height: 880px;
+}
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-surface);
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+.admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-card);
+  overflow-x: auto;
+}
+.admin-tab-btn {
+  padding: 0.55rem 1.1rem;
+  border: 1px solid transparent;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all var(--transition-fast);
+}
+.admin-tab-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+.admin-content {
+  padding: 1.5rem 1.75rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Admin Statistika Kartochkalari */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 900px) {
+  .admin-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.admin-stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+}
+.admin-stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+.admin-stat-val {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+.admin-stat-lbl {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Admin Tables */
+.admin-table-wrap {
+  overflow-x: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+.admin-table th {
+  background: rgba(0,0,0,0.02);
+  padding: 0.85rem 1rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+.admin-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-main);
+  vertical-align: middle;
+}
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+.admin-table tr:hover td {
+  background: rgba(37,99,235,0.02);
+}
+
+/* Sharhlar (Reviews) */
+.reviews-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1.5px dashed var(--border-light);
+}
+.review-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+.star-picker {
+  display: flex;
+  gap: 0.35rem;
+  font-size: 1.35rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+.star-picker i:hover,
+.star-picker i.active {
+  color: #f59e0b;
+}
+
+/* Payme & Click To'lov Kartochkalari */
+.payment-preview-box {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  margin: 1rem 0;
+}
+.payment-provider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+.payment-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-lg);
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border: none;
+}
+.payme-btn {
+  background: #00cccc;
+  color: #ffffff;
+}
+.payme-btn:hover {
+  background: #00b3b3;
+}
+.click-btn {
+  background: #0073ff;
+  color: #ffffff;
+}
+.click-btn:hover {
+  background: #0060d6;
+}
+
+
+/* ==========================================================================
+   Ko'p Tillilik (Multi-Language) & Accessibility (Maxsus Imkoniyatlar) Stillari
+   ========================================================================== */
+
+/* Skip to Content (Ko'rlar va Klaviaturadan foydalanuvchilar uchun) */
+.skip-to-content {
+  position: absolute;
+  top: -120px;
+  left: 1rem;
+  background: var(--primary);
+  color: #ffffff !important;
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  z-index: 9999999;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: top 0.2s ease-in-out;
+  border: 2px solid #ffffff;
+}
+.skip-to-content:focus {
+  top: 1rem;
+  outline: 4px solid #f59e0b;
+}
+
+/* Screen reader announcer */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Til Tanlash Select (Language Selector) */
+.lang-selector-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.65rem;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.lang-selector-wrap:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.lang-select {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  padding-right: 0.2rem;
+}
+.lang-select option {
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Top bar Action tugmalari (Ovozli o'qish, A11y) */
+.top-bar-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  padding: 0.28rem 0.75rem;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  font-family: inherit;
+}
+.top-bar-action-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+.top-bar-action-btn.active,
+.top-bar-action-btn.voice-active {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+  animation: pulse-voice 2s infinite;
+}
+@keyframes pulse-voice {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Suzuvchi Maxsus Imkoniyatlar Tugmasi (Floating A11y Button) */
+.floating-a11y-btn {
+  position: fixed;
+  bottom: 5.5rem;
+  left: 1.25rem;
+  z-index: 99999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+.floating-a11y-btn:hover {
+  transform: scale(1.12);
+  background: var(--primary-hover);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.6);
+}
+.floating-a11y-btn.voice-active {
+  background: #10b981;
+  border-color: #ffffff;
+  animation: pulse-voice 2s infinite;
+}
+
+/* Ovozli o'qilayotgan elementni yorqin ko'rsatish (Speaking highlight) */
+.a11y-speaking {
+  outline: 4px solid #f59e0b !important;
+  outline-offset: 4px !important;
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  transition: outline 0.15s ease-in-out;
+  border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   A11Y Rejimlari (Zaif ko'ruvchilar va ko'zi ojizlar uchun)
+   ========================================================================== */
+
+/* 1. Shrift Hajmi (Font Zoom) */
+html.font-size-md { font-size: 100%; }
+html.font-size-lg { font-size: 115% !important; }
+html.font-size-xl { font-size: 130% !important; }
+html.font-size-2xl { font-size: 145% !important; }
+
+/* 2. Yuqori Kontrast Rejimi (High Contrast - WCAG AAA Sariq/Qora) */
+body.a11y-high-contrast {
+  --bg-body: #000000 !important;
+  --bg-card: #0c0c0c !important;
+  --bg-surface: #141414 !important;
+  --bg-alt: #202020 !important;
+  --text-main: #ffff00 !important;
+  --text-secondary: #ffffff !important;
+  --text-muted: #e2e8f0 !important;
+  --border-light: #ffff00 !important;
+  --border-focus: #ffff00 !important;
+  --primary: #ffff00 !important;
+  --primary-hover: #facc15 !important;
+  --primary-light: #282800 !important;
+  --shadow-card: 0 0 0 2px #ffff00 !important;
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+}
+body.a11y-high-contrast a,
+body.a11y-high-contrast button,
+body.a11y-high-contrast h1,
+body.a11y-high-contrast h2,
+body.a11y-high-contrast h3,
+body.a11y-high-contrast h4,
+body.a11y-high-contrast span,
+body.a11y-high-contrast strong {
+  color: #ffff00 !important;
+}
+body.a11y-high-contrast p,
+body.a11y-high-contrast div {
+  color: #ffffff !important;
+}
+body.a11y-high-contrast .product-card,
+body.a11y-high-contrast .hero-slider-box,
+body.a11y-high-contrast .hero-side-card,
+body.a11y-high-contrast .center-modal,
+body.a11y-high-contrast .drawer {
+  background: #050505 !important;
+  border: 2.5px solid #ffff00 !important;
+}
+body.a11y-high-contrast input,
+body.a11y-high-contrast select,
+body.a11y-high-contrast textarea {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+}
+body.a11y-high-contrast .btn-add-cart,
+body.a11y-high-contrast .hero-btn,
+body.a11y-high-contrast .checkout-btn {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  font-weight: 900 !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* 3. Monoxrom Rejimi (Oq-qora Daltoniklar uchun) */
+body.a11y-grayscale {
+  filter: grayscale(100%) contrast(120%) !important;
+}
+
+/* 4. Invert Rejimi (Teskari Ranglar) */
+body.a11y-invert {
+  filter: invert(100%) hue-rotate(180deg) !important;
+  background-color: #000000 !important;
+}
+
+/* 5. O'qishga Qulay Shrift (Readable Font) */
+body.a11y-readable-font,
+body.a11y-readable-font * {
+  font-family: Arial, Helvetica, sans-serif !important;
+  letter-spacing: 0.04em !important;
+  word-spacing: 0.1em !important;
+  line-height: 1.8 !important;
+}
+
+/* 6. Katta Kursor */
+body.a11y-big-cursor,
+body.a11y-big-cursor * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="%23ffff00" stroke="%23000000" stroke-width="2" d="M3 3l7 18 3-7 7-3L3 3z"/></svg>'), auto !important;
+}
+
+/* 7. Havolalarni Ajratish va Tagiga Chizish */
+body.a11y-highlight-links a,
+body.a11y-highlight-links button,
+body.a11y-highlight-links .cat-pill,
+body.a11y-highlight-links .product-card-title {
+  text-decoration: underline 3px !important;
+  text-underline-offset: 4px !important;
+  font-weight: 800 !important;
+}
+
+/* 8. Harakatlanuvchi Animatsiyalarni To'xtatish (Reduce Motion) */
+body.a11y-reduce-motion *,
+body.a11y-reduce-motion *::before,
+body.a11y-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+/* Klaviaturadan Fokus Belgisi (Focus Visible A11y) */
+*:focus-visible {
+  outline: 3px solid #2563eb !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
+}
+body.a11y-high-contrast *:focus-visible {
+  outline: 4px solid #ffff00 !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 6px #ffffff !important;
+}
+
+/* Maxsus Imkoniyatlar Paneli (Modal Elementlari) */
+.a11y-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+.a11y-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.a11y-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+.a11y-card-header i {
+  color: var(--primary);
+  font-size: 1.15rem;
+}
+.a11y-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.a11y-options-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.a11y-opt-btn {
+  flex: 1;
+  min-width: 60px;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+.a11y-opt-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.a11y-opt-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+.a11y-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.a11y-toggle-btn.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.a11y-toggle-btn .toggle-indicator {
+  width: 44px;
+  height: 24px;
+  background: #cbd5e1;
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+.a11y-toggle-btn .toggle-indicator::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+.a11y-toggle-btn.active .toggle-indicator {
+  background: #10b981;
+}
+.a11y-toggle-btn.active .toggle-indicator::after {
+  transform: translateX(20px);
+}
+
+.shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+.shortcuts-table td {
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.kbd-key {
+  display: inline-block;
+  background: var(--bg-alt);
+  color: var(--text-main);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  font-family: monospace;
+  font-weight: 800;
+  font-size: 0.8rem;
+}
+
+/* Quick audio button on card */
+.btn-speak-product {
+  color: var(--text-main);
+}
+.btn-speak-product:hover {
+  color: var(--accent);
+}

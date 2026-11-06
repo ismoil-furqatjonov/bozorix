@@ -1,0 +1,21 @@
+{
+  "name": "bozorix-ecommerce",
+  "version": "2.0.0",
+  "description": "Bozorix — Zamonaviy, Professional va To'liq Ishlaydigan Elektron Savdo Platformasi",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "init-db": "node server/init_db.js",
+    "test": "node test/test_mock.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "bozorix",
+    "online-store",
+    "uzbekistan",
+    "payme",
+    "click"
+  ],
+  "author": "Bozorix Team",
+  "license": "MIT"
+}

@@ -22,19 +22,54 @@
 </head>
 <body>
 
+  <!-- Screen Reader va Klaviaturadan foydalanuvchilar uchun Skip Link -->
+  <a href="#catalogSection" class="skip-to-content" id="skipToContent" data-i18n="skip_to_content">Asosiy kontentga o'tish (Enter bosing)</a>
+
+  <!-- Ekran o'quvchilari uchun ko'rinmas jonli e'lonlar qutisi (ARIA live) -->
+  <div id="a11yAnnouncer" class="sr-only" role="status" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Suzuvchi Maxsus Imkoniyatlar Tugmasi (A11y & Ovoz) -->
+  <button id="floatingA11yBtn" class="floating-a11y-btn" title="Maxsus imkoniyatlar va Ovozli o'qish (Alt+A)" aria-label="Maxsus imkoniyatlar paneli (Alt+A)">
+    <i class="fa-solid fa-universal-access"></i>
+  </button>
+
   <!-- ==========================================
        1. Yuqori Ma'lumot Paneli (Top Bar)
        ========================================== -->
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="top-bar-left">
-        <span class="top-bar-link"><i class="fa-solid fa-location-dot"></i> Toshkent sh., Shayxontohur t., Navoiy ko'chasi 14</span>
-        <span class="top-bar-link"><i class="fa-solid fa-clock"></i> Har kuni: 09:00 - 21:00</span>
-        <span class="top-bar-promo"><i class="fa-solid fa-gift"></i> Maxsus promokod: <strong>USTOZ20</strong> (-20% chegirma)</span>
+        <span class="top-bar-link" id="topAddressText"><i class="fa-solid fa-location-dot"></i> <span data-i18n="top_address">Toshkent sh., Shayxontohur t., Navoiy ko'chasi 14</span></span>
+        <span class="top-bar-link" id="topHoursText"><i class="fa-solid fa-clock"></i> <span data-i18n="top_hours">Har kuni: 09:00 - 21:00</span></span>
+        <span class="top-bar-promo"><i class="fa-solid fa-gift"></i> <span data-i18n="top_promo">Maxsus promokod: <strong>USTOZ20</strong> (-20% chegirma)</span></span>
       </div>
       <div class="top-bar-right">
+        <!-- Ovozli o'qish tezkor tugmasi (Screen Reader) -->
+        <button id="quickVoiceBtn" class="top-bar-action-btn" title="Ovozli o'qish (Screen Reader - Alt+V)" aria-label="Ovozli o'qish rejimini yoqish yoki o'chirish">
+          <i class="fa-solid fa-volume-high"></i>
+          <span id="quickVoiceText" data-i18n="voice_reader">Ovozli o'qish</span>
+        </button>
+
+        <!-- Maxsus imkoniyatlar (A11y) -->
+        <button id="openA11yBtn" class="top-bar-action-btn" title="Maxsus imkoniyatlar (Alt+A)" aria-label="Maxsus imkoniyatlar paneli">
+          <i class="fa-solid fa-universal-access"></i>
+          <span data-i18n="a11y_btn">Maxsus imkoniyatlar</span>
+        </button>
+
+        <!-- 3 Til Tanlash (UZ / RU / EN) -->
+        <div class="lang-selector-wrap" title="Tilni almashtirish / Сменить язык / Change language">
+          <i class="fa-solid fa-globe"></i>
+          <select id="langSelect" class="lang-select" aria-label="Tilni tanlash / Выбор языка / Select language">
+            <option value="uz">🇺🇿 O'zbek</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="en">🇬🇧 English</option>
+          </select>
+        </div>
+
+        <a href="#" id="openTrackOrderBtn" class="top-bar-link"><i class="fa-solid fa-truck-fast"></i> <span data-i18n="track_order">Buyurtmani kuzatish</span></a>
+        <a href="#" id="openDeliveryInfoBtn" class="top-bar-link"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="warranty_delivery">Kafolat & Yetkazish</span></a>
         <a href="tel:+998712008800" class="top-bar-link"><i class="fa-solid fa-phone"></i> +998 (71) 200-88-00</a>
-        <a href="#faqSection" class="top-bar-link"><i class="fa-solid fa-circle-question"></i> Savol-javoblar</a>
+        <a href="#faqSection" class="top-bar-link"><i class="fa-solid fa-circle-question"></i> <span data-i18n="faq_link">Savol-javoblar</span></a>
       </div>
     </div>
   </div>
@@ -56,11 +91,11 @@
       <div class="header-search">
         <div class="search-wrapper">
           <i class="fa-solid fa-magnifying-glass" style="color: var(--text-muted); margin-right: 0.5rem;"></i>
-          <input type="text" id="searchInput" class="search-input" placeholder="Mahsulot nomi, modeli yoki xususiyati bo'yicha qidirish..." autocomplete="off">
-          <button class="search-clear-btn" id="searchClearBtn" title="Tozalash">
+          <input type="text" id="searchInput" class="search-input" placeholder="Mahsulot nomi, modeli yoki xususiyati bo'yicha qidirish..." data-i18n-placeholder="search_placeholder" autocomplete="off" aria-label="Mahsulot qidirish">
+          <button class="search-clear-btn" id="searchClearBtn" title="Tozalash" data-i18n-title="search_clear" aria-label="Qidiruvni tozalash">
             <i class="fa-solid fa-xmark"></i>
           </button>
-          <button class="search-btn" title="Qidirish">
+          <button class="search-btn" title="Qidirish" data-i18n-title="search_btn" aria-label="Qidirish tugmasi">
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
@@ -69,23 +104,35 @@
       <!-- Header O'ng Amallar Tugmalari -->
       <div class="header-actions">
         <!-- Tungi/Kunduzgi rejim -->
-        <button class="header-btn" id="themeToggleBtn" title="Tungi/Kunduzgi rejim">
+        <button class="header-btn" id="themeToggleBtn" title="Tungi/Kunduzgi rejim" data-i18n-title="theme_toggle" aria-label="Tungi yoki kunduzgi rejim">
           <i class="fa-regular fa-moon"></i>
         </button>
 
         <!-- Sevimlilar (Wishlist) -->
-        <button class="header-btn" id="openWishBtn" title="Sevimlilar ro'yxati">
+        <button class="header-btn" id="openWishBtn" title="Sevimlilar ro'yxati" data-i18n-title="wishlist" aria-label="Sevimlilar ro'yxati">
           <i class="fa-regular fa-heart"></i>
-          <span class="btn-text">Sevimlilar</span>
+          <span class="btn-text" data-i18n="wishlist">Sevimlilar</span>
           <span class="badge-count" id="wishBadge">0</span>
         </button>
 
         <!-- Savatcha (Cart) -->
-        <button class="header-btn" id="openCartBtn" title="Savatcha">
+        <button class="header-btn" id="openCartBtn" title="Savatcha" data-i18n-title="cart" aria-label="Savatcha">
           <i class="fa-solid fa-cart-shopping"></i>
-          <span class="btn-text">Savatcha</span>
+          <span class="btn-text" data-i18n="cart">Savatcha</span>
           <span class="badge-count" id="cartBadge">0</span>
           <span class="cart-amount hidden md:inline" id="cartHeaderTotal">0 so'm</span>
+        </button>
+
+        <!-- Foydalanuvchi Profili / Kirish -->
+        <button class="header-btn" id="openAuthBtn" title="Shaxsiy kabinet" aria-label="Shaxsiy kabinet yoki Kirish">
+          <i class="fa-regular fa-user" id="authBtnIcon"></i>
+          <span class="btn-text" id="authBtnText" data-i18n="login">Kirish</span>
+        </button>
+
+        <!-- Admin Panel Tugmasi (Faqat admin tizimga kirganda ko'rinadi) -->
+        <button class="header-btn admin-badge-btn" id="adminPanelBtn" style="display: none; background: #fef3c7; color: #b45309; border-color: #f59e0b;" title="Admin Boshqaruv Paneli" aria-label="Admin panel">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span class="btn-text" data-i18n="admin">Admin</span>
         </button>
       </div>
     </div>
@@ -253,8 +300,8 @@
             <i class="fa-solid fa-truck-fast"></i>
           </div>
           <div>
-            <h4 class="feature-title">Tezkor yetkazib berish</h4>
-            <p class="feature-desc">Toshkent bo'ylab 3 soatda, viloyatlarga 24 soat ichida</p>
+            <h4 class="feature-title" data-i18n="feat_1_title">3 Soatda Yetkazish</h4>
+            <p class="feature-desc" data-i18n="feat_1_desc">Toshkent shahrida tezkor va ehtiyotkor kuryer</p>
           </div>
         </div>
 
@@ -263,8 +310,8 @@
             <i class="fa-solid fa-shield-halved"></i>
           </div>
           <div>
-            <h4 class="feature-title">100% Rasmiy Kafolat</h4>
-            <p class="feature-desc">Barcha mahsulotlarga rasmiy servis markazi kafolati</p>
+            <h4 class="feature-title" data-i18n="feat_2_title">100% Rasmiy Kafolat</h4>
+            <p class="feature-desc" data-i18n="feat_2_desc">Faqat original tovarlar va servis markazi</p>
           </div>
         </div>
 
@@ -273,8 +320,8 @@
             <i class="fa-solid fa-credit-card"></i>
           </div>
           <div>
-            <h4 class="feature-title">Qulay to'lov usullari</h4>
-            <p class="feature-desc">Qabul qilganda naqd, Payme va Click orqali to'lov</p>
+            <h4 class="feature-title" data-i18n="feat_3_title">Qulay To'lov Turlari</h4>
+            <p class="feature-desc" data-i18n="feat_3_desc">Payme, Click yoki qabul qilganda naqd</p>
           </div>
         </div>
 
@@ -283,8 +330,8 @@
             <i class="fa-solid fa-headset"></i>
           </div>
           <div>
-            <h4 class="feature-title">24/7 Qo'llab-quvvatlash</h4>
-            <p class="feature-desc">Mutaxassislarimiz har doim aloqada va yordamga tayyor</p>
+            <h4 class="feature-title" data-i18n="feat_4_title">24/7 Mijozlarni Qo'llash</h4>
+            <p class="feature-desc" data-i18n="feat_4_desc">Har qanday savol va muammolar yechimi</p>
           </div>
         </div>
       </div>
@@ -332,35 +379,36 @@
           <div>
             <h2 class="section-title">
               <i class="fa-solid fa-layer-group" style="color: var(--primary);"></i>
-              Mahsulotlar Katalogi
+              <span data-i18n="catalog_title">Mahsulotlar Katalogi</span>
             </h2>
-            <p class="section-subtitle" id="productsCount">Barcha saralangan tovarlar ro'yxati</p>
+            <p class="section-subtitle" id="productsCount" data-i18n="catalog_desc">Eng so'nggi gadjetlar va maishiy texnikalar rasmiy kafolat bilan</p>
           </div>
 
           <div class="catalog-toolbar">
             <!-- Mobil Filtr Tugmasi -->
-            <button class="header-btn" id="mobileFilterBtn" style="display: none;">
+            <button class="header-btn" id="mobileFilterBtn" style="display: none;" aria-label="Filtrlar">
               <i class="fa-solid fa-sliders"></i>
-              <span>Filtr</span>
+              <span data-i18n="filter_title">Filtr</span>
             </button>
 
             <!-- Saralash -->
             <div class="sort-select-wrapper">
-              <select id="sortSelect" class="sort-select">
-                <option value="popular">Eng ommabop</option>
-                <option value="price-low">Narxi: Arzondan qimmatga</option>
-                <option value="price-high">Narxi: Qimmatdan arzonga</option>
-                <option value="rating">Reytingi bo'yicha</option>
-                <option value="newest">Yangi qo'shilganlar</option>
+              <select id="sortSelect" class="sort-select" aria-label="Mahsulotlarni saralash">
+                <option value="popular" data-i18n="sort_popular">Ommabopligi bo'yicha</option>
+                <option value="price-asc" data-i18n="sort_price_asc">Narxi: Arzondan qimmatga</option>
+                <option value="price-desc" data-i18n="sort_price_desc">Narxi: Qimmatdan arzonga</option>
+                <option value="rating" data-i18n="sort_rating">Reyting bo'yicha</option>
+                <option value="discount" data-i18n="sort_discount">Katta chegirmalar</option>
+                <option value="newest" data-i18n="sort_newest">Yangi tovarlar</option>
               </select>
             </div>
 
             <!-- Ko'rinish rejimi -->
             <div class="view-toggles">
-              <button class="view-btn active" id="viewGridBtn" title="Setka ko'rinishi">
+              <button class="view-btn active" id="viewGridBtn" title="Setka ko'rinishi" aria-label="Setka ko'rinishi">
                 <i class="fa-solid fa-grip"></i>
               </button>
-              <button class="view-btn" id="viewListBtn" title="Ro'yxat ko'rinishi">
+              <button class="view-btn" id="viewListBtn" title="Ro'yxat ko'rinishi" aria-label="Ro'yxat ko'rinishi">
                 <i class="fa-solid fa-list"></i>
               </button>
             </div>
@@ -372,13 +420,13 @@
           <!-- Chap Yon Filtr (Sidebar) -->
           <aside class="filter-sidebar">
             <div class="filter-header">
-              <h3 class="filter-title"><i class="fa-solid fa-sliders"></i> Filtrlar</h3>
-              <button class="filter-reset-btn" id="resetFiltersBtn">Tozalash</button>
+              <h3 class="filter-title"><i class="fa-solid fa-sliders"></i> <span data-i18n="filter_title">Filtrlar</span></h3>
+              <button class="filter-reset-btn" id="resetFiltersBtn" data-i18n="filter_reset">Tozalash</button>
             </div>
 
             <!-- Kategoriyalar ro'yxati -->
             <div class="filter-group">
-              <h4 class="filter-group-title">Kategoriyalar</h4>
+              <h4 class="filter-group-title" data-i18n="filter_categories">Toifalar</h4>
               <div class="category-filter-list" id="categoryFilterList">
                 <!-- JS orqali to'ldiriladi -->
               </div>
@@ -386,7 +434,7 @@
 
             <!-- Narx Filtri -->
             <div class="filter-group">
-              <h4 class="filter-group-title">Narx oralig'i (so'm)</h4>
+              <h4 class="filter-group-title" data-i18n="filter_price">Narx oralig'i (so'm)</h4>
               <div class="price-inputs">
                 <div class="price-input-box">
                   <label>Dan</label>
@@ -402,23 +450,23 @@
 
             <!-- Status Nishonlari Filtri -->
             <div class="filter-group">
-              <h4 class="filter-group-title">Mahsulot holati</h4>
+              <h4 class="filter-group-title" data-i18n="filter_badge_title">Xususiy nishonlar</h4>
               <div class="checkbox-filter-list">
                 <label class="checkbox-label">
                   <input type="checkbox" class="badge-checkbox" value="HIT">
-                  <span>🔥 Hit sotuv</span>
+                  <span>🔥 <span data-i18n="badge_hit">Hit sotuv</span></span>
                 </label>
                 <label class="checkbox-label">
                   <input type="checkbox" class="badge-checkbox" value="CHEGIRMA">
-                  <span>🏷️ Chegirma</span>
+                  <span>🏷️ <span data-i18n="badge_discount">Chegirmali</span></span>
                 </label>
                 <label class="checkbox-label">
                   <input type="checkbox" class="badge-checkbox" value="YANGI">
-                  <span>✨ Yangi mahsulot</span>
+                  <span>✨ <span data-i18n="badge_new">Yangi tovarlar</span></span>
                 </label>
                 <label class="checkbox-label">
                   <input type="checkbox" class="badge-checkbox" value="TAVSIYA">
-                  <span>👍 Mutaxassis tavsiyasi</span>
+                  <span>👍 <span data-i18n="badge_featured">Tavsiya etilgan</span></span>
                 </label>
               </div>
             </div>
@@ -651,6 +699,10 @@
         <span class="badge-count" id="cartBadgeMobile">0</span>
         <span>Savatcha</span>
       </button>
+      <button class="mobile-nav-item" id="openAuthMobile">
+        <i class="fa-regular fa-user" id="authMobileIcon"></i>
+        <span id="authMobileText">Profil</span>
+      </button>
     </div>
   </div>
 
@@ -662,13 +714,13 @@
   <div class="modal-backdrop" id="modalBackdrop"></div>
 
   <!-- Savatcha Yon Paneli (Cart Drawer) -->
-  <aside class="drawer" id="cartDrawer">
+  <aside class="drawer" id="cartDrawer" role="dialog" aria-label="Savatcha oynasi">
     <div class="drawer-header">
       <h3 class="drawer-title">
         <i class="fa-solid fa-cart-shopping" style="color: var(--primary);"></i>
-        Savatcha <span id="cartItemsCount" style="color: var(--text-muted); font-size: 0.95rem;">(0)</span>
+        <span data-i18n="cart_title">Savatcha</span> <span id="cartItemsCount" style="color: var(--text-muted); font-size: 0.95rem;">(0)</span>
       </h3>
-      <button class="drawer-close-btn close-modal-btn" title="Yopish">
+      <button class="drawer-close-btn close-modal-btn" title="Yopish" aria-label="Savatchani yopish">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -676,7 +728,7 @@
     <!-- Bepul Yetkazib berish Progress Bari -->
     <div style="padding: 1rem 1.75rem 0;">
       <div class="free-shipping-progress-box">
-        <div class="free-shipping-text" id="freeShippingText">
+        <div class="free-shipping-text" id="freeShippingText" data-i18n="free_shipping_hint">
           <i class="fa-solid fa-truck-fast"></i> 1 000 000 so'mdan oshsa yetkazish BEPUL!
         </div>
         <div class="progress-bar-track">
@@ -695,46 +747,42 @@
       <!-- Kupon / Promokod bloki -->
       <div id="couponSection">
         <div class="coupon-box">
-          <input type="text" id="couponInput" class="coupon-input" placeholder="Promokod: USTOZ20 yoki BOZORIX20" maxlength="15">
-          <button class="coupon-btn" id="applyCouponBtn">Qo'llash</button>
+          <input type="text" id="couponInput" class="coupon-input" placeholder="Promokod: USTOZ20 yoki BOZORIX20" data-i18n-placeholder="promo_code_placeholder" maxlength="15" aria-label="Promokod kiritish">
+          <button class="coupon-btn" id="applyCouponBtn" data-i18n="promo_apply">Qo'llash</button>
         </div>
         <div id="couponAppliedBox"></div>
       </div>
 
       <div class="cart-summary-row">
-        <span>Mahsulotlar narxi:</span>
+        <span data-i18n="subtotal">Mahsulotlar narxi:</span>
         <span id="cartSubtotal" style="font-weight: 700;">0 so'm</span>
       </div>
       <div class="cart-summary-row" id="cartDiscountRow" style="display: none; color: #10b981;">
-        <span>Promokod chegirmasi:</span>
+        <span data-i18n="discount">Promokod chegirmasi:</span>
         <span id="cartDiscount" style="font-weight: 700;">-0 so'm</span>
       </div>
       <div class="cart-summary-row">
-        <span>Yetkazib berish:</span>
+        <span data-i18n="shipping">Yetkazib berish:</span>
         <span id="cartShipping" style="font-weight: 700;">0 so'm</span>
       </div>
       <div class="cart-summary-total">
-        <span>Jami to'lov:</span>
+        <span data-i18n="total">Jami to'lov:</span>
         <span class="cart-total-num" id="cartTotal">0 so'm</span>
       </div>
-      <div class="demo-banner-strip">
-        <i class="fa-solid fa-lock" style="color: #f59e0b; font-size: 0.95rem;"></i>
-        <span>Hozircha sayt namoyish rejimida. Rasmiylashtirish vaqtincha to'xtatilgan.</span>
-      </div>
-      <button class="checkout-btn locked" id="checkoutBtn">
-        <i class="fa-solid fa-lock"></i> Rasmiylashtirish (Hozircha to'xtatilgan)
+      <button class="checkout-btn" id="checkoutBtn" aria-label="Buyurtma berish">
+        <i class="fa-solid fa-bag-shopping"></i> <span data-i18n="checkout_btn">Buyurtma berish</span>
       </button>
     </div>
   </aside>
 
   <!-- Sevimlilar Yon Paneli (Wishlist Drawer) -->
-  <aside class="drawer" id="wishlistDrawer">
+  <aside class="drawer" id="wishlistDrawer" role="dialog" aria-label="Sevimlilar ro'yxati">
     <div class="drawer-header">
       <h3 class="drawer-title">
         <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
-        Sevimlilar <span id="wishItemsCount" style="color: var(--text-muted); font-size: 0.95rem;">(0)</span>
+        <span data-i18n="wish_title">Sevimlilar</span> <span id="wishItemsCount" style="color: var(--text-muted); font-size: 0.95rem;">(0)</span>
       </h3>
-      <button class="drawer-close-btn close-modal-btn" title="Yopish">
+      <button class="drawer-close-btn close-modal-btn" title="Yopish" aria-label="Sevimlilar oynasini yopish">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -795,9 +843,9 @@
     <div class="checkout-modal-inner">
       <h3 class="checkout-modal-title">
         <i class="fa-solid fa-truck-ramp-box" style="color: var(--primary);"></i>
-        Buyurtmani rasmiylashtirish
+        <span data-i18n="checkout_modal_title">Buyurtmani rasmiylashtirish</span>
       </h3>
-      <p class="checkout-modal-subtitle">Yetkazib berish ma'lumotlarini kiriting va buyurtmani tasdiqlang</p>
+      <p class="checkout-modal-subtitle" data-i18n="checkout_modal_sub">Yetkazib berish ma'lumotlarini kiriting va buyurtmani tasdiqlang</p>
 
       <!-- Buyurtma tarkibi xulosasi -->
       <div id="checkoutSummary"></div>
@@ -805,19 +853,19 @@
       <form id="checkoutForm">
         <div class="checkout-form-grid">
           <div class="form-group">
-            <label for="customerName">Ism va familiyangiz *</label>
+            <label for="customerName" data-i18n="full_name">Ism va familiyangiz *</label>
             <input type="text" id="customerName" name="customerName" class="form-input" placeholder="Masalan: Sardor Aliyev" required>
           </div>
 
           <div class="form-group">
-            <label for="customerPhone">Telefon raqamingiz *</label>
+            <label for="customerPhone" data-i18n="phone_number">Telefon raqamingiz *</label>
             <input type="tel" id="customerPhone" name="customerPhone" class="form-input" placeholder="+998 90 123 45 67" required>
           </div>
         </div>
 
         <div class="checkout-form-grid">
           <div class="form-group">
-            <label for="customerCity">Shahar / Viloyat *</label>
+            <label for="customerCity" data-i18n="city_region">Shahar / Viloyat *</label>
             <select id="customerCity" name="customerCity" class="form-select">
               <option value="Toshkent shahri">Toshkent shahri</option>
               <option value="Toshkent viloyati">Toshkent viloyati</option>
@@ -837,19 +885,19 @@
           </div>
 
           <div class="form-group">
-            <label for="customerAddress">Yetkazish manzili (ko'cha, uy, xonadon) *</label>
+            <label for="customerAddress" data-i18n="delivery_address">Yetkazish manzili (ko'cha, uy, xonadon) *</label>
             <input type="text" id="customerAddress" name="customerAddress" class="form-input" placeholder="Masalan: Chilonzor 7-mavze, 12-uy, 45-xonadon" required>
           </div>
         </div>
 
         <!-- To'lov usuli -->
         <div class="form-group" style="margin-top: 0.5rem;">
-          <label>To'lov usulini tanlang:</label>
+          <label data-i18n="payment_method">To'lov usulini tanlang:</label>
           <div class="payment-methods-grid">
             <label class="payment-radio-label">
               <input type="radio" name="paymentMethod" value="cash" checked>
               <i class="fa-solid fa-money-bill-wave" style="font-size: 1.25rem;"></i>
-              <span>Qabul qilganda naqd</span>
+              <span data-i18n="payment_cash">Qabul qilganda naqd</span>
             </label>
             <label class="payment-radio-label">
               <input type="radio" name="paymentMethod" value="payme">
@@ -865,11 +913,13 @@
         </div>
 
         <div class="form-group" style="margin-bottom: 1.5rem;">
-          <label for="customerNotes">Kuryer uchun qo'shimcha izoh (ixtiyoriy)</label>
+          <label for="customerNotes" data-i18n="order_notes">Kuryer uchun qo'shimcha izoh (ixtiyoriy)</label>
           <textarea id="customerNotes" name="customerNotes" class="form-textarea" placeholder="Masalan: Domofon kodi 45, yetib kelganda qo'ng'iroq qiling..."></textarea>
         </div>
 
         <button type="submit" class="checkout-btn" style="padding: 1rem; font-size: 1rem;">
+          <i class="fa-solid fa-circle-check"></i> <span data-i18n="confirm_order">Buyurtmani Tasdiqlash</span>
+        </button>
           <i class="fa-solid fa-check"></i> Buyurtmani tasdiqlash
         </button>
       </form>
@@ -886,36 +936,385 @@
     </div>
   </div>
 
-  <!-- Buyurtma Hozircha To'xtatilganligini Bildiruvchi Modal (Demo Notice Modal) -->
-  <div class="center-modal" id="orderNoticeModal" style="max-width: 490px;">
+  <!-- ==========================================
+       14. Avtorizatsiya Modali (Kirish & Ro'yxatdan o'tish)
+       ========================================== -->
+  <div class="center-modal" id="authModal" style="max-width: 460px;">
     <button class="center-modal-close close-modal-btn" title="Yopish">
       <i class="fa-solid fa-xmark"></i>
     </button>
-    <div style="text-align: center; padding: 1.5rem 1rem 0.75rem;">
-      <div style="width: 76px; height: 76px; background: rgba(245, 158, 11, 0.12); color: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.3rem; margin: 0 auto 1.25rem;">
-        <i class="fa-solid fa-shield-halved"></i>
-      </div>
-      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.75rem; color: var(--text-main);">
-        Rasmiylashtirish hozircha to'xtatilgan
-      </h3>
-      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
-        Hurmatli foydalanuvchi! <strong>Bozorix</strong> onlayn do'koni ayni paytda <strong>taqdimot va sinov (Demo)</strong> rejimida ishlamoqda. Haqiqiy buyurtmalarni rasmiylashtirish funksiyasi vaqtincha cheklangan.
-      </p>
-      <div style="background: var(--bg-surface); padding: 1.15rem; border-radius: var(--radius-lg); border: 1.5px dashed var(--border-light); margin-bottom: 1.5rem; text-align: left;">
-        <div style="font-size: 0.875rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">
-          <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Sinab ko'rishingiz mumkin bo'lgan imkoniyatlar:
+    <div style="padding: 2rem 2.25rem;">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <div class="logo-icon-box" style="margin: 0 auto 0.75rem; width: 48px; height: 48px; font-size: 1.35rem;">
+          <i class="fa-solid fa-bolt-lightning"></i>
         </div>
-        <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 1.25rem; margin: 0; line-height: 1.7;">
-          <li>Mahsulotlarni qidirish va toifalar bo'yicha saralash</li>
-          <li>Xotira va ranglarni tanlab jonli narx o'zgarishini ko'rish</li>
-          <li>Savatga tovar qo'shish va sonini boshqarish</li>
-          <li><strong>USTOZ20</strong> promokodi orqali 20% chegirma hisoblash</li>
-          <li>Sevimlilar ro'yxatiga qo'shish va tungi/kunduzgi rejimni yoqish</li>
-        </ul>
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main);" id="authModalTitle">Bozorix hisobiga kirish</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">Shaxsiy kabinet, buyurtmalar tarixi va chegirmalar</p>
       </div>
-      <button class="hero-btn" id="closeOrderNoticeBtn" style="background: var(--primary); color: #ffffff; width: 100%; justify-content: center; padding: 0.9rem; font-weight: 800; font-size: 0.95rem;">
-        Tushundim, tanishishda davom etish
-      </button>
+
+      <!-- Tab tugmalari -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabLoginBtn" type="button">Kirish</button>
+        <button class="auth-tab-btn" id="tabRegisterBtn" type="button">Ro'yxatdan o'tish</button>
+      </div>
+
+      <!-- Tezkor Demo Kirish (Ustoz va tekshiruvchilar uchun) -->
+      <div class="demo-accounts-box">
+        <div style="font-weight: 700; color: var(--text-secondary);"><i class="fa-solid fa-wand-magic-sparkles" style="color: #f59e0b;"></i> Tezkor kirish (1-klikda):</div>
+        <div class="demo-chips">
+          <button type="button" class="demo-chip" id="quickLoginAdmin">👑 Admin sifatida</button>
+          <button type="button" class="demo-chip" id="quickLoginClient">👤 Xaridor sifatida</button>
+        </div>
+      </div>
+
+      <!-- Login Formasi -->
+      <form id="loginForm">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="loginAccount">Email yoki Telefon raqam *</label>
+          <input type="text" id="loginAccount" class="form-input" placeholder="admin@bozorix.uz yoki +998901234567" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="loginPassword">Parol *</label>
+          <div style="position: relative;">
+            <input type="password" id="loginPassword" class="form-input" placeholder="Parolingizni kiriting" required>
+            <button type="button" class="password-toggle-btn" id="toggleLoginPass" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--text-muted); cursor: pointer;">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="checkout-btn" style="padding: 0.95rem; font-size: 0.95rem;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Tizimga kirish
+        </button>
+      </form>
+
+      <!-- Register Formasi -->
+      <form id="registerForm" style="display: none;">
+        <div class="form-group" style="margin-bottom: 0.85rem;">
+          <label for="regName">Ism va familiyangiz *</label>
+          <input type="text" id="regName" class="form-input" placeholder="Masalan: Aziz Rahimov" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 0.85rem;">
+          <label for="regPhone">Telefon raqamingiz *</label>
+          <input type="tel" id="regPhone" class="form-input" placeholder="+998 90 123 45 67" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 0.85rem;">
+          <label for="regEmail">Email manzilingiz *</label>
+          <input type="email" id="regEmail" class="form-input" placeholder="aziz@example.com" required>
+        </div>
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label for="regPassword">Yangi parol (kamida 6 ta belgi) *</label>
+          <input type="password" id="regPassword" class="form-input" placeholder="Kamida 6 ta belgi" minlength="6" required>
+        </div>
+        <button type="submit" class="checkout-btn" style="padding: 0.95rem; font-size: 0.95rem; background: linear-gradient(135deg, #10b981, #059669);">
+          <i class="fa-solid fa-user-plus"></i> Ro'yxatdan o'tish
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       15. Shaxsiy Kabinet Modali (User Cabinet)
+       ========================================== -->
+  <div class="center-modal" id="userCabinetModal" style="max-width: 780px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="cabinet-modal-wrap">
+      <div class="cabinet-header">
+        <div class="cabinet-user-info">
+          <div class="cabinet-avatar" id="cabAvatarLetter">U</div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.15rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+              <span id="cabUserName">Foydalanuvchi</span>
+              <span class="order-status-badge status-yangi" id="cabUserRole" style="font-size: 0.7rem;">Mijoz</span>
+            </div>
+            <div style="font-size: 0.825rem; color: var(--text-muted); margin-top: 2px;">
+              <span id="cabUserEmail">user@example.com</span> · <span id="cabUserPhone">+998 90 000 00 00</span>
+            </div>
+          </div>
+        </div>
+        <button class="hero-btn" id="logoutBtn" style="background: #fee2e2; color: #dc2626; border: none; padding: 0.5rem 1rem; font-size: 0.85rem;">
+          <i class="fa-solid fa-right-from-bracket"></i> Chiqish
+        </button>
+      </div>
+
+      <div class="cabinet-nav">
+        <button class="cabinet-nav-btn active" id="cabTabOrdersBtn"><i class="fa-solid fa-clock-rotate-left"></i> Mening Buyurtmalarim</button>
+        <button class="cabinet-nav-btn" id="cabTabProfileBtn"><i class="fa-regular fa-id-card"></i> Mening Ma'lumotlarim</button>
+      </div>
+
+      <div class="cabinet-body">
+        <!-- 1-tab: Buyurtmalar tarixi -->
+        <div id="cabOrdersSection">
+          <div id="cabOrdersList">
+            <!-- JS to'ldiradi -->
+          </div>
+        </div>
+
+        <!-- 2-tab: Profil ma'lumotlarini tahrirlash -->
+        <div id="cabProfileSection" style="display: none;">
+          <form id="cabProfileForm" style="max-width: 520px;">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="cabEditName">To'liq ism *</label>
+              <input type="text" id="cabEditName" class="form-input" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="cabEditPhone">Telefon raqam *</label>
+              <input type="tel" id="cabEditPhone" class="form-input" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label for="cabEditCity">Shahar / Viloyat</label>
+              <input type="text" id="cabEditCity" class="form-input" placeholder="Toshkent shahri">
+            </div>
+            <div class="form-group" style="margin-bottom: 1.25rem;">
+              <label for="cabEditAddress">Asosiy yetkazish manzili</label>
+              <input type="text" id="cabEditAddress" class="form-input" placeholder="Ko'cha, uy, xonadon">
+            </div>
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label for="cabEditPass">Yangi parol (agar o'zgartirmoqchi bo'lsangiz)</label>
+              <input type="password" id="cabEditPass" class="form-input" placeholder="O'zgartirish shart emas">
+            </div>
+            <button type="submit" class="checkout-btn" style="padding: 0.85rem; width: auto; min-width: 180px;">
+              <i class="fa-solid fa-floppy-disk"></i> Ma'lumotlarni saqlash
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       16. Admin Boshqaruv Paneli Modali (Admin Panel)
+       ========================================== -->
+  <div class="center-modal" id="adminModal" style="max-width: 1040px; width: 95%;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="admin-modal-wrap">
+      <div class="admin-header">
+        <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <div style="background: #f59e0b; color: #ffffff; width: 40px; height: 40px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">Bozorix Boshqaruv Paneli</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Real vaqt rejimidagi ma'lumotlar bazasi va nazorat</p>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <span class="order-status-badge status-yetkazildi"><i class="fa-solid fa-circle"></i> Baza Onlayn</span>
+        </div>
+      </div>
+
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" id="admTabStatsBtn"><i class="fa-solid fa-chart-pie"></i> Statistika</button>
+        <button class="admin-tab-btn" id="admTabProductsBtn"><i class="fa-solid fa-box-open"></i> Mahsulotlar</button>
+        <button class="admin-tab-btn" id="admTabOrdersBtn"><i class="fa-solid fa-list-check"></i> Buyurtmalar</button>
+        <button class="admin-tab-btn" id="admTabCouponsBtn"><i class="fa-solid fa-ticket"></i> Promokodlar</button>
+        <button class="admin-tab-btn" id="admTabUsersBtn"><i class="fa-solid fa-users"></i> Mijozlar</button>
+      </div>
+
+      <div class="admin-content" id="adminContentArea">
+        <!-- JS to'ldiradi -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       17. Buyurtmani Jonli Kuzatish Modali (Order Tracking)
+       ========================================== -->
+  <div class="center-modal" id="orderTrackingModal" style="max-width: 580px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; display: flex; align-items: center; gap: 0.65rem; color: var(--text-main);">
+        <i class="fa-solid fa-truck-fast" style="color: var(--primary);"></i>
+        <span data-i18n="track_modal_title">Buyurtmani jonli kuzatish</span>
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem; margin-bottom: 1.25rem;" data-i18n="track_modal_sub">
+        Buyurtma raqamini kiriting va uning qayerda ekanligini real vaqtda ko'ring
+      </p>
+
+      <form id="trackOrderForm" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+        <input type="text" id="trackInput" class="form-input" placeholder="Masalan: BZX-2026-104921" data-i18n-placeholder="track_input_placeholder" required style="font-weight: 700;" aria-label="Buyurtma raqami">
+        <button type="submit" class="checkout-btn" style="width: auto; padding: 0.75rem 1.25rem; white-space: nowrap;" aria-label="Qidirish">
+          <i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="track_search_btn">Qidirish</span>
+        </button>
+      </form>
+
+      <div id="trackingResultBox">
+        <!-- JS to'ldiradi -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       18. Yetkazib Berish va Kafolat Modali
+       ========================================== -->
+  <div class="center-modal" id="deliveryModal" style="max-width: 640px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish" aria-label="Kafolat oynasini yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.65rem;">
+        <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i>
+        <span data-i18n="delivery_modal_title">Kafolat va Yetkazib Berish Siyosati</span>
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem;" data-i18n="delivery_modal_sub">Bozorix rasmiy xizmat ko'rsatish va xaridorlarni himoyalash standartlari</p>
+
+      <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <div style="background: var(--bg-surface); padding: 1.15rem; border-radius: var(--radius-xl); border: 1px solid var(--border-light);">
+          <div style="font-weight: 800; font-size: 1rem; color: var(--primary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-truck-fast"></i> Tezkor Yetkazib Berish
+          </div>
+          <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            • <strong>Toshkent shahri bo'ylab</strong>: Buyurtma qilingandan so'ng 3 soat ichida yoki xaridor ko'rsatgan qulay vaqtda to'g'ridan-to'g'ri eshikkacha yetkaziladi.<br>
+            • <strong>Barcha viloyatlar bo'ylab</strong>: BTS, Fargo va Express pochta orqali 24-48 soat ichida yetkazib beriladi.<br>
+            • <strong>1 000 000 so'mdan yuqori</strong> buyurtmalar uchun Toshkent bo'ylab yetkazish mutlaqo BEPUL!
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); padding: 1.15rem; border-radius: var(--radius-xl); border: 1px solid var(--border-light);">
+          <div style="font-weight: 800; font-size: 1rem; color: #10b981; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-arrow-rotate-left"></i> 14 Kunlik Qaytarish Huquqi
+          </div>
+          <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            O'zbekiston Respublikasi "Iste'molchilar huquqlarini himoya qilish to'g'risida"gi Qonuniga muvofiq, agar mahsulot ishlatilmagan, qadog'i va kvitansiyasi saqlangan bo'lsa, xarid qilingan kundan boshlab 14 kun ichida to'lovni 100% qaytarib olishingiz yoki boshqa modelga almashtirishingiz mumkin.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-surface); padding: 1.15rem; border-radius: var(--radius-xl); border: 1px solid var(--border-light);">
+          <div style="font-weight: 800; font-size: 1rem; color: #f59e0b; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-medal"></i> 1 Yildan 2 Yilgacha Rasmiy Kafolat
+          </div>
+          <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+            Barcha tovarlarimiz Apple, Samsung, Sony, Asus, Dyson kabi brendlarning asl va rasmiy sertifikatlangan nusxalari hisoblanadi. Har bir buyurtmaga rasmiy kafolat taloni va do'kon muhri tushirilgan kvitansiya ilova qilinadi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       19. Maxsus Imkoniyatlar Modali (A11y Modal)
+       ========================================== -->
+  <div class="center-modal" id="a11yModal" style="max-width: 780px;">
+    <button class="center-modal-close close-modal-btn" title="Yopish" aria-label="Maxsus imkoniyatlar oynasini yopish">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div style="padding: 2.25rem;">
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.65rem;">
+        <i class="fa-solid fa-universal-access" style="color: var(--primary);"></i>
+        <span data-i18n="a11y_modal_title">Maxsus Imkoniyatlar (A11y)</span>
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem;" data-i18n="a11y_modal_sub">
+        Ko'zi ojizlar, zaif ko'ruvchilar va barcha foydalanuvchilar uchun moslashtirish tizimi
+      </p>
+
+      <div class="a11y-grid">
+        <!-- 1. Ovozli O'quvchi (TTS) -->
+        <div class="a11y-card" style="grid-column: 1 / -1;">
+          <div class="a11y-card-header">
+            <i class="fa-solid fa-volume-high"></i>
+            <span data-i18n="a11y_voice_title">Ovozli O'quvchi (Screen Reader / TTS)</span>
+          </div>
+          <p class="a11y-card-desc" data-i18n="a11y_voice_desc">
+            Har bir element ustiga sichqoncha borganda yoki Tab bosilganda avtomatik ovoz chiqarib o'qib beradi.
+          </p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="a11y-toggle-btn" id="a11yVoiceToggle" style="flex: 2; min-width: 220px;" aria-label="Ovozli o'qish rejimini yoqish">
+              <span id="a11yVoiceLabel" data-i18n="a11y_voice_toggle">Ovozli o'qish rejimini yoqish</span>
+              <span class="toggle-indicator"></span>
+            </button>
+            <button class="hero-btn" id="a11yReadPageBtn" style="flex: 1; min-width: 170px; background: var(--primary); color: #fff; padding: 0.7rem 1rem; font-size: 0.85rem; justify-content: center;" aria-label="Sahifani to'liq ovozli o'qish">
+              <i class="fa-solid fa-play"></i> <span data-i18n="a11y_read_page">Sahifani o'qish</span>
+            </button>
+            <button class="hero-btn" id="a11yStopVoiceBtn" style="background: var(--danger); color: #fff; padding: 0.7rem 1rem; font-size: 0.85rem; justify-content: center;" aria-label="Ovozni to'xtatish">
+              <i class="fa-solid fa-stop"></i> <span data-i18n="a11y_stop_voice">To'xtatish</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Shrift O'lchami -->
+        <div class="a11y-card">
+          <div class="a11y-card-header">
+            <i class="fa-solid fa-text-height"></i>
+            <span data-i18n="a11y_font_title">Matn O'lchami (Font Zoom)</span>
+          </div>
+          <p class="a11y-card-desc">Saytdagi barcha matnlarni o'zingizga qulay hajmda kattalashtiring.</p>
+          <div class="a11y-options-row">
+            <button class="a11y-opt-btn active" data-font="md">100%</button>
+            <button class="a11y-opt-btn" data-font="lg">115%</button>
+            <button class="a11y-opt-btn" data-font="xl">130%</button>
+            <button class="a11y-opt-btn" data-font="2xl">145%</button>
+          </div>
+        </div>
+
+        <!-- 3. Rang va Kontrast -->
+        <div class="a11y-card">
+          <div class="a11y-card-header">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            <span data-i18n="a11y_contrast_title">Rang va Kontrast Rejimi</span>
+          </div>
+          <p class="a11y-card-desc">Zaif ko'ruvchilar uchun WCAG AAA yuqori kontrast yoki monoxrom rejim.</p>
+          <div class="a11y-options-row">
+            <button class="a11y-opt-btn active" data-contrast="default" title="Standart">Normal</button>
+            <button class="a11y-opt-btn" data-contrast="high" title="Yuqori Kontrast">Sariq/Qora</button>
+            <button class="a11y-opt-btn" data-contrast="grayscale" title="Monoxrom">Oq/Qora</button>
+            <button class="a11y-opt-btn" data-contrast="invert" title="Invert">Invert</button>
+          </div>
+        </div>
+
+        <!-- 4. Ko'rishni osonlashtiruvchi qo'shimchalar -->
+        <div class="a11y-card">
+          <div class="a11y-card-header">
+            <i class="fa-solid fa-eye"></i>
+            <span data-i18n="a11y_visual_title">Ko'rishni Osonlashtirish</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+            <button class="a11y-toggle-btn" id="a11yReadableFontToggle" aria-label="O'qishga oson shriftni yoqish yoki o'chirish">
+              <span data-i18n="a11y_readable_font">O'qishga oson shrift</span>
+              <span class="toggle-indicator"></span>
+            </button>
+            <button class="a11y-toggle-btn" id="a11yHighlightLinksToggle" aria-label="Havolalarni yorqin ajratib ko'rsatish">
+              <span data-i18n="a11y_highlight_links">Havolalarni ajratib ko'rsatish</span>
+              <span class="toggle-indicator"></span>
+            </button>
+            <button class="a11y-toggle-btn" id="a11yBigCursorToggle" aria-label="Katta kursorni yoqish">
+              <span data-i18n="a11y_big_cursor">Katta kursor</span>
+              <span class="toggle-indicator"></span>
+            </button>
+            <button class="a11y-toggle-btn" id="a11yReduceMotionToggle" aria-label="Animatsiyalarni to'xtatish">
+              <span data-i18n="a11y_reduce_motion">Animatsiyalarni to'xtatish</span>
+              <span class="toggle-indicator"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Tezkor Tugmalar Qo'llanmasi -->
+        <div class="a11y-card">
+          <div class="a11y-card-header">
+            <i class="fa-solid fa-keyboard"></i>
+            <span data-i18n="a11y_shortcuts_title">Klaviatura Tezkor Tugmalari</span>
+          </div>
+          <table class="shortcuts-table">
+            <tr><td><span class="kbd-key">Alt + A</span></td><td data-i18n="shortcut_a11y">Maxsus imkoniyatlar paneli</td></tr>
+            <tr><td><span class="kbd-key">Alt + V</span></td><td data-i18n="shortcut_voice">Ovozli o'qishni yoqish / o'chirish</td></tr>
+            <tr><td><span class="kbd-key">Alt + L</span></td><td data-i18n="shortcut_lang">Tilni almashtirish (UZ/RU/EN)</td></tr>
+            <tr><td><span class="kbd-key">Alt + S</span></td><td data-i18n="shortcut_search">Qidiruv maydoniga o'tish</td></tr>
+            <tr><td><span class="kbd-key">Alt + C</span></td><td data-i18n="shortcut_cart">Savatchani ochish</td></tr>
+            <tr><td><span class="kbd-key">Alt + W</span></td><td data-i18n="shortcut_wish">Sevimlilarni ochish</td></tr>
+            <tr><td><span class="kbd-key">Esc</span></td><td data-i18n="shortcut_esc">Barcha modallarni yopish</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem; text-align: right;">
+        <button class="hero-btn" id="a11yResetBtn" style="background: var(--bg-alt); color: var(--text-main); padding: 0.75rem 1.25rem; font-size: 0.9rem; border-radius: var(--radius-md);">
+          <i class="fa-solid fa-rotate-left"></i> <span data-i18n="a11y_reset_btn">Barcha sozlamalarni tiklash</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -924,6 +1323,7 @@
 
   <!-- Skriptlar -->
   <script src="js/products.js"></script>
+  <script src="js/translations.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

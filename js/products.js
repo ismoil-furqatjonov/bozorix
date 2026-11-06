@@ -655,8 +655,15 @@ const productsData = [
   }
 ];
 
-// O'zbek so'mida formatlash yordamchisi
-function formatPrice(amount) {
-  if (isNaN(amount) || amount === null || amount === undefined) return "0 so'm";
-  return new Intl.NumberFormat('uz-UZ').format(amount) + " so'm";
+// O'zbek so'mida va ko'p tilli formatlash yordamchisi
+function formatPrice(amount, lang) {
+  const curLang = lang || (window.currentLang || 'uz');
+  if (isNaN(amount) || amount === null || amount === undefined) {
+    return curLang === 'en' ? "0 UZS" : curLang === 'ru' ? "0 сум" : "0 so'm";
+  }
+  const locale = curLang === 'en' ? 'en-US' : curLang === 'ru' ? 'ru-RU' : 'uz-UZ';
+  const formatted = new Intl.NumberFormat(locale).format(amount);
+  if (curLang === 'en') return formatted + " UZS";
+  if (curLang === 'ru') return formatted + " сум";
+  return formatted + " so'm";
 }
